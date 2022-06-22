@@ -1,1 +1,1 @@
-console.log("It works!");
+(()=>{let e=new class{constructor(e,t,i,s){this.title=e,this.description=t,this.dueDate=i,this.priority=s}}("Sweep","Sweep kitchen","Today","Medium");console.log(e)})();
