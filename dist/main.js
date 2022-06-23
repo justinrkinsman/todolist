@@ -22,14 +22,14 @@ const priority = document.getElementById('priority')
 const submitBtn = document.getElementById('submit')
 submitBtn.addEventListener('click', submission)
 
-
+let four = 2 + 2
 function submission() {
     let list = new Todo(task.value, desc.value, due.value, priority.value)
     let newDiv = document.createElement('div')
     newDiv.setAttribute('id', 'taskContent')
     newDiv.textContent = (`${list.task}`)
     let detailsBtn = document.createElement('button')
-    detailsBtn.setAttribute('id', 'detailsBtn')
+    detailsBtn.setAttribute('id', `detailsBtn${four}`)
     detailsBtn.textContent = "Details"
     let check = document.createElement('input')
     check.setAttribute('type', 'checkbox')
@@ -49,7 +49,19 @@ function submission() {
     contentDiv.appendChild(delBtn)
     content.appendChild(contentDiv)
     fullList.push(list)
-    console.log(fullList)
+    const buttons = document.querySelectorAll('button')
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            if(button.textContent =='Details'){
+                console.log(fullList)
+            }else if (button.textContent =='Edit'){
+                console.log('Edit')
+            }else if (button.textContent == 'Delete'){
+                console.log('Delete')
+            }
+        })
+})
+    //console.log(fullList)
     clearForm()
 }
 
@@ -68,10 +80,10 @@ function handleForm(event) { event.preventDefault(); }
 form.addEventListener('submit', handleForm)
 //let myTodo = new Todo('Sweep', "Sweep kitchen", 'Today', 'Medium')
 
-/* const detailsBtnClick = document.getElementById('detailsBtn')
+/*const detailsBtnClick = document.getElementById('detailsBtn')
     detailsBtnClick.addEventListener('click', function(e){
     if(e.target && e.target.id=='detailsBtn'){
-        console.log(list.desc)
+        console.log(fullList)
     }
 })*/
 /******/ })()
