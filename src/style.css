@@ -7,3 +7,8 @@
     display: flex;
     justify-content: center
 }
+
+#wholeShebang {
+    display: flex;
+    flex-direction: row;
+}

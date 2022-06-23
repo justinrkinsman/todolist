@@ -8,6 +8,7 @@ class Todo {
 }
 
 const content = document.getElementById('content')
+const details = document.getElementById('details')
 const task = document.getElementById('task')
 const desc = document.getElementById('description')
 const due = document.getElementById('dueDate')
@@ -18,7 +19,11 @@ submitBtn.addEventListener('click', submission)
 function submission() {
     let list = new Todo(task.value, desc.value, due.value, priority.value)
     let newDiv = document.createElement('div')
-    newDiv.textContent
+    newDiv.setAttribute('id', 'taskContent')
+    newDiv.textContent = (`${list.task}`)
+    let detailsBtn = document.createElement('button')
+    detailsBtn.textContent = "Details"
+    details.appendChild(detailsBtn)
     content.appendChild(newDiv)
     clearForm()
 }
@@ -28,7 +33,6 @@ function clearForm(){
     desc.value = ''
     due.value = ''
     priority.value = ''
-    notes.value = ''
 }
 
 function addListToPage() {
