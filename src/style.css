@@ -11,4 +11,14 @@
 #wholeShebang {
     display: flex;
     flex-direction: row;
+
+}
+
+#details {
+    display: flex;
+    flex-direction: column;
+}
+
+#taskContent {
+    height: 21px;
 }
