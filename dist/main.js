@@ -1,1 +1,51 @@
-(()=>{class e{constructor(e,t,n,u,d){this.task=e,this.description=t,this.dueDate=n,this.priority=u,this.notes=d}}document.getElementById("content");const t=document.getElementById("task"),n=document.getElementById("description"),u=document.getElementById("dueDate"),d=document.getElementById("priority"),l=document.getElementById("notes");document.getElementById("submit").addEventListener("click",(function(){let o=new e(t.value,n.value,u.value,d.value,l.value);console.log(o),t.value="",n.value="",u.value="",d.value="",l.value=""})),document.getElementById("myForm").addEventListener("submit",(function(e){e.preventDefault()}))})();
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+class Todo {
+    constructor(task, description, dueDate, priority, notes) {
+        this.task = task;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority
+        this.notes = notes
+    }
+}
+
+const content = document.getElementById('content')
+const task = document.getElementById('task')
+const desc = document.getElementById('description')
+const due = document.getElementById('dueDate')
+const priority = document.getElementById('priority')
+const notes = document.getElementById('notes')
+const submitBtn = document.getElementById('submit')
+submitBtn.addEventListener('click', submission)
+
+function submission() {
+    let list = new Todo(task.value, desc.value, due.value, priority.value, notes.value)
+    console.log(list)
+    let newDiv = document.createElement('div')
+    newDiv.appendChild(list)
+    content.appendChild(newDiv)
+    clearForm()
+}
+
+function clearForm(){
+    task.value = ''
+    desc.value = ''
+    due.value = ''
+    priority.value = ''
+    notes.value = ''
+}
+
+function addListToPage() {
+}
+
+let form = document.getElementById('myForm');
+function handleForm(event) { event.preventDefault(); }
+form.addEventListener('submit', handleForm)
+//let myTodo = new Todo('Sweep', "Sweep kitchen", 'Today', 'Medium')
+/******/ })()
+;
+//# sourceMappingURL=main.js.map

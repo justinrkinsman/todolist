@@ -7,32 +7,33 @@
     <script src="main.js" defer></script>
 </head>
 <body>
+    <form id="myForm">
+        <div id="taskForm">
+            <label for="task">Task: </label>
+            <input type="text" name="task" id="task">
+        </div>
+        <div id="descForm">
+            <label for="description">Description: </label>
+            <input type="type" name="description" id="description">
+        </div>
+        <div id="dueForm">
+            <label for="dueDate">Due Date: </label>
+            <input type="text" name="dueDate" id="dueDate">
+        </div>
+        <div id="priorityForm">
+            <label for="priority">Priority: </label>
+            <input type="text" name="priority" id="priority">              
+        </div>
+        <div id="notesForm">
+            <label for="notes">Notes: </label>
+            <textarea name="notes" id="notes" rows="5" style="resize: none"></textarea>
+        </div>
+        <div id="submitForm">
+            <button id="submit">Submit</button>
+        </div>
+    </form>
     <div id="content">
-        <form id="myForm">
-            <div id="taskForm">
-                <label for="task">Task: </label>
-                <input type="text" name="task" id="task">
-            </div>
-            <div id="descForm">
-                <label for="description">Description: </label>
-                <input type="type" name="description" id="description">
-            </div>
-            <div id="dueForm">
-                <label for="dueDate">Due Date: </label>
-                <input type="text" name="dueDate" id="dueDate">
-            </div>
-            <div id="priorityForm">
-                <label for="priority">Priority: </label>
-                <input type="text" name="priority" id="priority">              
-            </div>
-            <div id="notesForm">
-                <label for="notes">Notes: </label>
-                <textarea name="notes" id="notes" rows="5" style="resize: none"></textarea>
-            </div>
-            <div id="submitForm">
-                <button id="submit">Submit</button>
-            </div>
-        </form>
+        
     </div>
 </body>
 </html>

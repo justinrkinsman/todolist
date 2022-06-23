@@ -20,6 +20,9 @@ submitBtn.addEventListener('click', submission)
 function submission() {
     let list = new Todo(task.value, desc.value, due.value, priority.value, notes.value)
     console.log(list)
+    let newDiv = document.createElement('div')
+    newDiv.appendChild(list)
+    content.appendChild(newDiv)
     clearForm()
 }
 
@@ -29,6 +32,9 @@ function clearForm(){
     due.value = ''
     priority.value = ''
     notes.value = ''
+}
+
+function addListToPage() {
 }
 
 let form = document.getElementById('myForm');
