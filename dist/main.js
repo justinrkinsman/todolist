@@ -23,6 +23,52 @@ const submitBtn = document.getElementById('submit')
 submitBtn.addEventListener('click', submission)
 
 function submission() {
+    /*let list = new Todo(task.value, desc.value, due.value, priority.value)
+    /*let newDiv = document.createElement('div')
+    newDiv.setAttribute('id', `taskContent${fullList.length}`)
+    newDiv.textContent = (`${list.task}`)
+    let detailsBtn = document.createElement('button')
+    detailsBtn.setAttribute('id', `detailsBtn${fullList.length}`)
+    detailsBtn.textContent = "Details"
+    let check = document.createElement('input')
+    check.setAttribute('type', 'checkbox')
+    check.setAttribute('id', `check${fullList.length}`)
+    let editBtn = document.createElement('button')
+    editBtn.setAttribute('id', `editBtn${fullList.length}`)
+    editBtn.textContent = 'Edit'
+    let delBtn = document.createElement('button')
+    delBtn.setAttribute('id', `delete${fullList.length}`)
+    delBtn.textContent = 'Delete'
+    let contentDiv = document.createElement('div')
+    contentDiv.setAttribute('id', 'contentDiv')
+    contentDiv.appendChild(newDiv)
+    contentDiv.appendChild(detailsBtn)
+    contentDiv.appendChild(check)
+    contentDiv.appendChild(editBtn)
+    contentDiv.appendChild(delBtn)
+    content.appendChild(contentDiv)
+    fullList.push(list)*/
+    addListToPage()
+    const detailsButtons = document.querySelectorAll('[id^="detailsBtn"]')
+    detailsButtons.forEach((detailsButton) => {
+        detailsButton.addEventListener('click', () => {
+                console.log(fullList[detailsButton.id.slice(-1)].description)
+                console.log(fullList[detailsButton.id.slice(-1)].dueDate)
+                console.log(fullList[detailsButton.id.slice(-1)].priority)
+        })
+})
+    //console.log(fullList)
+    clearForm()
+}
+
+function clearForm(){
+    task.value = ''
+    desc.value = ''
+    due.value = ''
+    priority.value = ''
+}
+
+function addListToPage() {
     let list = new Todo(task.value, desc.value, due.value, priority.value)
     let newDiv = document.createElement('div')
     newDiv.setAttribute('id', `taskContent${fullList.length}`)
@@ -48,26 +94,6 @@ function submission() {
     contentDiv.appendChild(delBtn)
     content.appendChild(contentDiv)
     fullList.push(list)
-    const detailsButtons = document.querySelectorAll('[id^="detailsBtn"]')
-    detailsButtons.forEach((detailsButton) => {
-        detailsButton.addEventListener('click', () => {
-                console.log(fullList[detailsButton.id.slice(-1)].description)
-                console.log(fullList[detailsButton.id.slice(-1)].dueDate)
-                console.log(fullList[detailsButton.id.slice(-1)].priority)
-        })
-})
-    //console.log(fullList)
-    clearForm()
-}
-
-function clearForm(){
-    task.value = ''
-    desc.value = ''
-    due.value = ''
-    priority.value = ''
-}
-
-function addListToPage() {
 }
 
 let form = document.getElementById('myForm');
