@@ -23,10 +23,15 @@ function submission() {
     console.log(due.value)
     console.log(priority.value)
     console.log(notes.value)
+    clearForm()
 }
 
 function clearForm(){
-
+    task.value = ''
+    desc.value = ''
+    due.value = ''
+    priority.value = ''
+    notes.value = ''
 }
 
 let form = document.getElementById('myForm');
