@@ -48,16 +48,10 @@ function submission() {
     contentDiv.appendChild(delBtn)
     content.appendChild(contentDiv)
     fullList.push(list)
-    const buttons = document.querySelectorAll('button')
-    buttons.forEach((button) => {
-        button.addEventListener('click', () => {
-            if(button.textContent =='Details'){
-                console.log(fullList)
-            }else if (button.textContent =='Edit'){
-                console.log('Edit')
-            }else if (button.textContent == 'Delete'){
-                console.log('Delete')
-            }
+    const detailsButtons = document.querySelectorAll('[id^="detailsBtn"]')
+    detailsButtons.forEach((detailsButton) => {
+        detailsButton.addEventListener('click', () => {
+                console.log(fullList[detailsButton.id.slice(-1)])
         })
 })
     //console.log(fullList)
