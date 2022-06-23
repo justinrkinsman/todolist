@@ -1,1 +1,1 @@
-(()=>{let e=new class{constructor(e,t,i,s){this.title=e,this.description=t,this.dueDate=i,this.priority=s}}("Sweep","Sweep kitchen","Today","Medium");console.log(e)})();
+(()=>{document.getElementById("content");let t=new class{constructor(t,e,s,i){this.task=t,this.description=e,this.dueDate=s,this.priority=i}}("Sweep","Sweep kitchen","Today","Medium");console.log(t.task)})();

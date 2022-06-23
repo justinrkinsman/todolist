@@ -1,0 +1,9 @@
+form {
+    display: inline-block;
+    text-align: right;
+}
+
+#notes {
+    display: flex;
+    justify-content: right;
+}
