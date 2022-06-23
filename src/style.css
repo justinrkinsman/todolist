@@ -1,14 +1,14 @@
-form {
+#myForm {
     display: inline-block;
     text-align: right;
 }
 
-#notes {
+#notesForm {
     display: flex;
     justify-content: right;
 }
 
-#submit {
+#submitForm {
     display: flex;
     justify-content: center
 }
