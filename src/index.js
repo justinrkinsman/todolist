@@ -18,11 +18,8 @@ const submitBtn = document.getElementById('submit')
 submitBtn.addEventListener('click', submission)
 
 function submission() {
-    console.log(task.value)
-    console.log(desc.value)
-    console.log(due.value)
-    console.log(priority.value)
-    console.log(notes.value)
+    let list = new Todo(task.value, desc.value, due.value, priority.value, notes.value)
+    console.log(list)
     clearForm()
 }
 
