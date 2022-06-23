@@ -51,7 +51,9 @@ function submission() {
     const detailsButtons = document.querySelectorAll('[id^="detailsBtn"]')
     detailsButtons.forEach((detailsButton) => {
         detailsButton.addEventListener('click', () => {
-                console.log(fullList[detailsButton.id.slice(-1)])
+                console.log(fullList[detailsButton.id.slice(-1)].description)
+                console.log(fullList[detailsButton.id.slice(-1)].dueDate)
+                console.log(fullList[detailsButton.id.slice(-1)].priority)
         })
 })
     //console.log(fullList)
