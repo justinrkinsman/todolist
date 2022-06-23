@@ -4,12 +4,11 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 class Todo {
-    constructor(task, description, dueDate, priority, notes) {
+    constructor(task, description, dueDate, priority) {
         this.task = task;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority
-        this.notes = notes
     }
 }
 
@@ -18,15 +17,13 @@ const task = document.getElementById('task')
 const desc = document.getElementById('description')
 const due = document.getElementById('dueDate')
 const priority = document.getElementById('priority')
-const notes = document.getElementById('notes')
 const submitBtn = document.getElementById('submit')
 submitBtn.addEventListener('click', submission)
 
 function submission() {
-    let list = new Todo(task.value, desc.value, due.value, priority.value, notes.value)
-    console.log(list)
+    let list = new Todo(task.value, desc.value, due.value, priority.value)
     let newDiv = document.createElement('div')
-    newDiv.appendChild(list)
+    newDiv.textContent
     content.appendChild(newDiv)
     clearForm()
 }

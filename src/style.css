@@ -3,11 +3,6 @@
     text-align: right;
 }
 
-#notesForm {
-    display: flex;
-    justify-content: right;
-}
-
 #submitForm {
     display: flex;
     justify-content: center
