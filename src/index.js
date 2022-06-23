@@ -17,23 +17,22 @@ const priority = document.getElementById('priority')
 const submitBtn = document.getElementById('submit')
 submitBtn.addEventListener('click', submission)
 
-let four = 2 + 2
 function submission() {
     let list = new Todo(task.value, desc.value, due.value, priority.value)
     let newDiv = document.createElement('div')
-    newDiv.setAttribute('id', 'taskContent')
+    newDiv.setAttribute('id', `taskContent${fullList.length}`)
     newDiv.textContent = (`${list.task}`)
     let detailsBtn = document.createElement('button')
-    detailsBtn.setAttribute('id', `detailsBtn${four}`)
+    detailsBtn.setAttribute('id', `detailsBtn${fullList.length}`)
     detailsBtn.textContent = "Details"
     let check = document.createElement('input')
     check.setAttribute('type', 'checkbox')
-    check.setAttribute('id', 'check')
+    check.setAttribute('id', `check${fullList.length}`)
     let editBtn = document.createElement('button')
-    editBtn.setAttribute('id', 'editBtn')
+    editBtn.setAttribute('id', `editBtn${fullList.length}`)
     editBtn.textContent = 'Edit'
     let delBtn = document.createElement('button')
-    delBtn.setAttribute('id', 'delete')
+    delBtn.setAttribute('id', `delete${fullList.length}`)
     delBtn.textContent = 'Delete'
     let contentDiv = document.createElement('div')
     contentDiv.setAttribute('id', 'contentDiv')
