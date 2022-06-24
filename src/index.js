@@ -40,6 +40,10 @@ function submission() {
             let index = e.target.id.slice(-1)
             let element = document.getElementById(`contentDiv${index}`)
             element.style.opacity = '0.3'
+        }else if (e.target && e.target.id.startsWith('delete')){
+            let index = e.target.id.slice(-1)
+            let removeDiv = document.getElementById(`contentDiv${index}`)
+            content.removeChild(removeDiv)
         }
     })
     clearForm()
