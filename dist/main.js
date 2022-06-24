@@ -40,7 +40,6 @@ function submission() {
             let ogDiv = document.getElementById(`contentDiv${index}`)
             detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
             ogDiv.appendChild(detailsDiv)
-            
         }
     })
     clearForm()
@@ -73,11 +72,14 @@ function addListToPage() {
     delBtn.textContent = 'Delete'
     let contentDiv = document.createElement('div')
     contentDiv.setAttribute('id', `contentDiv${fullList.length}`)
-    contentDiv.appendChild(newDiv)
-    contentDiv.appendChild(detailsBtn)
-    contentDiv.appendChild(check)
-    contentDiv.appendChild(editBtn)
-    contentDiv.appendChild(delBtn)
+    let leftSide = document.createElement('div')
+    leftSide.setAttribute('id', `leftSide${fullList.length}`)
+    leftSide.appendChild(newDiv)
+    leftSide.appendChild(detailsBtn)
+    leftSide.appendChild(check)
+    leftSide.appendChild(editBtn)
+    leftSide.appendChild(delBtn)
+    contentDiv.appendChild(leftSide)
     content.appendChild(contentDiv)
     fullList.push(list)
 }

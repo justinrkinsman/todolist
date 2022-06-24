@@ -24,5 +24,10 @@
 
 [id^=contentDiv] {
     display: flex;
-    flex-direction: row
+    flex-direction: column
+}
+
+[id^=leftSide] {
+    display: flex;
+    flex-direction: row;
 }
