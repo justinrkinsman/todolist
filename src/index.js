@@ -17,6 +17,93 @@ const priority = document.getElementById('priority')
 const submitBtn = document.getElementById('submit')
 submitBtn.addEventListener('click', submission)
 
+document.addEventListener('click', function(e){
+    if(e.target && e.target.id.startsWith("detailsBtn")) {
+        console.log(e.target.id)
+        let detailsDiv = document.createElement('div')
+        let index = e.target.id.slice(-1)
+        let ogDiv = document.getElementById(`contentDiv${index}`)
+        detailsDiv.setAttribute('id', `detailsText${index}`)
+        detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
+        ogDiv.appendChild(detailsDiv)
+    }else if (e.target && e.target.id.startsWith('check')){
+        let index = e.target.id.slice(-1)
+        let element = document.getElementById(`contentDiv${index}`)
+        element.style.opacity = '0.3'
+    }else if (e.target && e.target.id.startsWith('delete')){
+        let index = e.target.id.slice(-1)
+        let removeDiv = document.getElementById(`contentDiv${index}`)
+        content.removeChild(removeDiv)
+    }else if (e.target && e.target.id.startsWith('edit')){
+        let index = e.target.id.slice(-1)
+        let currentTask = document.getElementById(`taskContent${index}`)
+        let currentDesc = fullList[index].description
+        let currentDue = fullList[index].dueDate
+        let currentPriority = fullList[index].priority
+        console.log(currentDesc)
+        let newTask = document.createElement('input')
+        newTask.setAttribute('type', 'text')
+        newTask.setAttribute('id', `newTaskInput${index}`)
+        newTask.defaultValue = currentTask.textContent
+        let editForm = document.createElement('div')
+        let editTask = document.createElement('div')
+        let editDesc = document.createElement('div')
+        let editDue = document.createElement('div')
+        let editPriority = document.createElement('div')
+        let newTaskLabel = document.createElement('LABEL')
+        let newDescLabel = document.createElement('LABEL')
+        let newDueLabel = document.createElement('LABEL')
+        let newPriorityLabel = document.createElement('LABEL')
+        newTaskLabel.htmlFor = newTask
+        newTaskLabel.textContent = 'Task'
+        editTask.appendChild(newTask)
+        editTask.appendChild(newTaskLabel)
+        let newDesc = document.createElement('input')
+        newDesc.setAttribute('type', 'text')
+        newDesc.setAttribute('id', `newDescInput${index}`)
+        newDesc.defaultValue = currentDesc
+        newDescLabel.htmlFor = newDesc
+        newDescLabel.textContent = 'Description'
+        editDesc.appendChild(newDesc)
+        editDesc.appendChild(newDescLabel)
+        let newDue = document.createElement('input')
+        newDue.setAttribute('type', 'text')
+        newDue.setAttribute('id', `newDueInput${index}`)
+        newDue.defaultValue = currentDue
+        newDueLabel.htmlFor = newDue
+        newDueLabel.textContent = 'Due Date'
+        editDue.appendChild(newDue)
+        editDue.appendChild(newDueLabel)
+        let newPriority = document.createElement('input')
+        newPriority.setAttribute('type', 'input')
+        newPriority.setAttribute('id', `newPriorityInput${index}`)
+        newPriority.defaultValue = currentPriority
+        newPriorityLabel.htmlFor = newPriority
+        newPriorityLabel.textContent = 'Priority'
+        editPriority.appendChild(newPriority)
+        editPriority.appendChild(newPriorityLabel)
+        let newTaskSubmit = document.createElement('button')
+        newTaskSubmit.textContent = 'Accept'
+        editForm.appendChild(editTask)
+        editForm.appendChild(editDesc)
+        editForm.appendChild(editDue)
+        editForm.appendChild(editPriority)
+        editForm.appendChild(newTaskSubmit)
+        content.appendChild(editForm)
+        newTaskSubmit.addEventListener('click', function(e){
+            if (e.target && e.target.textContent == 'Accept'){
+                //let currentTask = document.getElementById(`taskContent${index}`)
+                currentTask.textContent = newTask.value
+                fullList[index].task = newTask.value
+                fullList[index].description = newDesc.value
+                fullList[index].dueDate = newDue.value
+                fullList[index].priority = newPriority.value
+                console.log(fullList)
+            }
+        })
+    }
+})
+
 function submission() {
     addListToPage()
     console.log(fullList)
@@ -28,8 +115,9 @@ function submission() {
                 console.log(fullList[detailsButton.id.slice(-1)].priority)
         })
 })*/
-    document.addEventListener('click', function(e){
-        if(e.target && e.target.textContent == 'Details') {
+/*    document.addEventListener('click', function(e){
+        if(e.target && e.target.id.startsWith("detailsBtn")) {
+            console.log(e.target.id)
             let detailsDiv = document.createElement('div')
             let index = e.target.id.slice(-1)
             let ogDiv = document.getElementById(`contentDiv${index}`)
@@ -112,7 +200,7 @@ function submission() {
                 }
             })
         }
-    })
+    })*/
     clearForm()
     
 }
