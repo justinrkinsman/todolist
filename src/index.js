@@ -33,6 +33,7 @@ function submission() {
             let detailsDiv = document.createElement('div')
             let index = e.target.id.slice(-1)
             let ogDiv = document.getElementById(`contentDiv${index}`)
+            detailsDiv.setAttribute('id', `detailsText${index}`)
             detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
             ogDiv.appendChild(detailsDiv)
         }
