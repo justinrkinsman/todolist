@@ -41,6 +41,10 @@ function submission() {
             detailsDiv.setAttribute('id', `detailsText${index}`)
             detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
             ogDiv.appendChild(detailsDiv)
+        }else if (e.target && e.target.id.startsWith('check')){
+            let index = e.target.id.slice(-1)
+            let element = document.getElementById(`contentDiv${index}`)
+            element.style.opacity = '0.3'
         }
     })
     clearForm()
