@@ -44,6 +44,22 @@ function submission() {
             let index = e.target.id.slice(-1)
             let removeDiv = document.getElementById(`contentDiv${index}`)
             content.removeChild(removeDiv)
+        }else if (e.target && e.target.id.startsWith('edit')){
+            let index = e.target.id.slice(-1)
+            //console.log(index)
+            let newTask = document.createElement('input')
+            newTask.setAttribute('type', 'text')
+            newTask.setAttribute('id', `newTaskInput${index}`)
+            content.appendChild(newTask)
+            let newTaskSubmit = document.createElement('button')
+            newTaskSubmit.textContent = 'Accept'
+            content.appendChild(newTaskSubmit)
+            newTaskSubmit.addEventListener('click', function(e){
+                if (e.target && e.target.textContent == 'Accept'){
+                    let currentTask = document.getElementById(`taskContent${index}`)
+                    currentTask.textContent = newTask.value
+                }
+            })
         }
     })
     clearForm()
