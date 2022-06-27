@@ -29,6 +29,7 @@ const due = document.getElementById('dueDate')        // gets values from input 
 const priority = document.getElementById('priority')  //
 const project = document.getElementById('project')    //
 const submitBtn = document.getElementById('submit')
+const projectsList = document.getElementById('projectsList')
 submitBtn.addEventListener('click', submission)
 
 document.addEventListener('click', function(e){
@@ -144,7 +145,15 @@ function submission() {
         })
 })*/
     clearForm()
-    
+    newProject()
+}
+
+function newProject(){
+    let index = fullList.length -1
+    let newProject = document.createElement('div')
+    newProject.textContent = fullList[index].project
+    projectsList.appendChild(newProject)
+    //console.log(fullList[index].project)
 }
 
 function clearForm(){
