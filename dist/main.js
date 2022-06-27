@@ -153,6 +153,32 @@ newProjectBtn.addEventListener('click', newProject)
 
 function newProject(){
     console.log('new project')
+    let newProjectDiv = document.getElementById('newProjectDiv')
+    let newProjectForm = document.createElement('div')
+    newProjectForm.setAttribute('id', 'newProjectForm')
+    let newProjectName = document.createElement('input')
+    let newProjectNameLabel = document.createElement('LABEL')
+    newProjectNameLabel.htmlFor = newProjectName
+    newProjectNameLabel.textContent = 'Project Name'
+    newProjectForm.appendChild(newProjectNameLabel)
+    newProjectForm.appendChild(newProjectName)
+    let newProjectDueDate = document.createElement('input')
+    let newProjectDueDateLabel = document.createElement('LABEL')
+    newProjectDueDateLabel.htmlFor = newProjectDueDate
+    newProjectDueDateLabel.textContent = 'Due Date'
+    newProjectForm.appendChild(newProjectDueDateLabel)
+    newProjectForm.appendChild(newProjectDueDate)
+    newProjectDiv.appendChild(newProjectForm)
+    let newProjectPriority = document.createElement('input')
+    let newProjectPriorityLabel = document.createElement('LABEL')
+    newProjectPriorityLabel.htmlFor = newProjectPriority
+    newProjectPriorityLabel.textContent = 'Priority'
+    newProjectForm.appendChild(newProjectPriorityLabel)
+    newProjectForm.appendChild(newProjectPriority)
+    newProjectDiv.appendChild(newProjectForm)
+    let newProjectConfirm = document.createElement('button')
+    newProjectConfirm.textContent = 'Confirm'
+    newProjectDiv.appendChild(newProjectConfirm)
     /*let index = fullList.length -1
     let newProject = document.createElement('div')
     newProject.textContent = fullList[index].project

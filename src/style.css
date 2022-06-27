@@ -10,7 +10,13 @@
 
 #newProjectDiv {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+}
+
+#newProjectForm {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 }
 
 #wholeShebang {
