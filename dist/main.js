@@ -13,7 +13,7 @@ class Todo {
     }
 }
 
-class projects {
+class Projects {
     constructor(name, dueDate, priority){
         this.name = name;
         this.dueDate = dueDate;
@@ -146,12 +146,15 @@ document.addEventListener('click', function(e){
         let newProjectDueDate = document.getElementById('newProjectDueDateInput')
         let newProjectPriority = document.getElementById('newProjectPriorityInput')
         let newProjectListItem = document.createElement('div')
-        let projectList = document.getElementById('projectsList')
-        console.log(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
+        let projectsList = document.getElementById('projectsList')
+        //console.log(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
         newProjectDiv.removeChild(newProjectForm)
         newProjectDiv.removeChild(confirmBtn)
         newProjectListItem.textContent = newProjectName.value
-        projectList.appendChild(newProjectListItem)
+        projectsList.appendChild(newProjectListItem)
+        let addProject = new Projects(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
+        projectList.push(addProject)
+        console.log(projectList)
     }
 })
 
