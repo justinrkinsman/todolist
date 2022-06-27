@@ -141,6 +141,8 @@ document.addEventListener('click', function(e){
         let newProjectDueDate = document.getElementById('newProjectDueDateInput')
         let newProjectPriority = document.getElementById('newProjectPriorityInput')
         let newProjectListItem = document.createElement('div')
+        let index = projectList.length
+        newProjectListItem.setAttribute('id', `projectName${index}`)
         let projectsList = document.getElementById('projectsList')
         //console.log(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
         newProjectDiv.removeChild(newProjectForm)
@@ -150,6 +152,16 @@ document.addEventListener('click', function(e){
         let addProject = new Projects(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
         projectList.push(addProject)
         console.log(projectList)
+    }else if (e.target && e.target.id.startsWith('projectName')){
+        let index = e.target.id.slice(-1)
+        let content = document.getElementById('content')
+        let addTaskButton = document.createElement('button')
+        addTaskButton.setAttribute('id', 'addTaskButton')
+        addTaskButton.textContent = 'Add Task'
+        let projectHeader = document.createElement('h2')
+        projectHeader.textContent = projectList[index].name
+        content.appendChild(projectHeader)
+        content.appendChild(addTaskButton)
     }
 })
 
