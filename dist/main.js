@@ -131,7 +131,14 @@ document.addEventListener('click', function(e){
             }
         })   
     }else if (e.target && e.target.textContent == 'Confirm'){
-        console.log('Confirming New Project')
+        //let newProjectDiv = document.getElementById('newProjectDiv')
+        //let newProjectForm = document.getElementById('newProjectForm')
+        let newProjectName = document.getElementById('newProjectNameInput')
+        let newProjectDueDate = document.getElementById('newProjectDueDateInput')
+        let newProjectPriority = document.getElementById('newProjectPriorityInput')
+        console.log(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
+        newProjectDiv.removeChild(newProjectForm)
+        newProjectDiv.removeChild(confirmBtn)
     }
 })
 
@@ -158,12 +165,14 @@ function newProject(){
     let newProjectForm = document.createElement('div')
     newProjectForm.setAttribute('id', 'newProjectForm')
     let newProjectName = document.createElement('input')
+    newProjectName.setAttribute('id', 'newProjectNameInput')
     let newProjectNameLabel = document.createElement('LABEL')
     newProjectNameLabel.htmlFor = newProjectName
     newProjectNameLabel.textContent = 'Project Name'
     newProjectForm.appendChild(newProjectNameLabel)
     newProjectForm.appendChild(newProjectName)
     let newProjectDueDate = document.createElement('input')
+    newProjectDueDate.setAttribute('id', 'newProjectDueDateInput')
     let newProjectDueDateLabel = document.createElement('LABEL')
     newProjectDueDateLabel.htmlFor = newProjectDueDate
     newProjectDueDateLabel.textContent = 'Due Date'
@@ -171,6 +180,7 @@ function newProject(){
     newProjectForm.appendChild(newProjectDueDate)
     newProjectDiv.appendChild(newProjectForm)
     let newProjectPriority = document.createElement('input')
+    newProjectPriority.setAttribute('id', 'newProjectPriorityInput')
     let newProjectPriorityLabel = document.createElement('LABEL')
     newProjectPriorityLabel.htmlFor = newProjectPriority
     newProjectPriorityLabel.textContent = 'Priority'
@@ -179,6 +189,7 @@ function newProject(){
     newProjectDiv.appendChild(newProjectForm)
     let newProjectConfirm = document.createElement('button')
     newProjectConfirm.textContent = 'Confirm'
+    newProjectConfirm.setAttribute('id', 'confirmBtn')
     newProjectDiv.appendChild(newProjectConfirm)
     /*let index = fullList.length -1
     let newProject = document.createElement('div')
