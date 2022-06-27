@@ -152,6 +152,7 @@ function newProject(){
     let index = fullList.length -1
     let newProject = document.createElement('div')
     newProject.textContent = fullList[index].project
+    newProject.setAttribute('id', `newProject${index}`)
     projectsList.appendChild(newProject)
     //console.log(fullList[index].project)
 }
