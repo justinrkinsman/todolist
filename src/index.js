@@ -124,7 +124,9 @@ document.addEventListener('click', function(e){
                 //fullList[index].project = newProject.value
                 console.log(fullList)
             }
-        })
+        })   
+    }else if (e.target && e.target.textContent == 'Confirm'){
+        console.log('Confirming New Project')
     }
 })
 
@@ -147,7 +149,6 @@ let newProjectBtn = document.getElementById('newProjectBtn')
 newProjectBtn.addEventListener('click', newProject)
 
 function newProject(){
-    console.log('new project')
     let newProjectDiv = document.getElementById('newProjectDiv')
     let newProjectForm = document.createElement('div')
     newProjectForm.setAttribute('id', 'newProjectForm')
