@@ -4,12 +4,12 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 class Todo {
-    constructor(task, description, dueDate, priority, project) {
+    constructor(task, description, dueDate, priority/*, project*/) {
         this.task = task;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.project = project;
+        //this.project = project;
     }
 }
 
@@ -27,7 +27,7 @@ const task = document.getElementById('task')          //
 const desc = document.getElementById('description')   //
 const due = document.getElementById('dueDate')        // gets values from input boxes
 const priority = document.getElementById('priority')  //
-const project = document.getElementById('project')    //
+//const project = document.getElementById('project')    //
 const submitBtn = document.getElementById('submit')
 const projectsList = document.getElementById('projectsList')
 submitBtn.addEventListener('click', submission)
@@ -39,7 +39,7 @@ document.addEventListener('click', function(e){
         let index = e.target.id.slice(-1)
         let ogDiv = document.getElementById(`contentDiv${index}`)
         detailsDiv.setAttribute('id', `detailsText${index}`)
-        detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)} ${(fullList[index].project)}`
+        detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
         ogDiv.appendChild(detailsDiv)
     }else if (e.target && e.target.id.startsWith('check')){
         let index = e.target.id.slice(-1)
@@ -56,7 +56,7 @@ document.addEventListener('click', function(e){
         let currentDesc = fullList[index].description
         let currentDue = fullList[index].dueDate
         let currentPriority = fullList[index].priority
-        let currentProject = fullList[index].project
+        //let currentProject = fullList[index].project
         console.log(currentDesc)
         let newTask = document.createElement('input')
         newTask.setAttribute('type', 'text')
@@ -67,12 +67,12 @@ document.addEventListener('click', function(e){
         let editDesc = document.createElement('div')
         let editDue = document.createElement('div')
         let editPriority = document.createElement('div')
-        let editProject = document.createElement('div')
+        //let editProject = document.createElement('div')
         let newTaskLabel = document.createElement('LABEL')
         let newDescLabel = document.createElement('LABEL')
         let newDueLabel = document.createElement('LABEL')
         let newPriorityLabel = document.createElement('LABEL')
-        let newProjectLabel = document.createElement('LABEL')
+        //let newProjectLabel = document.createElement('LABEL')
         newTaskLabel.htmlFor = newTask
         newTaskLabel.textContent = 'Task'
         editTask.appendChild(newTask)
@@ -101,21 +101,21 @@ document.addEventListener('click', function(e){
         newPriorityLabel.textContent = 'Priority'
         editPriority.appendChild(newPriority)
         editPriority.appendChild(newPriorityLabel)
-        let newProject = document.createElement('input')
+        /*let newProject = document.createElement('input')
         newProject.setAttribute('type', 'input')
         newProject.setAttribute('id', `newProjectInput${index}`)
         newProject.defaultValue = currentProject
         newProjectLabel.htmlFor = newProject
         newProjectLabel.textContent = 'Project'
         editProject.appendChild(newProject)
-        editProject.appendChild(newProjectLabel)
+        editProject.appendChild(newProjectLabel)*/
         let newTaskSubmit = document.createElement('button')
         newTaskSubmit.textContent = 'Accept'
         editForm.appendChild(editTask)
         editForm.appendChild(editDesc)
         editForm.appendChild(editDue)
         editForm.appendChild(editPriority)
-        editForm.appendChild(editProject)
+        //editForm.appendChild(editProject)
         editForm.appendChild(newTaskSubmit)
         content.appendChild(editForm)
         newTaskSubmit.addEventListener('click', function(e){
@@ -126,7 +126,7 @@ document.addEventListener('click', function(e){
                 fullList[index].description = newDesc.value
                 fullList[index].dueDate = newDue.value
                 fullList[index].priority = newPriority.value
-                fullList[index].project = newProject.value
+                //fullList[index].project = newProject.value
                 console.log(fullList)
             }
         })
@@ -145,7 +145,7 @@ function submission() {
         })
 })*/
     clearForm()
-    newProject()
+    //newProject()
 }
 
 function newProject(){
@@ -162,11 +162,11 @@ function clearForm(){
     desc.value = ''
     due.value = ''
     priority.value = ''
-    project.value = ''
+    //project.value = ''
 }
 
 function addListToPage() {
-    let list = new Todo(task.value, desc.value, due.value, priority.value, project.value)
+    let list = new Todo(task.value, desc.value, due.value, priority.value/*, project.value*/)
     let newDiv = document.createElement('div')
     newDiv.setAttribute('id', `taskContent${fullList.length}`)
     newDiv.textContent = (`${list.task}`)
