@@ -32,14 +32,14 @@ function displayFullList(){
 
 const content = document.getElementById('content')
 const details = document.getElementById('details')
-const task = document.getElementById('task')          //
+/*const task = document.getElementById('task')          //
 const desc = document.getElementById('description')   //
 const due = document.getElementById('dueDate')        // gets values from input boxes
-const priority = document.getElementById('priority')  //
+const priority = document.getElementById('priority')*/  //
 //const project = document.getElementById('project')    //
-const submitBtn = document.getElementById('submit')
+//const submitBtn = document.getElementById('submit')
 const projectsList = document.getElementById('projectsList')
-submitBtn.addEventListener('click', submission)
+//submitBtn.addEventListener('click', submission)
 
 document.addEventListener('click', function(e){
     if(e.target && e.target.id.startsWith("detailsBtn")) {
@@ -66,7 +66,7 @@ document.addEventListener('click', function(e){
         let currentDue = fullList[index].dueDate
         let currentPriority = fullList[index].priority
         //let currentProject = fullList[index].project
-        console.log(currentDesc)
+        //console.log(currentDesc)
         let newTask = document.createElement('input')
         newTask.setAttribute('type', 'text')
         newTask.setAttribute('id', `newTaskInput${index}`)
@@ -170,31 +170,62 @@ document.addEventListener('click', function(e){
     }else if (e.target && e.target.textContent == 'Add Task'){
         let myForm = document.getElementById('myForm')
         let taskForm = document.createElement('div')
-        let newProjectDiv = document.getElementById('newProjectDiv')
         taskForm.setAttribute('id', 'taskForm')
-        taskForm.textContent = 'Hello'
+        let task = document.createElement('input')
+        task.setAttribute('type', 'text')
+        let newProjectDiv = document.getElementById('newProjectDiv')
+        task.setAttribute('id', 'task')
+        let taskLabel = document.createElement('LABEL')
+        taskLabel.htmlFor = task
+        taskLabel.textContent = 'Task: '
+        taskForm.appendChild(taskLabel)
+        taskForm.appendChild(task)
         myForm.insertBefore(taskForm, newProjectDiv)
+        let descForm = document.createElement('div')
+        descForm.setAttribute('id', 'descForm')
+        let desc = document.createElement('input')
+        desc.setAttribute('type', 'text')
+        desc.setAttribute('id', 'description')
+        let descLabel = document.createElement('LABEL')
+        descLabel.htmlFor = desc
+        descLabel.textContent = 'Description: '
+        descForm.appendChild(descLabel)
+        descForm.appendChild(desc)
+        myForm.insertBefore(descForm, newProjectDiv)
+        let dueForm = document.createElement('div')
+        dueForm.setAttribute('id', 'dueForm')
+        let dueDate = document.createElement('input')
+        dueDate.setAttribute('type', 'text')
+        dueDate.setAttribute('id', 'dueDate')
+        let dueDateLabel = document.createElement('LABEL')
+        dueDateLabel.htmlFor = dueDate
+        dueDateLabel.textContent = 'Due Date: '
+        dueForm.appendChild(dueDateLabel)
+        dueForm.appendChild(dueDate)
+        myForm.insertBefore(dueForm, newProjectDiv)
+        let priorityForm = document.createElement('div')
+        priorityForm.setAttribute('id', 'priorityForm')
+        let priority = document.createElement('input')
+        priority.setAttribute('id', 'priority')
+        priority.setAttribute('type', 'text')
+        let priorityLabel = document.createElement('LABEL')
+        priorityLabel.htmlFor = priority
+        priorityLabel.textContent = 'Priority: '
+        priorityForm.appendChild(priorityLabel)
+        priorityForm.appendChild(priority)
+        myForm.insertBefore(priorityForm, newProjectDiv)
+        let submitForm = document.createElement('div')
+        submitForm.setAttribute('id', 'submitForm')
+        let submit = document.createElement('button')
+        submit.textContent = 'Submit'
+        myForm.insertBefore(submit, newProjectDiv)
+    }else if (e.target && e.target.textContent == 'Submit'){
+        submission()
     }
 })
 
 
 /*
-            <div id="taskForm">
-                <label for="task">Task: </label>
-                <input type="text" name="task" id="task">
-            </div>
-            <div id="descForm">
-                <label for="description">Description: </label>
-                <input type="type" name="description" id="description">
-            </div>
-            <div id="dueForm">
-                <label for="dueDate">Due Date: </label>
-                <input type="text" name="dueDate" id="dueDate">
-            </div>
-            <div id="priorityForm">
-                <label for="priority">Priority: </label>
-                <input type="text" name="priority" id="priority">
-            </div>
             <div id="submitForm">
                 <button id="submit">Submit</button>
             </div>
@@ -258,6 +289,10 @@ function newProject(){
 }
 
 function clearForm(){
+    const task = document.getElementById('task')          //
+    const desc = document.getElementById('description')   //
+    const due = document.getElementById('dueDate')        // gets values from input boxes
+    const priority = document.getElementById('priority')
     task.value = ''
     desc.value = ''
     due.value = ''
@@ -266,6 +301,10 @@ function clearForm(){
 }
 
 function addListToPage() {
+    const task = document.getElementById('task')          //
+    const desc = document.getElementById('description')   //
+    const due = document.getElementById('dueDate')        // gets values from input boxes
+    const priority = document.getElementById('priority')
     let list = new Todo(task.value, desc.value, due.value, priority.value/*, project.value*/)
     let newDiv = document.createElement('div')
     newDiv.setAttribute('id', `taskContent${fullList.length}`)
