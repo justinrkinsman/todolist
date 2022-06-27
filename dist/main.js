@@ -13,7 +13,16 @@ class Todo {
     }
 }
 
+class projects {
+    constructor(name, dueDate, priority){
+        this.name = name;
+        this.dueDate = dueDate;
+        this.priority = priority;
+    }
+}
+
 let fullList = [];
+let projectList = [];
 /*let testBtn = document.getElementById('fullList')
 testBtn.addEventListener('click', displayFullList)
 function displayFullList(){
