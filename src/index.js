@@ -143,12 +143,16 @@ function submission() {
     //newProject()
 }
 
+let newProjectBtn = document.getElementById('newProjectBtn')
+newProjectBtn.addEventListener('click', newProject)
+
 function newProject(){
-    let index = fullList.length -1
+    console.log('new project')
+    /*let index = fullList.length -1
     let newProject = document.createElement('div')
     newProject.textContent = fullList[index].project
     newProject.setAttribute('id', `newProject${index}`)
-    projectsList.appendChild(newProject)
+    projectsList.appendChild(newProject)*/
     //console.log(fullList[index].project)
 }
 
