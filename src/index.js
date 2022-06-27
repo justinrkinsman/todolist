@@ -162,8 +162,38 @@ document.addEventListener('click', function(e){
         projectHeader.textContent = projectList[index].name
         content.appendChild(projectHeader)
         content.appendChild(addTaskButton)
+    }else if (e.target && e.target.textContent == 'Add Task'){
+        let myForm = document.getElementById('myForm')
+        let taskForm = document.createElement('div')
+        let newProjectDiv = document.getElementById('newProjectDiv')
+        taskForm.setAttribute('id', 'taskForm')
+        taskForm.textContent = 'Hello'
+        myForm.insertBefore(taskForm, newProjectDiv)
     }
 })
+
+
+/*
+            <div id="taskForm">
+                <label for="task">Task: </label>
+                <input type="text" name="task" id="task">
+            </div>
+            <div id="descForm">
+                <label for="description">Description: </label>
+                <input type="type" name="description" id="description">
+            </div>
+            <div id="dueForm">
+                <label for="dueDate">Due Date: </label>
+                <input type="text" name="dueDate" id="dueDate">
+            </div>
+            <div id="priorityForm">
+                <label for="priority">Priority: </label>
+                <input type="text" name="priority" id="priority">
+            </div>
+            <div id="submitForm">
+                <button id="submit">Submit</button>
+            </div>
+*/
 
 function submission() {
     addListToPage()
