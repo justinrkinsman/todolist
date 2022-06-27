@@ -131,9 +131,13 @@ document.addEventListener('click', function(e){
         let newProjectName = document.getElementById('newProjectNameInput')
         let newProjectDueDate = document.getElementById('newProjectDueDateInput')
         let newProjectPriority = document.getElementById('newProjectPriorityInput')
+        let newProjectListItem = document.createElement('div')
+        let projectList = document.getElementById('projectsList')
         console.log(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
         newProjectDiv.removeChild(newProjectForm)
         newProjectDiv.removeChild(confirmBtn)
+        newProjectListItem.textContent = newProjectName.value
+        projectList.appendChild(newProjectListItem)
     }
 })
 
