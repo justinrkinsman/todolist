@@ -35,16 +35,27 @@ const priority = document.getElementById('priority')*/  //
 //const submitBtn = document.getElementById('submit')
 const projectsList = document.getElementById('projectsList')
 //submitBtn.addEventListener('click', submission)
-
+let deetz = 0
 document.addEventListener('click', function(e){
     if(e.target && e.target.id.startsWith("detailsBtn")) {
-        console.log(e.target.id)
-        let detailsDiv = document.createElement('div')
-        let index = e.target.id.slice(-1)
-        let ogDiv = document.getElementById(`contentDiv${index}`)
-        detailsDiv.setAttribute('id', `detailsText${index}`)
-        detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
-        ogDiv.appendChild(detailsDiv)
+        //console.log(e.target.id)
+        if (deetz == 0){
+            let detailsDiv = document.createElement('div')
+            let index = e.target.id.slice(-1)
+            let ogDiv = document.getElementById(`contentDiv${index}`)
+            detailsDiv.setAttribute('id', `detailsText${index}`)
+            detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
+            ogDiv.appendChild(detailsDiv)
+            deetz = 1
+        }else if (deetz == 1){
+            let index = e.target.id.slice(-1)
+            let ogDiv = document.getElementById(`contentDiv${index}`)
+            let detailsDiv = document.getElementById(`detailsText${index}`)
+            ogDiv.removeChild(detailsDiv)
+            //console.log(ogDiv)
+            //console.log(detailsDiv)
+            deetz = 0
+        }
     }else if (e.target && e.target.id.startsWith('check')){
         let index = e.target.id.slice(-1)
         let element = document.getElementById(`contentDiv${index}`)
