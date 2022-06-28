@@ -193,10 +193,17 @@ document.addEventListener('click', function(e){
         addTaskButton.setAttribute('id', `addTaskButton${index}`)
         addTaskButton.textContent = 'Add Task'
         let projectHeader = document.createElement('h2')
+        let taskDiv = document.createElement('div')
         projectHeader.textContent = projectList[index].name
         projectHeader.setAttribute('id', `h2${index}`)
         removeAllChildNodes(content)
+        let contentNodeList = document.querySelectorAll('[id^="contentDiv"]')
+        let taskIndex = contentNodeList.length - 1
+        let taskDivContent = projectList[index]
+        taskDiv.textContent = taskDivContent
+        //console.log(projectList[index].taskInfo[0])
         content.appendChild(projectHeader)
+        //content.appendChild(taskDiv)
         content.appendChild(addTaskButton)
     }else if (e.target && e.target.textContent == 'Add Task'){
         let index = e.target.id.slice(-1)
@@ -261,7 +268,7 @@ document.addEventListener('click', function(e){
         let content = document.getElementById('content')//.id.slice(-1)
         let contentNodeList = document.querySelectorAll('[id^="contentDiv"]')
         let taskIndex = contentNodeList.length - 1
-        projectList[index].taskInfo[taskIndex] = fullList[taskIndex]        //add tasks to projects
+        projectList[index].taskInfo[taskIndex] = (fullList[fullList.length-1])        //add tasks to projects
         myForm.removeChild(taskForm)
         myForm.removeChild(descForm)
         myForm.removeChild(dueForm)
@@ -272,6 +279,7 @@ document.addEventListener('click', function(e){
         console.log(taskIndex)
         console.log(fullList)
         console.log(projectList)
+
     }
 })
 
