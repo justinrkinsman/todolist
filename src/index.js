@@ -161,6 +161,7 @@ document.addEventListener('click', function(e){
         addTaskButton.textContent = 'Add Task'
         let projectHeader = document.createElement('h2')
         projectHeader.textContent = projectList[index].name
+        projectHeader.setAttribute('id', `h2${index}`)
         content.appendChild(projectHeader)
         content.appendChild(addTaskButton)
     }else if (e.target && e.target.textContent == 'Add Task'){
@@ -216,7 +217,8 @@ document.addEventListener('click', function(e){
         let submit = document.createElement('button')
         submit.setAttribute('id', `submitButton${index}`)
         submit.textContent = 'Submit'
-        myForm.insertBefore(submit, newProjectDiv)
+        submitForm.appendChild(submit)
+        myForm.insertBefore(submitForm, newProjectDiv)
     }else if (e.target && e.target.textContent == 'Submit'){
         submission()
         //console.log(fullList)
@@ -224,6 +226,11 @@ document.addEventListener('click', function(e){
         let index = e.target.id.slice(-1)
         let taskIndex = projectList[index].taskInfo.length - 1
         projectList[index].taskInfo[taskIndex] = fullList
+        myForm.removeChild(taskForm)
+        myForm.removeChild(descForm)
+        myForm.removeChild(dueForm)
+        myForm.removeChild(priorityForm)
+        myForm.removeChild(submitForm)
         console.log(fullList)
         console.log(projectList)
     }
