@@ -190,6 +190,7 @@ document.addEventListener('click', function(e){
         let projectHeader = document.createElement('h2')
         projectHeader.textContent = projectList[index].name
         projectHeader.setAttribute('id', `h2${index}`)
+        removeAllChildNodes(content)
         content.appendChild(projectHeader)
         content.appendChild(addTaskButton)
     }else if (e.target && e.target.textContent == 'Add Task'){
@@ -270,6 +271,12 @@ document.addEventListener('click', function(e){
                 <button id="submit">Submit</button>
             </div>
 */
+
+function removeAllChildNodes(parent){
+    while (parent.firstChild){
+        parent.removeChild(parent.firstChild)
+    }
+}
 
 function submission() {
     addListToPage()
