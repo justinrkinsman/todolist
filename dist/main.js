@@ -257,25 +257,23 @@ document.addEventListener('click', function(e){
         submission()
         //console.log(fullList)
         //projectList.push(fullList)
-        let index = e.target.id.slice(-1)
-        let taskIndex = projectList[index].taskInfo.length - 1
-        projectList[index].taskInfo[taskIndex] = fullList
+        let index = document.querySelector('[id^="h2"]').id.slice(-1)
+        let content = document.getElementById('content')//.id.slice(-1)
+        let contentNodeList = document.querySelectorAll('[id^="contentDiv"]')
+        let taskIndex = contentNodeList.length - 1
+        projectList[index].taskInfo[taskIndex] = fullList[taskIndex]        //add tasks to projects
         myForm.removeChild(taskForm)
         myForm.removeChild(descForm)
         myForm.removeChild(dueForm)
         myForm.removeChild(priorityForm)
         myForm.removeChild(submitForm)
+        console.log(index)
+        console.log(content)
+        console.log(taskIndex)
         console.log(fullList)
         console.log(projectList)
     }
 })
-
-
-/*
-            <div id="submitForm">
-                <button id="submit">Submit</button>
-            </div>
-*/
 
 function removeAllChildNodes(parent){
     while (parent.firstChild){
