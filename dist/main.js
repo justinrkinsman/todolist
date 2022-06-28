@@ -161,7 +161,7 @@ document.addEventListener('click', function(e){
         let index = e.target.id.slice(-1)
         let content = document.getElementById('content')
         let addTaskButton = document.createElement('button')
-        addTaskButton.setAttribute('id', 'addTaskButton')
+        addTaskButton.setAttribute('id', `addTaskButton${index}`)
         addTaskButton.textContent = 'Add Task'
         let projectHeader = document.createElement('h2')
         projectHeader.textContent = projectList[index].name
@@ -221,6 +221,11 @@ document.addEventListener('click', function(e){
         myForm.insertBefore(submit, newProjectDiv)
     }else if (e.target && e.target.textContent == 'Submit'){
         submission()
+        //console.log(fullList)
+        //projectList.push(fullList)
+        let index = projectList.length-1
+        projectList[index].taskInfo = fullList[index]
+        console.log(projectList)
     }
 })
 
