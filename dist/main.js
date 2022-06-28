@@ -86,6 +86,7 @@ document.addEventListener('click', function(e){
         //fullList.splice(index, 1)
     }else if (e.target && e.target.id.startsWith('edit')){
         let index = e.target.id.slice(-1)
+        let addTaskButton = document.querySelector('[id^="addTaskButton"]')
         let currentTask = document.getElementById(`taskContent${index}`)
         let currentDesc = fullList[index].description
         let currentDue = fullList[index].dueDate
@@ -97,6 +98,7 @@ document.addEventListener('click', function(e){
         newTask.setAttribute('id', `newTaskInput${index}`)
         newTask.defaultValue = currentTask.textContent
         let editForm = document.createElement('div')
+        editForm.setAttribute('id', 'editForm')
         let editTask = document.createElement('div')
         let editDesc = document.createElement('div')
         let editDue = document.createElement('div')
@@ -151,7 +153,7 @@ document.addEventListener('click', function(e){
         editForm.appendChild(editPriority)
         //editForm.appendChild(editProject)
         editForm.appendChild(newTaskSubmit)
-        content.appendChild(editForm)
+        content.insertBefore(editForm, addTaskButton)
         newTaskSubmit.addEventListener('click', function(e){
             if (e.target && e.target.textContent == 'Accept'){
                 //let currentTask = document.getElementById(`taskContent${index}`)
@@ -162,6 +164,7 @@ document.addEventListener('click', function(e){
                 fullList[index].priority = newPriority.value
                 //fullList[index].project = newProject.value
                 console.log(fullList)
+                content.removeChild(editForm)
             }
         })   
     }else if (e.target && e.target.textContent == 'Confirm'){
@@ -373,7 +376,8 @@ function addListToPage() {
     leftSide.appendChild(editBtn)
     leftSide.appendChild(delBtn)
     contentDiv.appendChild(leftSide)
-    content.appendChild(contentDiv)
+    let addTaskButton = document.querySelector('[id^="addTaskButton"]')
+    content.insertBefore(contentDiv, addTaskButton)
     fullList.push(list)
 }
 
