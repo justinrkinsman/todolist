@@ -57,9 +57,23 @@ document.addEventListener('click', function(e){
             deetz = 0
         }
     }else if (e.target && e.target.id.startsWith('check')){
+        let check = e.target
+        console.log(check)
+        if (check.checked){
         let index = e.target.id.slice(-1)
         let element = document.getElementById(`contentDiv${index}`)
+        /*console.log(element)
+        if (element.checked){
+            console.log('hello')
+        }*/
         element.style.opacity = '0.3'
+//        e.target.id.startsWith('check').checked = false
+        }else{
+            let index = e.target.id.slice(-1)
+            let element = document.getElementById(`contentDiv${index}`)
+            element.style.opacity = '1'
+            //e.target.id.startsWith('check').checked = true
+        }
     }else if (e.target && e.target.id.startsWith('delete')){
         let index = e.target.id.slice(-1)
         let removeDiv = document.getElementById(`contentDiv${index}`)
