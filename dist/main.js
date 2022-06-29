@@ -44,6 +44,7 @@ const priority = document.getElementById('priority')*/  //
 const projectsList = document.getElementById('projectsList')
 //submitBtn.addEventListener('click', submission)
 let deetz = 0
+let editz = 0
 document.addEventListener('click', function(e){
     if(e.target && e.target.id.startsWith("detailsBtn")) {
         //console.log(e.target.id)
@@ -88,6 +89,8 @@ document.addEventListener('click', function(e){
         content.removeChild(removeDiv)
         //fullList.splice(index, 1)
     }else if (e.target && e.target.id.startsWith('edit')){
+        //if (!(newProjectDiv.lastChild == confirmButtonCheck)){
+        if (editz == 0){
         let index = e.target.id.slice(-1)
         let addTaskButton = document.querySelector('[id^="addTaskButton"]')
         let currentTask = document.getElementById(`taskContent${index}`)
@@ -149,6 +152,7 @@ document.addEventListener('click', function(e){
         editProject.appendChild(newProject)
         editProject.appendChild(newProjectLabel)*/
         let newTaskSubmit = document.createElement('button')
+        let content = document.getElementById(`contentDiv${index}`)
         newTaskSubmit.textContent = 'Accept'
         editForm.appendChild(editTask)
         editForm.appendChild(editDesc)
@@ -156,7 +160,9 @@ document.addEventListener('click', function(e){
         editForm.appendChild(editPriority)
         //editForm.appendChild(editProject)
         editForm.appendChild(newTaskSubmit)
-        content.insertBefore(editForm, addTaskButton)
+        content.appendChild(editForm)
+        editz = 1
+        //}
         newTaskSubmit.addEventListener('click', function(e){
             if (e.target && e.target.textContent == 'Accept'){
                 //let currentTask = document.getElementById(`taskContent${index}`)
@@ -169,7 +175,12 @@ document.addEventListener('click', function(e){
                 console.log(fullList)
                 content.removeChild(editForm)
             }
-        })   
+        })} else if (editz == 1){
+            let index = e.target.id.slice(-1)
+            let content = document.getElementById(`contentDiv${index}`)
+            content.removeChild(editForm)
+            editz = 0
+        }   
     }else if (e.target && e.target.textContent == 'Confirm'){
         //let newProjectDiv = document.getElementById('newProjectDiv')
         //let newProjectForm = document.getElementById('newProjectForm')
@@ -359,35 +370,36 @@ function newProject(){
     let confirmButtonCheck = document.getElementById('confirmBtn')
     if (!(newProjectDiv.lastChild == confirmButtonCheck)){
 //    let newProjectDiv = document.getElementById('newProjectDiv')
-    let newProjectForm = document.createElement('div')
-    newProjectForm.setAttribute('id', 'newProjectForm')
-    let newProjectName = document.createElement('input')
-    newProjectName.setAttribute('id', 'newProjectNameInput')
-    let newProjectNameLabel = document.createElement('LABEL')
-    newProjectNameLabel.htmlFor = newProjectName
-    newProjectNameLabel.textContent = 'Project Name'
-    newProjectForm.appendChild(newProjectNameLabel)
-    newProjectForm.appendChild(newProjectName)
-    let newProjectDueDate = document.createElement('input')
-    newProjectDueDate.setAttribute('id', 'newProjectDueDateInput')
-    let newProjectDueDateLabel = document.createElement('LABEL')
-    newProjectDueDateLabel.htmlFor = newProjectDueDate
-    newProjectDueDateLabel.textContent = 'Due Date'
-    newProjectForm.appendChild(newProjectDueDateLabel)
-    newProjectForm.appendChild(newProjectDueDate)
-    newProjectDiv.appendChild(newProjectForm)
-    let newProjectPriority = document.createElement('input')
-    newProjectPriority.setAttribute('id', 'newProjectPriorityInput')
-    let newProjectPriorityLabel = document.createElement('LABEL')
-    newProjectPriorityLabel.htmlFor = newProjectPriority
-    newProjectPriorityLabel.textContent = 'Priority'
-    newProjectForm.appendChild(newProjectPriorityLabel)
-    newProjectForm.appendChild(newProjectPriority)
-    newProjectDiv.appendChild(newProjectForm)
-    let newProjectConfirm = document.createElement('button')
-    newProjectConfirm.textContent = 'Confirm'
-    newProjectConfirm.setAttribute('id', 'confirmBtn')
-    newProjectDiv.appendChild(newProjectConfirm)}
+        let newProjectForm = document.createElement('div')
+        newProjectForm.setAttribute('id', 'newProjectForm')
+        let newProjectName = document.createElement('input')
+        newProjectName.setAttribute('id', 'newProjectNameInput')
+        let newProjectNameLabel = document.createElement('LABEL')
+        newProjectNameLabel.htmlFor = newProjectName
+        newProjectNameLabel.textContent = 'Project Name'
+        newProjectForm.appendChild(newProjectNameLabel)
+        newProjectForm.appendChild(newProjectName)
+        let newProjectDueDate = document.createElement('input')
+        newProjectDueDate.setAttribute('id', 'newProjectDueDateInput')
+        let newProjectDueDateLabel = document.createElement('LABEL')
+        newProjectDueDateLabel.htmlFor = newProjectDueDate
+        newProjectDueDateLabel.textContent = 'Due Date'
+        newProjectForm.appendChild(newProjectDueDateLabel)
+        newProjectForm.appendChild(newProjectDueDate)
+        newProjectDiv.appendChild(newProjectForm)
+        let newProjectPriority = document.createElement('input')
+        newProjectPriority.setAttribute('id', 'newProjectPriorityInput')
+        let newProjectPriorityLabel = document.createElement('LABEL')
+        newProjectPriorityLabel.htmlFor = newProjectPriority
+        newProjectPriorityLabel.textContent = 'Priority'
+        newProjectForm.appendChild(newProjectPriorityLabel)
+        newProjectForm.appendChild(newProjectPriority)
+        newProjectDiv.appendChild(newProjectForm)
+        let newProjectConfirm = document.createElement('button')
+        newProjectConfirm.textContent = 'Confirm'
+        newProjectConfirm.setAttribute('id', 'confirmBtn')
+        newProjectDiv.appendChild(newProjectConfirm)
+    }
     /*let index = fullList.length -1
     let newProject = document.createElement('div')
     newProject.textContent = fullList[index].project
