@@ -356,6 +356,9 @@ newProjectBtn.addEventListener('click', newProject)
 
 function newProject(){
     let newProjectDiv = document.getElementById('newProjectDiv')
+    let confirmButtonCheck = document.getElementById('confirmBtn')
+    if (!(newProjectDiv.lastChild == confirmButtonCheck)){
+//    let newProjectDiv = document.getElementById('newProjectDiv')
     let newProjectForm = document.createElement('div')
     newProjectForm.setAttribute('id', 'newProjectForm')
     let newProjectName = document.createElement('input')
@@ -384,7 +387,7 @@ function newProject(){
     let newProjectConfirm = document.createElement('button')
     newProjectConfirm.textContent = 'Confirm'
     newProjectConfirm.setAttribute('id', 'confirmBtn')
-    newProjectDiv.appendChild(newProjectConfirm)
+    newProjectDiv.appendChild(newProjectConfirm)}
     /*let index = fullList.length -1
     let newProject = document.createElement('div')
     newProject.textContent = fullList[index].project
