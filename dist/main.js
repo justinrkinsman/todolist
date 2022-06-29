@@ -45,6 +45,7 @@ const projectsList = document.getElementById('projectsList')
 //submitBtn.addEventListener('click', submission)
 let deetz = 0
 let editz = 0
+let projectDeetz = 0
 document.addEventListener('click', function(e){
     if(e.target && e.target.id.startsWith("detailsBtn")) {
         //console.log(e.target.id)
@@ -195,6 +196,12 @@ document.addEventListener('click', function(e){
         let newProjectDueDate = document.getElementById('newProjectDueDateInput')
         let newProjectPriority = document.getElementById('newProjectPriorityInput')
         let newProjectListItem = document.createElement('div')
+        let projectDetails = document.createElement('button')
+        projectDetails.setAttribute('id', 'projectDeetz')
+        projectDetails.textContent = 'Details'
+        let projectDelete = document.createElement('button')
+        projectDelete.setAttribute('id', 'projectDelete')
+        projectDelete.textContent = 'Delete'
         let index = projectList.length
         newProjectListItem.setAttribute('id', `projectName${index}`)
         let projectsList = document.getElementById('projectsList')
@@ -202,9 +209,12 @@ document.addEventListener('click', function(e){
         newProjectDiv.removeChild(newProjectForm)
         newProjectDiv.removeChild(confirmBtn)
         newProjectListItem.textContent = newProjectName.value
+        newProjectListItem.appendChild(projectDetails)
+        newProjectListItem.appendChild(projectDelete)
         projectsList.appendChild(newProjectListItem)
         let addProject = new Projects(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
         projectList.push(addProject)
+
         console.log(projectList)
     }else if (e.target && e.target.id.startsWith('projectName')){
         //console.log(projectList)
