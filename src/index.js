@@ -79,9 +79,16 @@ document.addEventListener('click', function(e){
             //e.target.id.startsWith('check').checked = true
         }
     }else if (e.target && e.target.id.startsWith('delete')){
+        let h2 = document.querySelector('[id^="h2"]')
+        projectIndex = h2.id.slice(-1)
         let index = e.target.id.slice(-1)
         let removeDiv = document.getElementById(`contentDiv${index}`)
+        let taskInfoIndex = projectList[projectIndex].taskInfo
         content.removeChild(removeDiv)
+        taskInfoIndex.splice(index, 1)
+        console.log(index)
+        //console.log(projectList[projectIndex].taskInfo[index]/*.task*/)
+        console.log(taskInfoIndex)
         //fullList.splice(index, 1)
     }else if (e.target && e.target.id.startsWith('edit')){
         //if (!(newProjectDiv.lastChild == confirmButtonCheck)){
