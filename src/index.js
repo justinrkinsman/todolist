@@ -9,12 +9,15 @@ class Todo {
 }
 
 class Projects {
-    constructor(name, dueDate, priority){
+    constructor(name, dueDate, priority, taskInfo){
         this.name = name;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.taskInfo = []
     }
 }
+
+//projectList[index].taskInfo = []
 
 let fullList = [];
 let projectList = [];
@@ -181,8 +184,9 @@ document.addEventListener('click', function(e){
         projectList.push(addProject)
         console.log(projectList)
     }else if (e.target && e.target.id.startsWith('projectName')){
+        //console.log(projectList)
         let index = e.target.id.slice(-1)
-        projectList[index].taskInfo = []
+        //projectList[index].taskInfo = ['hello world']                  //adds task to projectList
         let content = document.getElementById('content')
         let addTaskButton = document.createElement('button')
         addTaskButton.setAttribute('id', `addTaskButton${index}`)
@@ -192,14 +196,26 @@ document.addEventListener('click', function(e){
         projectHeader.textContent = projectList[index].name
         projectHeader.setAttribute('id', `h2${index}`)
         removeAllChildNodes(content)
-        let contentNodeList = document.querySelectorAll('[id^="contentDiv"]')
-        let taskIndex = contentNodeList.length - 1
-        let taskDivContent = projectList[index]
+        let taskIndex = projectList[index].taskInfo.length - 1
+        //let taskIndex = contentNodeList.length - 1
+        let taskDivContent = projectList[index].taskInfo
         taskDiv.textContent = taskDivContent
         //console.log(projectList[index].taskInfo[0])
         content.appendChild(projectHeader)
+        for (let i = 0; i <= taskIndex; i++){
+            let element = document.createElement('div')
+            element.textContent = projectList[index].taskInfo[i].task
+            content.appendChild(element)
+            /*console.log(i)
+            let taskDivContent = projectList[index].taskInfo[i].task
+            taskDiv.textContent = taskDivContent
+            console.log(taskDivContent)
+            console.log(i)
+            content.appendChild(taskDiv)*/
+        }
         //content.appendChild(taskDiv)
         content.appendChild(addTaskButton)
+        console.log(projectList[index].taskInfo)
     }else if (e.target && e.target.textContent == 'Add Task'){
         let index = e.target.id.slice(-1)
         let myForm = document.getElementById('myForm')
@@ -269,11 +285,12 @@ document.addEventListener('click', function(e){
         myForm.removeChild(dueForm)
         myForm.removeChild(priorityForm)
         myForm.removeChild(submitForm)
-        console.log(index)
-        console.log(content)
-        console.log(taskIndex)
-        console.log(fullList)
         console.log(projectList)
+        //console.log(index)
+        //console.log(content)
+        //console.log(taskIndex)
+        //console.log(fullList)
+        //console.log(projectList[index].taskInfo[taskIndex])
 
     }
 })
