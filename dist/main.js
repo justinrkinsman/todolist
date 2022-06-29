@@ -376,6 +376,19 @@ document.addEventListener('click', function(e){
             ogDiv.removeChild(projectDetailsDiv)
             projectDeetz = 0
         }
+    }else if (e.target && e.target.id.startsWith('projectDelete')) {
+        let index = e.target.id.slice(-1)
+        let projectName = document.getElementById(`projectName${index}`)
+        let projectsList = document.getElementById('projectsList')
+        projectsList.removeChild(projectName)
+        projectList.splice(index, 1)
+        console.log(projectList)
+        /*let h2 = document.querySelector('[id^="h2"]')
+        projectIndex = h2.id.slice(-1)
+        let removeDiv = document.getElementById(`contentDiv${index}`)
+        let taskInfoIndex = projectList[projectIndex].taskInfo
+        content.removeChild(removeDiv)
+        taskInfoIndex.splice(index, 1)*/
     }
 })
 
