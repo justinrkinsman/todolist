@@ -195,6 +195,9 @@ document.addEventListener('click', function(e){
         let index = projectList.length
         projectDetails.setAttribute('id', `projectDeetz${index}`)
         projectDetails.textContent = 'Details'
+        let projectCheck = document.createElement('input')
+        projectCheck.setAttribute('type', 'checkbox')
+        projectCheck.setAttribute('id', `projectCheck${index}`)
         let projectDelete = document.createElement('button')
         projectDelete.setAttribute('id', `projectDelete${index}`)
         projectDelete.textContent = 'Delete'
@@ -205,6 +208,7 @@ document.addEventListener('click', function(e){
         newProjectDiv.removeChild(confirmBtn)
         newProjectListItem.textContent = newProjectName.value
         newProjectListItem.appendChild(projectDetails)
+        newProjectListItem.appendChild(projectCheck)
         newProjectListItem.appendChild(projectDelete)
         projectsList.appendChild(newProjectListItem)
         let addProject = new Projects(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
@@ -377,13 +381,6 @@ document.addEventListener('click', function(e){
         let projectsList = document.getElementById('projectsList')
         projectsList.removeChild(projectName)
         projectList.splice(index, 1)
-        console.log(projectList)
-        /*let h2 = document.querySelector('[id^="h2"]')
-        projectIndex = h2.id.slice(-1)
-        let removeDiv = document.getElementById(`contentDiv${index}`)
-        let taskInfoIndex = projectList[projectIndex].taskInfo
-        content.removeChild(removeDiv)
-        taskInfoIndex.splice(index, 1)*/
     }
 })
 
