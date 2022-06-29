@@ -210,7 +210,37 @@ document.addEventListener('click', function(e){
         for (let i = 0; i <= taskIndex; i++){
             let element = document.createElement('div')
             element.textContent = projectList[index].taskInfo[i].task
-            content.appendChild(element)
+            
+            let newDiv = document.createElement('div')
+            newDiv.setAttribute('id', `taskContent${i}`)
+            newDiv.textContent = (`${element.textContent}`)
+            let detailsBtn = document.createElement('button')
+            detailsBtn.setAttribute('id', `detailsBtn${i}`)
+            detailsBtn.textContent = "Details"
+            let check = document.createElement('input')
+            check.setAttribute('type', 'checkbox')
+            check.setAttribute('id', `check${i}`)
+            let editBtn = document.createElement('button')
+            editBtn.setAttribute('id', `editBtn${i}`)
+            editBtn.textContent = 'Edit'
+            let delBtn = document.createElement('button')
+            delBtn.setAttribute('id', `delete${i}`)
+            delBtn.textContent = 'Delete'
+            let contentDiv = document.createElement('div')
+            contentDiv.setAttribute('id', `contentDiv${i}`)
+            let leftSide = document.createElement('div')
+            leftSide.setAttribute('id', `leftSide${i}`)
+            leftSide.appendChild(newDiv)
+            leftSide.appendChild(detailsBtn)
+            leftSide.appendChild(check)
+            leftSide.appendChild(editBtn)
+            leftSide.appendChild(delBtn)
+            contentDiv.appendChild(leftSide)
+            let addTaskButton = document.querySelector('[id^="addTaskButton"]')
+            content.insertBefore(contentDiv, addTaskButton)
+            
+            //addListToPage()
+            //content.appendChild(element)
             /*console.log(i)
             let taskDivContent = projectList[index].taskInfo[i].task
             taskDiv.textContent = taskDivContent
