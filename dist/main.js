@@ -197,12 +197,12 @@ document.addEventListener('click', function(e){
         let newProjectPriority = document.getElementById('newProjectPriorityInput')
         let newProjectListItem = document.createElement('div')
         let projectDetails = document.createElement('button')
-        projectDetails.setAttribute('id', 'projectDeetz')
+        let index = projectList.length
+        projectDetails.setAttribute('id', `projectDeetz${index}`)
         projectDetails.textContent = 'Details'
         let projectDelete = document.createElement('button')
-        projectDelete.setAttribute('id', 'projectDelete')
+        projectDelete.setAttribute('id', `projectDelete${index}`)
         projectDelete.textContent = 'Delete'
-        let index = projectList.length
         newProjectListItem.setAttribute('id', `projectName${index}`)
         let projectsList = document.getElementById('projectsList')
         //console.log(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
@@ -359,6 +359,23 @@ document.addEventListener('click', function(e){
         //console.log(fullList)
         //console.log(projectList[index].taskInfo[taskIndex])
 
+    }else if (e.target && e.target.id.startsWith('projectDeetz')) {
+        if (projectDeetz == 0) {
+            let projectDetailsDiv = document.createElement('div')
+            let index = e.target.id.slice(-1)
+            let ogDiv = document.getElementById(`projectName${index}`)
+            projectDeetz = 1
+            projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
+            projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
+            ogDiv.appendChild(projectDetailsDiv)
+            projectDeetz = 1
+        }else if (projectDeetz == 1){
+            let index = e.target.id.slice(-1)
+            let ogDiv = document.getElementById(`projectName${index}`)
+            let projectDetailsDiv = document.getElementById(`projectDetailsText${index}`)
+            ogDiv.removeChild(projectDetailsDiv)
+            projectDeetz = 0
+        }
     }
 })
 
