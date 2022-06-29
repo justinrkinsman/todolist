@@ -267,58 +267,62 @@ document.addEventListener('click', function(e){
     }else if (e.target && e.target.textContent == 'Add Task'){
         let index = e.target.id.slice(-1)
         let myForm = document.getElementById('myForm')
-        let taskForm = document.createElement('div')
-        taskForm.setAttribute('id', 'taskForm')
-        let task = document.createElement('input')
-        task.setAttribute('type', 'text')
-        let newProjectDiv = document.getElementById('newProjectDiv')
-        task.setAttribute('id', 'task')
-        let taskLabel = document.createElement('LABEL')
-        taskLabel.htmlFor = task
-        taskLabel.textContent = 'Task: '
-        taskForm.appendChild(taskLabel)
-        taskForm.appendChild(task)
-        myForm.insertBefore(taskForm, newProjectDiv)
-        let descForm = document.createElement('div')
-        descForm.setAttribute('id', 'descForm')
-        let desc = document.createElement('input')
-        desc.setAttribute('type', 'text')
-        desc.setAttribute('id', 'description')
-        let descLabel = document.createElement('LABEL')
-        descLabel.htmlFor = desc
-        descLabel.textContent = 'Description: '
-        descForm.appendChild(descLabel)
-        descForm.appendChild(desc)
-        myForm.insertBefore(descForm, newProjectDiv)
-        let dueForm = document.createElement('div')
-        dueForm.setAttribute('id', 'dueForm')
-        let dueDate = document.createElement('input')
-        dueDate.setAttribute('type', 'text')
-        dueDate.setAttribute('id', 'dueDate')
-        let dueDateLabel = document.createElement('LABEL')
-        dueDateLabel.htmlFor = dueDate
-        dueDateLabel.textContent = 'Due Date: '
-        dueForm.appendChild(dueDateLabel)
-        dueForm.appendChild(dueDate)
-        myForm.insertBefore(dueForm, newProjectDiv)
-        let priorityForm = document.createElement('div')
-        priorityForm.setAttribute('id', 'priorityForm')
-        let priority = document.createElement('input')
-        priority.setAttribute('id', 'priority')
-        priority.setAttribute('type', 'text')
-        let priorityLabel = document.createElement('LABEL')
-        priorityLabel.htmlFor = priority
-        priorityLabel.textContent = 'Priority: '
-        priorityForm.appendChild(priorityLabel)
-        priorityForm.appendChild(priority)
-        myForm.insertBefore(priorityForm, newProjectDiv)
-        let submitForm = document.createElement('div')
-        submitForm.setAttribute('id', 'submitForm')
-        let submit = document.createElement('button')
-        submit.setAttribute('id', `submitButton${index}`)
-        submit.textContent = 'Submit'
-        submitForm.appendChild(submit)
-        myForm.insertBefore(submitForm, newProjectDiv)
+        let taskFormDel = document.getElementById('taskForm')
+        //console.log(myForm.childNodes[1])
+        if (!(myForm.childNodes[1] == taskFormDel)){
+            let taskForm = document.createElement('div')
+            taskForm.setAttribute('id', 'taskForm')
+            let task = document.createElement('input')
+            task.setAttribute('type', 'text')
+            let newProjectDiv = document.getElementById('newProjectDiv')
+            task.setAttribute('id', 'task')
+            let taskLabel = document.createElement('LABEL')
+            taskLabel.htmlFor = task
+            taskLabel.textContent = 'Task: '
+            taskForm.appendChild(taskLabel)
+            taskForm.appendChild(task)
+            myForm.insertBefore(taskForm, newProjectDiv)
+            let descForm = document.createElement('div')
+            descForm.setAttribute('id', 'descForm')
+            let desc = document.createElement('input')
+            desc.setAttribute('type', 'text')
+            desc.setAttribute('id', 'description')
+            let descLabel = document.createElement('LABEL')
+            descLabel.htmlFor = desc
+            descLabel.textContent = 'Description: '
+            descForm.appendChild(descLabel)
+            descForm.appendChild(desc)
+            myForm.insertBefore(descForm, newProjectDiv)
+            let dueForm = document.createElement('div')
+            dueForm.setAttribute('id', 'dueForm')
+            let dueDate = document.createElement('input')
+            dueDate.setAttribute('type', 'text')
+            dueDate.setAttribute('id', 'dueDate')
+            let dueDateLabel = document.createElement('LABEL')
+            dueDateLabel.htmlFor = dueDate
+            dueDateLabel.textContent = 'Due Date: '
+            dueForm.appendChild(dueDateLabel)
+            dueForm.appendChild(dueDate)
+            myForm.insertBefore(dueForm, newProjectDiv)
+            let priorityForm = document.createElement('div')
+            priorityForm.setAttribute('id', 'priorityForm')
+            let priority = document.createElement('input')
+            priority.setAttribute('id', 'priority')
+            priority.setAttribute('type', 'text')
+            let priorityLabel = document.createElement('LABEL')
+            priorityLabel.htmlFor = priority
+            priorityLabel.textContent = 'Priority: '
+            priorityForm.appendChild(priorityLabel)
+            priorityForm.appendChild(priority)
+            myForm.insertBefore(priorityForm, newProjectDiv)
+            let submitForm = document.createElement('div')
+            submitForm.setAttribute('id', 'submitForm')
+            let submit = document.createElement('button')
+            submit.setAttribute('id', `submitButton${index}`)
+            submit.textContent = 'Submit'
+            submitForm.appendChild(submit)
+            myForm.insertBefore(submitForm, newProjectDiv)
+        }
     }else if (e.target && e.target.textContent == 'Submit'){
         submission()
         //console.log(fullList)
