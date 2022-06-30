@@ -435,6 +435,8 @@ document.addEventListener('click', function(e){
             let index = e.target.id.slice(-1)
             let element = document.getElementById(`projectName${index}`)
             element.style.opacity = '1'
+            document.getElementById(`projectDeetz${index}`).disabled = false
+            document.getElementById(`projectEdit${index}`).disabled = false
         }
     }else if (e.target && e.target.id.startsWith('projectEdit')){
         if (projectEdit == 0){
