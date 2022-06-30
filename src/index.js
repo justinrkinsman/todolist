@@ -196,7 +196,7 @@ document.addEventListener('click', function(e){
         let projectName = document.createElement('div')
         projectName.textContent = newProjectName.value
         let index = projectList.length
-        projectName.setAttribute('id', `projectNameTitle`)
+        projectName.setAttribute('id', `projectNameTitle${index}`)
         projectDetails.setAttribute('id', `projectDeetz${index}`)
         projectDetails.textContent = 'Details'
         let projectCheck = document.createElement('input')
@@ -506,9 +506,12 @@ document.addEventListener('click', function(e){
                     projectList[index].priority = newProjectPriority.value
                     console.log(projectList)
                     content.removeChild(editProjectForm)
+                    projectEdit = 0
+                   // console.log(projectEdit)
                 }
             })} else if (projectEdit == 1){
                 let content = document.getElementById('projectsList')
+                let editProjectForm = document.getElementById('editProjectForm')
                 content.removeChild(editProjectForm)
                 projectEdit = 0
             }
