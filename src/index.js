@@ -404,6 +404,8 @@ document.addEventListener('click', function(e){
             let projectsList = document.getElementById('projectsList')
             console.log(projectsList.children)
             element.style.opacity = '0.3'
+            document.getElementById(`projectDeetz${index}`).disabled = true
+            document.getElementById(`projectEdit${index}`).disabled = true
             if (projectsList.children[1] && projectsList.children[2]){
                 let removeThisChild = projectsList.children[1]
                 let removeThisChildToo = projectsList.children[2]
