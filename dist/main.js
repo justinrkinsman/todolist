@@ -467,7 +467,7 @@ document.addEventListener('click', function(e){
     }else if (e.target && e.target.id.startsWith('projectEdit')){
         if (projectEdit == 0){
             let index = e.target.id.slice(-1)
-            let currentProject = document.getElementById(`projectNameTitle`)
+            let currentProject = document.getElementById(`projectNameTitle${index}`)
             let currentDue = projectList[index].dueDate
             let currentPriority = projectList[index].priority
             let newProject = document.createElement('input')
@@ -513,7 +513,9 @@ document.addEventListener('click', function(e){
             projectEdit = 1
             newProjectSubmit.addEventListener('click', function(e){
                 if (e.target && e.target.textContent == 'Accept'){
-                    //let currentProject = document.getElementById(`ProjectNameTitle${index}`)
+                    //let currentProject = document.getElementById(`projectNameTitle${index}`)
+                    let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
+                    currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
                     currentProject.textContent = newProject.value
                     projectList[index].name = newProject.value
                     projectList[index].dueDate = newProjectDue.value
