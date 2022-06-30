@@ -382,11 +382,19 @@ document.addEventListener('click', function(e){
         projectsList.removeChild(projectName)
         projectList.splice(index, 1)
         //console.log(projectsList.children)
-        if (projectsList.children[1]){
-            let removeThisChild = projectsList.children[1]
+        if (projectsList.children[0] && projectsList.children[1]){
+            let removeThisChild = projectsList.children[0]
+            let removeThisChildToo = projectsList.children[1]
+            projectsList.removeChild(removeThisChildToo)
             //console.log(removeThisChild)
             projectsList.removeChild(removeThisChild)
             projectDeetz = 0
+            projectEdit = 0
+        }else if (projectsList.children[0]){
+            let removeThisChild = projectsList.children[0]
+            projectsList.removeChild(removeThisChild)
+            projectDeetz = 0
+            projectEdit = 0
         }
     }else if (e.target && e.target.id.startsWith('projectCheck')) {
         let check = e.target
@@ -400,6 +408,11 @@ document.addEventListener('click', function(e){
                 let removeThisChild = projectsList.children[1]
                 let removeThisChildToo = projectsList.children[2]
                 projectsList.removeChild(removeThisChildToo)
+                projectsList.removeChild(removeThisChild)
+                projectDeetz = 0
+                projectEdit = 0
+            }else if (projectsList.children[1]){
+                let removeThisChild = projectsList.children[1]
                 projectsList.removeChild(removeThisChild)
                 projectDeetz = 0
                 projectEdit = 0
