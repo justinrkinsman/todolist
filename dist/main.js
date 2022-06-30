@@ -391,7 +391,14 @@ document.addEventListener('click', function(e){
         if (check.checked){
             let index = e.target.id.slice(-1)
             let element = document.getElementById(`projectName${index}`)
+            let projectsList = document.getElementById('projectsList')
             element.style.opacity = '0.3'
+            if (projectsList.children[1]){
+                let removeThisChild = projectsList.children[1]
+                console.log(removeThisChild)
+                projectsList.removeChild(removeThisChild)
+                projectDeetz = 0
+            }
         }else{
             let index = e.target.id.slice(-1)
             let element = document.getElementById(`projectName${index}`)
@@ -444,7 +451,6 @@ document.addEventListener('click', function(e){
             editProjectForm.appendChild(newProjectSubmit)
             content.appendChild(editProjectForm)
             projectEdit = 1
-
             newProjectSubmit.addEventListener('click', function(e){
                 if (e.target && e.target.textContent == 'Accept'){
                     //let currentProject = document.getElementById(`ProjectNameTitle${index}`)
@@ -460,13 +466,6 @@ document.addEventListener('click', function(e){
                 content.removeChild(editProjectForm)
                 projectEdit = 0
             }
-        /*
-        })} else if (editz == 1){
-            let index = e.target.id.slice(-1)
-            let content = document.getElementById(`contentDiv${index}`)
-            content.removeChild(editForm)
-            editz = 0
-        }*/
     }
 })
 
