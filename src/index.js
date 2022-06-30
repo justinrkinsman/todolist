@@ -381,18 +381,28 @@ document.addEventListener('click', function(e){
         let projectsList = document.getElementById('projectsList')
         projectsList.removeChild(projectName)
         projectList.splice(index, 1)
+        //console.log(projectsList.children)
+        if (projectsList.children[1]){
+            let removeThisChild = projectsList.children[1]
+            //console.log(removeThisChild)
+            projectsList.removeChild(removeThisChild)
+            projectDeetz = 0
+        }
     }else if (e.target && e.target.id.startsWith('projectCheck')) {
         let check = e.target
         if (check.checked){
             let index = e.target.id.slice(-1)
             let element = document.getElementById(`projectName${index}`)
             let projectsList = document.getElementById('projectsList')
+            console.log(projectsList.children)
             element.style.opacity = '0.3'
-            if (projectsList.children[1]){
+            if (projectsList.children[1] && projectsList.children[2]){
                 let removeThisChild = projectsList.children[1]
-                console.log(removeThisChild)
+                let removeThisChildToo = projectsList.children[2]
+                projectsList.removeChild(removeThisChildToo)
                 projectsList.removeChild(removeThisChild)
                 projectDeetz = 0
+                projectEdit = 0
             }
         }else{
             let index = e.target.id.slice(-1)
