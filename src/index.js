@@ -396,13 +396,17 @@ document.addEventListener('click', function(e){
         projectList.splice(index, 1)
         //console.log(projectsList.children)
         if (content.children[0]){
-            let removeThisChild = content.children[0]
-            let removeThisChildToo = content.children[1]
-            content.removeChild(removeThisChildToo)
-            content.removeChild(removeThisChild)
+            //let removeThisChild = content.children[0]
+            //let removeThisChildToo = content.children[1]
+            let children = content.children.length
+            for (let i = 0; i < children; i++){
+                content.removeChild(content.children[0])
+            }
+            console.log(content.children)
+            //content.removeChild(removeThisChildToo)
+            //content.removeChild(removeThisChild)
             projectDeetz = 0
             projectEdit = 0
-            console.log('work ffs')
         }else if (projectsList.children[0] && projectsList.children[1]){
             let removeThisChild = projectsList.children[0]
             let removeThisChildToo = projectsList.children[1]
