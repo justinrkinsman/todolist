@@ -203,6 +203,9 @@ document.addEventListener('click', function(e){
         let projectCheck = document.createElement('input')
         projectCheck.setAttribute('type', 'checkbox')
         projectCheck.setAttribute('id', `projectCheck${index}`)
+        let projectEdit = document.createElement('button')
+        projectEdit.setAttribute('id', `projectEdit${index}`)
+        projectEdit.textContent = 'Edit'
         let projectDelete = document.createElement('button')
         projectDelete.setAttribute('id', `projectDelete${index}`)
         projectDelete.textContent = 'Delete'
@@ -214,6 +217,7 @@ document.addEventListener('click', function(e){
         newProjectListItem.textContent = newProjectName.value
         newProjectListItem.appendChild(projectDetails)
         newProjectListItem.appendChild(projectCheck)
+        newProjectListItem.appendChild(projectEdit)
         newProjectListItem.appendChild(projectDelete)
         projectsList.appendChild(newProjectListItem)
         let addProject = new Projects(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
