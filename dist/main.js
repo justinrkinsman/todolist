@@ -514,16 +514,30 @@ document.addEventListener('click', function(e){
             newProjectSubmit.addEventListener('click', function(e){
                 if (e.target && e.target.textContent == 'Accept'){
                     //let currentProject = document.getElementById(`projectNameTitle${index}`)
-                    let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
-                    currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
-                    currentProject.textContent = newProject.value
-                    projectList[index].name = newProject.value
-                    projectList[index].dueDate = newProjectDue.value
-                    projectList[index].priority = newProjectPriority.value
-                    console.log(projectList)
-                    content.removeChild(editProjectForm)
-                    projectEdit = 0
-                   // console.log(projectEdit)
+                    if (content.children[0]){
+                        let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
+                        let content = document.getElementById(`h2${index}`)
+                        content.textContent = newProject.value
+                        currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
+                        currentProject.textContent = newProject.value
+                        projectList[index].name = newProject.value
+                        projectList[index].dueDate = newProjectDue.value
+                        projectList[index].priority = newProjectPriority.value
+                        console.log(projectList)
+                        content.removeChild(editProjectForm)
+                        projectEdit = 0
+                       // console.log(projectEdit)
+                    }else{
+                        let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
+                        currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
+                        currentProject.textContent = newProject.value
+                        projectList[index].name = newProject.value
+                        projectList[index].dueDate = newProjectDue.value
+                        projectList[index].priority = newProjectPriority.value
+                        console.log(projectList)
+                        content.removeChild(editProjectForm)
+                        projectEdit = 0
+                    }
                 }
             })} else if (projectEdit == 1){
                 let content = document.getElementById('projectsList')
