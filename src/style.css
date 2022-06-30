@@ -53,3 +53,8 @@
     display: flex;
     justify-content: left;
 }
+
+[id^=projectName]{
+    display: flex;
+    flex-direction: row;
+}
