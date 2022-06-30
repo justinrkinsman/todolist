@@ -365,14 +365,26 @@ document.addEventListener('click', function(e){
         console.log(projectList)
     }else if (e.target && e.target.id.startsWith('projectDeetz')) {
         if (projectDeetz == 0) {
-            let projectDetailsDiv = document.createElement('div')
             let index = e.target.id.slice(-1)
-            let ogDiv = document.getElementById(`projectsList`)
-            projectDeetz = 1
-            projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
-            projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
-            ogDiv.appendChild(projectDetailsDiv)
-            projectDeetz = 1
+            let projectsList = document.getElementById(`projectsList`)
+            if (projectsList.lastChild.id == 'editProjectForm'){
+                let projectName = document.getElementById('editProjectForm')
+                let ogDiv = document.getElementById(`projectsList`)
+                let projectDetailsDiv = document.createElement('div')
+                projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
+                projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
+                console.log(projectName)
+                ogDiv.insertBefore(projectDetailsDiv, projectName)
+                projectDeetz = 1
+            }else{
+                let projectDetailsDiv = document.createElement('div')
+                let ogDiv = document.getElementById(`projectsList`)
+                projectDeetz = 1
+                projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
+                projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
+                ogDiv.appendChild(projectDetailsDiv)
+                projectDeetz = 1
+            }
         }else if (projectDeetz == 1){
             let index = e.target.id.slice(-1)
             let ogDiv = document.getElementById(`projectsList`)
