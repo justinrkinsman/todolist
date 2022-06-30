@@ -455,22 +455,12 @@ document.addEventListener('click', function(e){
                     console.log(projectList)
                     content.removeChild(editProjectForm)
                 }
-            })
-        }
-        /*
-        
-        newTaskSubmit.addEventListener('click', function(e){
-            if (e.target && e.target.textContent == 'Accept'){
-                //let currentTask = document.getElementById(`taskContent${index}`)
-                currentTask.textContent = newTask.value
-                fullList[index].task = newTask.value
-                fullList[index].description = newDesc.value
-                fullList[index].dueDate = newDue.value
-                fullList[index].priority = newPriority.value
-                //fullList[index].project = newProject.value
-                console.log(fullList)
-                content.removeChild(editForm)
+            })} else if (projectEdit == 1){
+                let content = document.getElementById('projectsList')
+                content.removeChild(editProjectForm)
+                projectEdit = 0
             }
+        /*
         })} else if (editz == 1){
             let index = e.target.id.slice(-1)
             let content = document.getElementById(`contentDiv${index}`)
