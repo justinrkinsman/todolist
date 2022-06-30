@@ -417,10 +417,16 @@ document.addEventListener('click', function(e){
         let check = e.target
         if (check.checked){
             let index = e.target.id.slice(-1)
-            let element = document.getElementById(`projectName${index}`)
+            let projectNameTitle = document.getElementById(`projectNameTitle`)
+            let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
+            let projectCheck = document.getElementById(`projectCheck${index}`)
+            let projectEditDiv = document.getElementById(`projectEdit${index}`)
             let projectsList = document.getElementById('projectsList')
             console.log(projectsList.children)
-            element.style.opacity = '0.3'
+            projectNameTitle.style.opacity = '0.3'
+            projectDeetzDiv.style.opacity = '0.3'
+            projectCheck.style.opacity = '0.3'
+            projectEditDiv.style.opacity = '0.3'
             document.getElementById(`projectDeetz${index}`).disabled = true
             document.getElementById(`projectEdit${index}`).disabled = true
             if (projectsList.children[1] && projectsList.children[2]){
@@ -438,8 +444,14 @@ document.addEventListener('click', function(e){
             }
         }else{
             let index = e.target.id.slice(-1)
-            let element = document.getElementById(`projectName${index}`)
-            element.style.opacity = '1'
+            let projectNameTitle = document.getElementById(`projectNameTitle`)
+            let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
+            let projectCheck = document.getElementById(`projectCheck${index}`)
+            let projectEditDiv = document.getElementById(`projectEdit${index}`)
+            projectNameTitle.style.opacity = '1'
+            projectDeetzDiv.style.opacity = '1'
+            projectCheck.style.opacity = '1'
+            projectEditDiv.style.opacity = '1'
             document.getElementById(`projectDeetz${index}`).disabled = false
             document.getElementById(`projectEdit${index}`).disabled = false
         }
