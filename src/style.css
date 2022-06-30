@@ -58,3 +58,14 @@
     display: flex;
     flex-direction: row;
 }
+
+#projectsList{
+    display: flex;
+    flex-direction: column;
+}
+
+#editProjectForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

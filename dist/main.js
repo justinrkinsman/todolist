@@ -367,7 +367,7 @@ document.addEventListener('click', function(e){
         if (projectDeetz == 0) {
             let projectDetailsDiv = document.createElement('div')
             let index = e.target.id.slice(-1)
-            let ogDiv = document.getElementById(`projectName${index}`)
+            let ogDiv = document.getElementById(`projectsList`)
             projectDeetz = 1
             projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
             projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
@@ -375,7 +375,7 @@ document.addEventListener('click', function(e){
             projectDeetz = 1
         }else if (projectDeetz == 1){
             let index = e.target.id.slice(-1)
-            let ogDiv = document.getElementById(`projectName${index}`)
+            let ogDiv = document.getElementById(`projectsList`)
             let projectDetailsDiv = document.getElementById(`projectDetailsText${index}`)
             ogDiv.removeChild(projectDetailsDiv)
             projectDeetz = 0
@@ -436,7 +436,7 @@ document.addEventListener('click', function(e){
             editProjectPriority.appendChild(newProjectPriority)
             editProjectPriority.appendChild(newProjectPriorityLabel)
             let newProjectSubmit = document.createElement('button')
-            let content = document.getElementById(`projectName${index}`)
+            let content = document.getElementById(`projectsList`)
             newProjectSubmit.textContent = 'Accept'
             editProjectForm.appendChild(editProjectName)
             editProjectForm.appendChild(editProjectDue)
