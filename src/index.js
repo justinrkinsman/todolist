@@ -391,10 +391,19 @@ document.addEventListener('click', function(e){
         let index = e.target.id.slice(-1)
         let projectName = document.getElementById(`projectName${index}`)
         let projectsList = document.getElementById('projectsList')
+        let content = document.getElementById('content')
         projectsList.removeChild(projectName)
         projectList.splice(index, 1)
         //console.log(projectsList.children)
-        if (projectsList.children[0] && projectsList.children[1]){
+        if (content.children[0]){
+            let removeThisChild = content.children[0]
+            let removeThisChildToo = content.children[1]
+            content.removeChild(removeThisChildToo)
+            content.removeChild(removeThisChild)
+            projectDeetz = 0
+            projectEdit = 0
+            console.log('work ffs')
+        }else if (projectsList.children[0] && projectsList.children[1]){
             let removeThisChild = projectsList.children[0]
             let removeThisChildToo = projectsList.children[1]
             projectsList.removeChild(removeThisChildToo)
