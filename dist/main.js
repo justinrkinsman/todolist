@@ -373,8 +373,8 @@ document.addEventListener('click', function(e){
             
             //let index = e.target.id.slice - 1
             let projectsList = document.getElementById(`projectsList`)
-            if (projectsList.lastChild.id == 'editProjectForm'){
-                let projectName = document.getElementById('editProjectForm')
+            if (projectsList.lastChild.id.startsWith('editProjectForm')){
+                let projectName = document.querySelector(`'[id^="editProjectForm"]'`)
                 let ogDiv = document.getElementById(`projectsList`)
                 let projectDetailsDiv = document.createElement('div')
                 projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
@@ -506,7 +506,7 @@ document.addEventListener('click', function(e){
             newProject.setAttribute('id', `newTaskInput${index}`)
             newProject.defaultValue = currentProject.textContent
             let editProjectForm = document.createElement('div')
-            editProjectForm.setAttribute('id', 'editProjectForm')
+            editProjectForm.setAttribute('id', `editProjectForm${index}`)
             let editProjectName = document.createElement('div')
             let editProjectDue = document.createElement('div')
             let editProjectPriority = document.createElement('div')
@@ -572,7 +572,7 @@ document.addEventListener('click', function(e){
                 }
             })} else if (projectEdit == 1){
                 let content = document.getElementById('projectsList')
-                let editProjectForm = document.getElementById('editProjectForm')
+                let editProjectForm = document.querySelector('[id^="editProjectForm"]')
                 content.removeChild(editProjectForm)
                 projectEdit = 0
             }

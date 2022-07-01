@@ -64,7 +64,7 @@
     flex-direction: column;
 }
 
-#editProjectForm {
+[id^=editProjectForm] {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
