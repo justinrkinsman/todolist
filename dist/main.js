@@ -399,7 +399,7 @@ document.addEventListener('click', function(e){
             projectDeetz = 0
         }
     }else if (e.target && e.target.id.startsWith('projectDelete')) {
-        let index = e.target.id.slice(-1)
+        findIndex(e.target)
         let projectName = document.getElementById(`projectName${index}`)
         let projectsList = document.getElementById('projectsList')
         let content = document.getElementById('content')
@@ -419,6 +419,7 @@ document.addEventListener('click', function(e){
             console.log(content.children)
             projectDeetz = 0
             projectEdit = 0
+            console.log("here's the problem")
         }
         else if (content.children[0]){
             //let removeThisChild = content.children[0]
@@ -432,7 +433,8 @@ document.addEventListener('click', function(e){
             //content.removeChild(removeThisChild)
             projectDeetz = 0
             projectEdit = 0
-        }else if (projectsList.children[0] && projectsList.children[1]){
+            console.log("here's the problem")
+            /*}else if (projectsList.children[0] && projectsList.children[1]){
             let removeThisChild = projectsList.children[0]
             let removeThisChildToo = projectsList.children[1]
             projectsList.removeChild(removeThisChildToo)
@@ -440,12 +442,17 @@ document.addEventListener('click', function(e){
             projectsList.removeChild(removeThisChild)
             projectDeetz = 0
             projectEdit = 0
-        }else if (projectsList.children[0]){
-            let removeThisChild = projectsList.children[0]
-            projectsList.removeChild(removeThisChild)
+            console.log("here's the problem")*/
+        }/*else if (projectsList.children[0]){
+            findIndex(e.target)
+            let removeThisChild = projectsList.children[index]
+            //projectsList.removeChild(removeThisChild)
+            console.log(removeThisChild)
+            console.log(projectsList.children)
             projectDeetz = 0
             projectEdit = 0
-        }
+            console.log("here's the problem")
+        }*/
     }else if (e.target && e.target.id.startsWith('projectCheck')) {
         let check = e.target
         if (check.checked){
