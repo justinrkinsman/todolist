@@ -397,10 +397,24 @@ document.addEventListener('click', function(e){
         let projectName = document.getElementById(`projectName${index}`)
         let projectsList = document.getElementById('projectsList')
         let content = document.getElementById('content')
+        let myForm = document.getElementById('myForm')
+        let taskForm = document.getElementById('taskForm')
         projectsList.removeChild(projectName)
         projectList.splice(index, 1)
         //console.log(projectsList.children)
-        if (content.children[0]){
+        if (myForm.firstElementChild == taskForm){
+            for (let j = 0; j < 6; j++){
+                myForm.removeChild(myForm.children[0])
+            }
+            let children = content.children.length
+            for (let i = 0; i < children; i++){
+                content.removeChild(content.children[0])
+            }
+            console.log(content.children)
+            projectDeetz = 0
+            projectEdit = 0
+        }
+        else if (content.children[0]){
             //let removeThisChild = content.children[0]
             //let removeThisChildToo = content.children[1]
             let children = content.children.length
