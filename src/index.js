@@ -18,6 +18,10 @@ class Projects {
 }
 
 //projectList[index].taskInfo = []
+function findIndex(object){
+    index = object.id.slice(-1)
+    return index
+}
 
 let fullList = [];
 let projectList = [];
@@ -360,7 +364,9 @@ document.addEventListener('click', function(e){
         console.log(projectList)
     }else if (e.target && e.target.id.startsWith('projectDeetz')) {
         if (projectDeetz == 0) {
-            let index = e.target.id.slice(-1)
+            findIndex(e.target)
+            
+            //let index = e.target.id.slice - 1
             let projectsList = document.getElementById(`projectsList`)
             if (projectsList.lastChild.id == 'editProjectForm'){
                 let projectName = document.getElementById('editProjectForm')
@@ -381,7 +387,7 @@ document.addEventListener('click', function(e){
                 projectDeetz = 1
             }
         }else if (projectDeetz == 1){
-            let index = e.target.id.slice(-1)
+            findIndex(e.target)
             let ogDiv = document.getElementById(`projectsList`)
             let projectDetailsDiv = document.getElementById(`projectDetailsText${index}`)
             ogDiv.removeChild(projectDetailsDiv)
