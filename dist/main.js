@@ -424,6 +424,8 @@ document.addEventListener('click', function(e){
             let newProjectCheck = document.getElementById(`projectCheck${i}`)
             let newProjectEdit = document.getElementById(`projectEdit${i}`)
             let newProjectDelete = document.getElementById(`projectDelete${i}`)
+            projectDeetz = 0
+            projectEdit = 0
             if (!(div === null)){
                 let newID = div.id.slice(0, -1) + `${i - 1}`
                 div.id = newID
