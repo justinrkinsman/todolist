@@ -400,6 +400,7 @@ document.addEventListener('click', function(e){
         }
     }else if (e.target && e.target.id.startsWith('projectDelete')) {
         findIndex(e.target)
+        //console.log(parseInt(index)+4)
         let projectName = document.getElementById(`projectName${index}`)
         let projectsList = document.getElementById('projectsList')
         let content = document.getElementById('content')
@@ -407,7 +408,19 @@ document.addEventListener('click', function(e){
         let taskForm = document.getElementById('taskForm')
         projectsList.removeChild(projectName)
         projectList.splice(index, 1)
-        //console.log(projectsList.children)
+        //let divs = document.querySelectorAll(`[id$="${parseInt(index)}"`)
+        //console.log(divs)
+        for (let i = index; i <= projectList.length; i++){
+            //console.log(projectsList.children[i])
+            let div = document.getElementById(`projectName${i}`)
+            if (!(div === null)){
+                let newID = div.id.slice(0, -1) + `${i - 1}`
+                div.id = newID
+            }
+            //div.id += 1
+            //console.log(div)
+            //console.log(i)
+        }
         if (myForm.firstElementChild == taskForm){
             for (let j = 0; j < 6; j++){
                 myForm.removeChild(myForm.children[0])
