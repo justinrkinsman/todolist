@@ -418,9 +418,27 @@ document.addEventListener('click', function(e){
         for (let i = index; i <= projectList.length; i++){
             //console.log(projectsList.children[i])
             let div = document.getElementById(`projectName${i}`)
+            let newProjectInfo = document.getElementById(`projectInfo${i}`)
+            let newProjectNameTitle = document.getElementById(`projectNameTitle${i}`)
+            let newProjectDeetz = document.getElementById(`projectDeetz${i}`)
+            let newProjectCheck = document.getElementById(`projectCheck${i}`)
+            let newProjectEdit = document.getElementById(`projectEdit${i}`)
+            let newProjectDelete = document.getElementById(`projectDelete${i}`)
             if (!(div === null)){
                 let newID = div.id.slice(0, -1) + `${i - 1}`
                 div.id = newID
+                let newProjectInfoID = newProjectInfo.id.slice(0, -1) + `${i - 1}`
+                newProjectInfo.id = newProjectInfoID
+                let newProjectNameTitleID = newProjectNameTitle.id.slice(0, -1) + `${i - 1}`
+                newProjectNameTitle.id = newProjectNameTitleID
+                let newProjectDeetzID = newProjectDeetz.id.slice(0, -1) + `${i - 1}`
+                newProjectDeetz.id = newProjectDeetzID
+                let newProjectCheckID = newProjectCheck.id.slice(0, -1) + `${i - 1}`
+                newProjectCheck.id = newProjectCheckID
+                let newProjectEditID = newProjectEdit.id.slice(0, -1) + `${i - 1}`
+                newProjectEdit.id = newProjectEditID
+                let newProjectDeleteID = newProjectDelete.id.slice(0, -1) + `${i - 1}`
+                newProjectDelete.id = newProjectDeleteID
             }
             //div.id += 1
             //console.log(div)
