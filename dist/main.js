@@ -378,10 +378,6 @@ document.addEventListener('click', function(e){
         console.log(projectList)
     }else if (e.target && e.target.id.startsWith('projectDeetz')) {
         let index = e.target.id.slice(-1)
-        /*if (!(index == 0)){
-            
-            console.log(projectDeetz)
-        }else{*/
             if (projectDeetz[index] == 0) {
                 let index = e.target.id.slice(-1)
                 let ogDiv = document.getElementById(`projectName${index}`)
@@ -392,15 +388,12 @@ document.addEventListener('click', function(e){
                     let projectDetailsDiv = document.createElement('div')
                     projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
                     projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
-                    //console.log(projectName)
                     console.log(index)
                     ogDiv.insertBefore(projectDetailsDiv, projectName)
                     projectDeetz[index] = 1
                 }else{
                     let projectDetailsDiv = document.createElement('div')
-    //                let index = e.target.id.slice(-1)
                     let ogDiv = document.getElementById(`projectName${index}`)
-                    
                     projectDeetz[index] = 1
                     projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
                     projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
@@ -414,7 +407,6 @@ document.addEventListener('click', function(e){
                 ogDiv.removeChild(projectDetailsDiv)
                 projectDeetz[index] = 0
             }
-        //}
     }else if (e.target && e.target.id.startsWith('projectDelete')) {
         findIndex(e.target)
         //console.log(parseInt(index)+4)
@@ -507,7 +499,7 @@ document.addEventListener('click', function(e){
         let check = e.target
         if (check.checked){
             let index = e.target.id.slice(-1)
-            let projectNameTitle = document.getElementById(`projectNameTitle`)
+            let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
             let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
             let projectCheck = document.getElementById(`projectCheck${index}`)
             let projectEditDiv = document.getElementById(`projectEdit${index}`)
@@ -534,7 +526,7 @@ document.addEventListener('click', function(e){
             }
         }else{
             let index = e.target.id.slice(-1)
-            let projectNameTitle = document.getElementById(`projectNameTitle`)
+            let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
             let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
             let projectCheck = document.getElementById(`projectCheck${index}`)
             let projectEditDiv = document.getElementById(`projectEdit${index}`)

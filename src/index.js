@@ -494,7 +494,7 @@ document.addEventListener('click', function(e){
         let check = e.target
         if (check.checked){
             let index = e.target.id.slice(-1)
-            let projectNameTitle = document.getElementById(`projectNameTitle`)
+            let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
             let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
             let projectCheck = document.getElementById(`projectCheck${index}`)
             let projectEditDiv = document.getElementById(`projectEdit${index}`)
@@ -521,7 +521,7 @@ document.addEventListener('click', function(e){
             }
         }else{
             let index = e.target.id.slice(-1)
-            let projectNameTitle = document.getElementById(`projectNameTitle`)
+            let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
             let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
             let projectCheck = document.getElementById(`projectCheck${index}`)
             let projectEditDiv = document.getElementById(`projectEdit${index}`)
