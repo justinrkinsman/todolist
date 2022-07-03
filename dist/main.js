@@ -428,8 +428,8 @@ document.addEventListener('click', function(e){
             let newProjectCheck = document.getElementById(`projectCheck${i}`)
             let newProjectEdit = document.getElementById(`projectEdit${i}`)
             let newProjectDelete = document.getElementById(`projectDelete${i}`)
-            projectDeetz = 0
-            projectEdit = 0
+            projectDeetz.splice(index, 0, '')
+            projectEdit.splice(index, 0, '')
             if (!(div === null)){
                 let newID = div.id.slice(0, -1) + `${i - 1}`
                 div.id = newID
@@ -459,8 +459,8 @@ document.addEventListener('click', function(e){
                 content.removeChild(content.children[0])
             }
             console.log(content.children)
-            projectDeetz = 0
-            projectEdit = 0
+            projectDeetz.splice(index, 0, '')
+            projectEdit.splice(index, 0, '')
             console.log("here's the problem")
         }
         else if (content.children[0]){
@@ -473,8 +473,8 @@ document.addEventListener('click', function(e){
             console.log(content.children)
             //content.removeChild(removeThisChildToo)
             //content.removeChild(removeThisChild)
-            projectDeetz = 0
-            projectEdit = 0
+            projectDeetz.splice(index, 0, '')
+            projectEdit.splice(index, 0, '')
             console.log("here's the problem")
             /*}else if (projectsList.children[0] && projectsList.children[1]){
             let removeThisChild = projectsList.children[0]
@@ -647,6 +647,7 @@ let newProjectBtn = document.getElementById('newProjectBtn')
 newProjectBtn.addEventListener('click', newProject)
 
 function newProject(){
+    console.log(projectDeetz)
     let newProjectDiv = document.getElementById('newProjectDiv')
     let confirmButtonCheck = document.getElementById('confirmBtn')
     if (!(newProjectDiv.lastChild == confirmButtonCheck)){
