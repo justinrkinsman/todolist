@@ -47,29 +47,35 @@ const priority = document.getElementById('priority')*/  //
 //const submitBtn = document.getElementById('submit')
 const projectsList = document.getElementById('projectsList')
 //submitBtn.addEventListener('click', submission)
-let deetz = 0
-let editz = 0
-let projectDeetz = 0
-let projectEdit = 0
+/*
+for (let i = 0; i < 5; ++i){
+    window[`deetz${i}`] = `deetz${i}`       //////try this again with projectDeetz
+}
+console.log(deetz1)
+*/
+let deetz = []
+let editz = []
+let projectDeetz = []
+let projectEdit = []
 document.addEventListener('click', function(e){
     if(e.target && e.target.id.startsWith("detailsBtn")) {
         //console.log(e.target.id)
-        if (deetz == 0){
+        if (deetz[index] == 0){
             let detailsDiv = document.createElement('div')
             let index = e.target.id.slice(-1)
             let ogDiv = document.getElementById(`contentDiv${index}`)
             detailsDiv.setAttribute('id', `detailsText${index}`)
             detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
             ogDiv.appendChild(detailsDiv)
-            deetz = 1
-        }else if (deetz == 1){
+            deetz[index] = 1
+        }else if (deetz[index] == 1){
             let index = e.target.id.slice(-1)
             let ogDiv = document.getElementById(`contentDiv${index}`)
             let detailsDiv = document.getElementById(`detailsText${index}`)
             ogDiv.removeChild(detailsDiv)
             //console.log(ogDiv)
             //console.log(detailsDiv)
-            deetz = 0
+            deetz[index] = 0
         }
     }else if (e.target && e.target.id.startsWith('check')){
         let check = e.target
@@ -233,8 +239,8 @@ document.addEventListener('click', function(e){
         projectsList.appendChild(newProjectListItem)
         let addProject = new Projects(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
         projectList.push(addProject)
-
-        console.log(projectList)
+        projectDeetz.splice(index, 0, 0)
+        console.log(projectDeetz)
     }else if (e.target && e.target.id.startsWith('projectName')){
         //console.log(projectList)
         let index = e.target.id.slice(-1)
@@ -371,38 +377,44 @@ document.addEventListener('click', function(e){
         myForm.removeChild(submitForm)
         console.log(projectList)
     }else if (e.target && e.target.id.startsWith('projectDeetz')) {
-        if (projectDeetz == 0) {
-            let index = e.target.id.slice(-1)
-            let ogDiv = document.getElementById(`projectName${index}`)
-            if (ogDiv.lastChild.id.startsWith('editProjectForm')){
+        let index = e.target.id.slice(-1)
+        /*if (!(index == 0)){
+            
+            console.log(projectDeetz)
+        }else{*/
+            if (projectDeetz[index] == 0) {
                 let index = e.target.id.slice(-1)
                 let ogDiv = document.getElementById(`projectName${index}`)
-                let projectName = document.getElementById(`editProjectForm${index}`)
-                let projectDetailsDiv = document.createElement('div')
-                projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
-                projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
-                //console.log(projectName)
-                console.log(index)
-                ogDiv.insertBefore(projectDetailsDiv, projectName)
-                projectDeetz = 1
-            }else{
-                let projectDetailsDiv = document.createElement('div')
-//                let index = e.target.id.slice(-1)
+                if (ogDiv.lastChild.id.startsWith('editProjectForm')){
+                    let index = e.target.id.slice(-1)
+                    let ogDiv = document.getElementById(`projectName${index}`)
+                    let projectName = document.getElementById(`editProjectForm${index}`)
+                    let projectDetailsDiv = document.createElement('div')
+                    projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
+                    projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
+                    //console.log(projectName)
+                    console.log(index)
+                    ogDiv.insertBefore(projectDetailsDiv, projectName)
+                    projectDeetz[index] = 1
+                }else{
+                    let projectDetailsDiv = document.createElement('div')
+    //                let index = e.target.id.slice(-1)
+                    let ogDiv = document.getElementById(`projectName${index}`)
+                    
+                    projectDeetz[index] = 1
+                    projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
+                    projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
+                    ogDiv.appendChild(projectDetailsDiv)
+                    projectDeetz[index] = 1
+                }
+            }else if (projectDeetz[index] == 1){
+                findIndex(e.target)
                 let ogDiv = document.getElementById(`projectName${index}`)
-                
-                projectDeetz = 1
-                projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
-                projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
-                ogDiv.appendChild(projectDetailsDiv)
-                projectDeetz = 1
+                let projectDetailsDiv = document.getElementById(`projectDetailsText${index}`)
+                ogDiv.removeChild(projectDetailsDiv)
+                projectDeetz[index] = 0
             }
-        }else if (projectDeetz == 1){
-            findIndex(e.target)
-            let ogDiv = document.getElementById(`projectName${index}`)
-            let projectDetailsDiv = document.getElementById(`projectDetailsText${index}`)
-            ogDiv.removeChild(projectDetailsDiv)
-            projectDeetz = 0
-        }
+        //}
     }else if (e.target && e.target.id.startsWith('projectDelete')) {
         findIndex(e.target)
         //console.log(parseInt(index)+4)
