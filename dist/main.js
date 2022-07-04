@@ -538,7 +538,7 @@ document.addEventListener('click', function(e){
             document.getElementById(`projectEdit${index}`).disabled = false
         }
     }else if (e.target && e.target.id.startsWith('projectEdit')){
-        if (projectEdit == 0){
+        if (projectEdit[index] == 0){
             let index = e.target.id.slice(-1)
             let currentProject = document.getElementById(`projectNameTitle${index}`)
             let currentDue = projectList[index].dueDate
@@ -583,7 +583,7 @@ document.addEventListener('click', function(e){
             editProjectForm.appendChild(editProjectPriority)
             editProjectForm.appendChild(newProjectSubmit)
             content.appendChild(editProjectForm)
-            projectEdit = 1
+            projectEdit[index] = 1
             newProjectSubmit.addEventListener('click', function(e){
                 if (e.target && e.target.textContent == 'Accept'){
                     //let currentProject = document.getElementById(`projectNameTitle${index}`)
@@ -598,7 +598,7 @@ document.addEventListener('click', function(e){
                         projectList[index].priority = newProjectPriority.value
                         console.log(projectList)
                         content.removeChild(editProjectForm)
-                        projectEdit = 0
+                        projectEdit[index] = 0
                        // console.log(projectEdit)
                     }else{
                         let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
@@ -609,15 +609,15 @@ document.addEventListener('click', function(e){
                         projectList[index].priority = newProjectPriority.value
                         console.log(projectList)
                         content.removeChild(editProjectForm)
-                        projectEdit = 0
+                        projectEdit[index] = 0
                     }
                 }
-            })} else if (projectEdit == 1){
+            })} else if (projectEdit[index] == 1){
                 let index = e.target.id.slice(-1)
                 let content = document.getElementById(`projectName${index}`)
                 let editProjectForm = document.getElementById(`editProjectForm${index}`)
                 content.removeChild(editProjectForm)
-                projectEdit = 0
+                projectEdit[index] = 0
             }
     }
 })
