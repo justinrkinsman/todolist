@@ -137,11 +137,12 @@ document.addEventListener('click', function(e){
         let index = e.target.id.slice(-1)
         if (editz[index] == 0){
             let index = e.target.id.slice(-1)
+            let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
             let addTaskButton = document.querySelector('[id^="addTaskButton"]')
-            let currentTask = document.getElementById(`taskContent${index}`)
-            let currentDesc = fullList[index].description
-            let currentDue = fullList[index].dueDate
-            let currentPriority = fullList[index].priority
+            let currentTask = document.getElementById(`taskContent${index}`)   /////problem is here
+            let currentDesc = projectList[projectIndex].taskInfo[index].description
+            let currentDue = projectList[projectIndex].taskInfo[index].dueDate
+            let currentPriority = projectList[projectIndex].taskInfo[index].priority
             let newTask = document.createElement('input')
             newTask.setAttribute('type', 'text')
             newTask.setAttribute('id', `newTaskInput${index}`)
@@ -597,17 +598,7 @@ function removeAllChildNodes(parent){
 
 function submission() {
     addListToPage()
-    console.log(fullList)
-    /*const detailsButtons = document.querySelectorAll('[id^="detailsBtn"]')
-    detailsButtons.forEach((detailsButton) => {
-        detailsButton.addEventListener('click', () => {
-                console.log(fullList[detailsButton.id.slice(-1)].description)
-                console.log(fullList[detailsButton.id.slice(-1)].dueDate)
-                console.log(fullList[detailsButton.id.slice(-1)].priority)
-        })
-})*/
     clearForm()
-    //newProject()
 }
 
 let newProjectBtn = document.getElementById('newProjectBtn')
@@ -617,7 +608,6 @@ function newProject(){
     let newProjectDiv = document.getElementById('newProjectDiv')
     let confirmButtonCheck = document.getElementById('confirmBtn')
     if (!(newProjectDiv.lastChild == confirmButtonCheck)){
-//    let newProjectDiv = document.getElementById('newProjectDiv')
         let newProjectForm = document.createElement('div')
         newProjectForm.setAttribute('id', 'newProjectForm')
         let newProjectName = document.createElement('input')
@@ -648,32 +638,25 @@ function newProject(){
         newProjectConfirm.setAttribute('id', 'confirmBtn')
         newProjectDiv.appendChild(newProjectConfirm)
     }
-    /*let index = fullList.length -1
-    let newProject = document.createElement('div')
-    newProject.textContent = fullList[index].project
-    newProject.setAttribute('id', `newProject${index}`)
-    projectsList.appendChild(newProject)*/
-    //console.log(fullList[index].project)
 }
 
 function clearForm(){
     const task = document.getElementById('task')          //
     const desc = document.getElementById('description')   //
     const due = document.getElementById('dueDate')        // gets values from input boxes
-    const priority = document.getElementById('priority')
+    const priority = document.getElementById('priority')  //
     task.value = ''
     desc.value = ''
     due.value = ''
     priority.value = ''
-    //project.value = ''
 }
 
 function addListToPage() {
     const task = document.getElementById('task')          //
     const desc = document.getElementById('description')   //
     const due = document.getElementById('dueDate')        // gets values from input boxes
-    const priority = document.getElementById('priority')
-    let list = new Todo(task.value, desc.value, due.value, priority.value/*, project.value*/)
+    const priority = document.getElementById('priority')  //
+    let list = new Todo(task.value, desc.value, due.value, priority.value)
     let newDiv = document.createElement('div')
     newDiv.setAttribute('id', `taskContent${fullList.length}`)
     newDiv.textContent = (`${list.task}`)
@@ -707,14 +690,6 @@ function addListToPage() {
 let form = document.getElementById('myForm');
 function handleForm(event) { event.preventDefault(); }
 form.addEventListener('submit', handleForm)
-//let myTodo = new Todo('Sweep', "Sweep kitchen", 'Today', 'Medium')
-
-/*const detailsBtnClick = document.getElementById('detailsBtn')
-    detailsBtnClick.addEventListener('click', function(e){
-    if(e.target && e.target.id=='detailsBtn'){
-        console.log(fullList)
-    }
-})*/
 /******/ })()
 ;
 //# sourceMappingURL=main.js.map
