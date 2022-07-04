@@ -76,6 +76,8 @@ document.addEventListener('click', function(e){
         taskDetails.style.opacity = '0.3'
         taskCheck.style.opacity = '0.3'
         taskEdit.style.opacity = '0.3'
+        taskDetails.disabled = true
+        taskEdit.disabled = true
         }else{
             let index = e.target.id.slice(-1)
             let element = document.getElementById(`contentDiv${index}`)
@@ -84,12 +86,6 @@ document.addEventListener('click', function(e){
 
         /*
         if (check.checked){
-            
-            console.log(projectsList.children)
-            projectNameTitle.style.opacity = '0.3'
-            projectDeetzDiv.style.opacity = '0.3'
-            projectCheck.style.opacity = '0.3'
-            projectEditDiv.style.opacity = '0.3'
             document.getElementById(`projectDeetz${index}`).disabled = true
             document.getElementById(`projectEdit${index}`).disabled = true
             if (projectName.children[1] && projectName.children[2]){
