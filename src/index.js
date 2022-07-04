@@ -425,7 +425,7 @@ document.addEventListener('click', function(e){
             let newProjectEdit = document.getElementById(`projectEdit${i}`)
             let newProjectDelete = document.getElementById(`projectDelete${i}`)
             projectDeetz.splice(index, 0)
-            projectEdit.splice(index, 0)
+            projectEditz.splice(index, 0)
             if (!(div === null)){
                 let newID = div.id.slice(0, -1) + `${i - 1}`
                 div.id = newID
@@ -447,7 +447,7 @@ document.addEventListener('click', function(e){
             //console.log(i)
         }
         if (myForm.firstElementChild == taskForm){
-            for (let j = 0; j < 6; j++){
+            for (let j = 0; j < 5; j++){
                 myForm.removeChild(myForm.children[0])
             }
             let children = content.children.length
@@ -457,7 +457,6 @@ document.addEventListener('click', function(e){
             console.log(content.children)
             projectDeetz.splice(index, 0)
             projectEditz.splice(index, 0)
-            console.log("here's the problem")
         }
         else if (content.children[0]){
             //let removeThisChild = content.children[0]
@@ -471,7 +470,6 @@ document.addEventListener('click', function(e){
             //content.removeChild(removeThisChild)
             projectDeetz.splice(index, 0)
             projectEditz.splice(index, 0)
-            console.log("here's the problem")
             /*}else if (projectsList.children[0] && projectsList.children[1]){
             let removeThisChild = projectsList.children[0]
             let removeThisChildToo = projectsList.children[1]
