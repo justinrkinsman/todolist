@@ -104,7 +104,7 @@ document.addEventListener('click', function(e){
         //fullList.splice(index, 1)
     }else if (e.target && e.target.id.startsWith('edit')){
         //if (!(newProjectDiv.lastChild == confirmButtonCheck)){
-        if (editz == 0){
+        if (editz[index] == 0){
         let index = e.target.id.slice(-1)
         let addTaskButton = document.querySelector('[id^="addTaskButton"]')
         let currentTask = document.getElementById(`taskContent${index}`)
@@ -175,7 +175,7 @@ document.addEventListener('click', function(e){
         //editForm.appendChild(editProject)
         editForm.appendChild(newTaskSubmit)
         content.appendChild(editForm)
-        editz = 1
+        editz[index] = 1
         //}
         newTaskSubmit.addEventListener('click', function(e){
             if (e.target && e.target.textContent == 'Accept'){
@@ -189,11 +189,11 @@ document.addEventListener('click', function(e){
                 console.log(fullList)
                 content.removeChild(editForm)
             }
-        })} else if (editz == 1){
+        })} else if (editz[index] == 1){
             let index = e.target.id.slice(-1)
             let content = document.getElementById(`contentDiv${index}`)
             content.removeChild(editForm)
-            editz = 0
+            editz[index] = 0
         }   
     }else if (e.target && e.target.textContent == 'Confirm'){
         //let newProjectDiv = document.getElementById('newProjectDiv')
@@ -511,13 +511,13 @@ document.addEventListener('click', function(e){
                 let removeThisChildToo = projectsList.children[2]
                 projectsList.removeChild(removeThisChildToo)
                 projectsList.removeChild(removeThisChild)
-                projectDeetz = 0
-                projectEdit = 0
+                projectDeetz[index] = 0
+                projectEdit[index] = 0
             }else if (projectsList.children[1]){
                 let removeThisChild = projectsList.children[1]
                 projectsList.removeChild(removeThisChild)
-                projectDeetz = 0
-                projectEdit = 0
+                projectDeetz[index] = 0
+                projectEdit[index] = 0
             }
         }else{
             let index = e.target.id.slice(-1)
