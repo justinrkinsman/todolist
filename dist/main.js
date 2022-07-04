@@ -43,17 +43,24 @@ document.addEventListener('click', function(e){
             let detailsDiv = document.createElement('div')
             let index = e.target.id.slice(-1)
             let ogDiv = document.getElementById(`contentDiv${index}`)
+            let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
+            console.log(projectIndex)
+            console.log(index)
+            let currentTask = document.getElementById(`taskContent${index}`)
+            let currentDesc = projectList[projectIndex].taskInfo[index].description
+            let currentDue = projectList[projectIndex].taskInfo[index].dueDate
+            let currentPriority = projectList[projectIndex].taskInfo[index].priority
             if (ogDiv.lastChild.id.startsWith('editForm')){
                 let index = e.target.id.slice(-1)
                 let ogDiv = document.getElementById(`contentDiv${index}`)
                 let editForm = document.getElementById('editForm')
                 detailsDiv.setAttribute('id', `detailsText${index}`)
-                detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
+                detailsDiv.textContent = `${currentDesc} ${(currentDue)} ${(currentPriority)}`
                 ogDiv.insertBefore(detailsDiv, editForm)
                 deetz[index] = 1
             }else{
                 detailsDiv.setAttribute('id', `detailsText${index}`)
-                detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
+                detailsDiv.textContent = `${currentDesc} ${currentDue} ${currentPriority}`
                 ogDiv.appendChild(detailsDiv)
                 deetz[index] = 1}
         }else if (deetz[index] == 1){
@@ -106,23 +113,6 @@ document.addEventListener('click', function(e){
             taskDetails.disabled = false
             taskEdit.disabled = false
         }
-
-        /*
-
-        }else{
-            let index = e.target.id.slice(-1)
-            let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
-            let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
-            let projectCheck = document.getElementById(`projectCheck${index}`)
-            let projectEditDiv = document.getElementById(`projectEdit${index}`)
-            projectNameTitle.style.opacity = '1'
-            projectDeetzDiv.style.opacity = '1'
-            projectCheck.style.opacity = '1'
-            projectEditDiv.style.opacity = '1'
-            document.getElementById(`projectDeetz${index}`).disabled = false
-            document.getElementById(`projectEdit${index}`).disabled = false
-        }
-        */
     }else if (e.target && e.target.id.startsWith('delete')){
         let h2 = document.querySelector('[id^="h2"]')
         projectIndex = h2.id.slice(-1)
@@ -139,7 +129,7 @@ document.addEventListener('click', function(e){
             let index = e.target.id.slice(-1)
             let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
             let addTaskButton = document.querySelector('[id^="addTaskButton"]')
-            let currentTask = document.getElementById(`taskContent${index}`)   /////problem is here
+            let currentTask = document.getElementById(`taskContent${index}`)
             let currentDesc = projectList[projectIndex].taskInfo[index].description
             let currentDue = projectList[projectIndex].taskInfo[index].dueDate
             let currentPriority = projectList[projectIndex].taskInfo[index].priority
@@ -360,8 +350,10 @@ document.addEventListener('click', function(e){
         submission()
         let index = document.querySelector('[id^="h2"]').id.slice(-1)
         let content = document.getElementById('content')
-        let contentNodeList = document.querySelectorAll('[id^="contentDiv"]')
-        let taskIndex = contentNodeList.length - 1
+        //let contentNodeList = document.querySelectorAll('[id^="contentDiv"]')
+        console.log(projectList[index].taskInfo.length)
+        let taskIndex = projectList[index].taskInfo.length
+        //let taskIndex = contentNodeList.length - 1
         projectList[index].taskInfo[taskIndex] = (fullList[fullList.length-1])        //add tasks to projects
         myForm.removeChild(taskForm)
         myForm.removeChild(descForm)
@@ -658,24 +650,28 @@ function addListToPage() {
     const priority = document.getElementById('priority')  //
     let list = new Todo(task.value, desc.value, due.value, priority.value)
     let newDiv = document.createElement('div')
-    newDiv.setAttribute('id', `taskContent${fullList.length}`)
+    let index = document.querySelector('[id^="h2"]').id.slice(-1)
+    let content = document.getElementById('content')
+    console.log(projectList[index].taskInfo.length)
+    let taskIndex = projectList[index].taskInfo.length
+    newDiv.setAttribute('id', `taskContent${taskIndex}`)
     newDiv.textContent = (`${list.task}`)
     let detailsBtn = document.createElement('button')
-    detailsBtn.setAttribute('id', `detailsBtn${fullList.length}`)
+    detailsBtn.setAttribute('id', `detailsBtn${taskIndex}`)
     detailsBtn.textContent = "Details"
     let check = document.createElement('input')
     check.setAttribute('type', 'checkbox')
-    check.setAttribute('id', `check${fullList.length}`)
+    check.setAttribute('id', `check${taskIndex}`)
     let editBtn = document.createElement('button')
-    editBtn.setAttribute('id', `editBtn${fullList.length}`)
+    editBtn.setAttribute('id', `editBtn${taskIndex}`)
     editBtn.textContent = 'Edit'
     let delBtn = document.createElement('button')
-    delBtn.setAttribute('id', `delete${fullList.length}`)
+    delBtn.setAttribute('id', `delete${taskIndex}`)
     delBtn.textContent = 'Delete'
     let contentDiv = document.createElement('div')
-    contentDiv.setAttribute('id', `contentDiv${fullList.length}`)
+    contentDiv.setAttribute('id', `contentDiv${taskIndex}`)
     let leftSide = document.createElement('div')
-    leftSide.setAttribute('id', `leftSide${fullList.length}`)
+    leftSide.setAttribute('id', `leftSide${taskIndex}`)
     leftSide.appendChild(newDiv)
     leftSide.appendChild(detailsBtn)
     leftSide.appendChild(check)
