@@ -54,28 +54,50 @@ let projectDeetz = []
 let projectEditz = []
 document.addEventListener('click', function(e){
     if(e.target && e.target.id.startsWith("detailsBtn")) {
-        //console.log(e.target.id)
-        console.log(deetz)
-        console.log(editz)
         let index = e.target.id.slice(-1)
         if (deetz[index] == 0){
             let detailsDiv = document.createElement('div')
             let index = e.target.id.slice(-1)
             let ogDiv = document.getElementById(`contentDiv${index}`)
-            detailsDiv.setAttribute('id', `detailsText${index}`)
-            detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
-            ogDiv.appendChild(detailsDiv)
-            console.log(deetz)
-            deetz[index] = 1
+            if (ogDiv.lastChild.id.startsWith('editForm')){
+                let index = e.target.id.slice(-1)
+                let ogDiv = document.getElementById(`contentDiv${index}`)
+                let editForm = document.getElementById('editForm')
+                detailsDiv.setAttribute('id', `detailsText${index}`)
+                detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
+                ogDiv.insertBefore(detailsDiv, editForm)
+                deetz[index] = 1
+            }else{
+                detailsDiv.setAttribute('id', `detailsText${index}`)
+                detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
+                ogDiv.appendChild(detailsDiv)
+                deetz[index] = 1}
         }else if (deetz[index] == 1){
             let index = e.target.id.slice(-1)
             let ogDiv = document.getElementById(`contentDiv${index}`)
             let detailsDiv = document.getElementById(`detailsText${index}`)
             ogDiv.removeChild(detailsDiv)
-            //console.log(ogDiv)
-            //console.log(detailsDiv)
             deetz[index] = 0
         }
+        /*if (ogDiv.lastChild.id.startsWith('editProjectForm')){
+                    let ogDiv = document.getElementById(`projectName${index}`)
+                    let projectName = document.getElementById(`editProjectForm${index}`)
+                    let projectDetailsDiv = document.createElement('div')
+                    projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
+                    projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
+                    console.log(index)
+                    ogDiv.insertBefore(projectDetailsDiv, projectName)
+                    projectDeetz[index] = 1
+                }else{
+                    let projectDetailsDiv = document.createElement('div')
+                    let ogDiv = document.getElementById(`projectName${index}`)
+                    projectDeetz[index] = 1
+                    projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
+                    projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
+                    ogDiv.appendChild(projectDetailsDiv)
+                    projectDeetz[index] = 1
+                }
+        */
     }else if (e.target && e.target.id.startsWith('check')){
         let check = e.target
         console.log(check)
