@@ -499,7 +499,7 @@ document.addEventListener('click', function(e){
             let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
             let projectCheck = document.getElementById(`projectCheck${index}`)
             let projectEditDiv = document.getElementById(`projectEdit${index}`)
-            let projectsList = document.getElementById('projectsList')
+            let projectName = document.getElementById(`projectName${index}`)
             console.log(projectsList.children)
             projectNameTitle.style.opacity = '0.3'
             projectDeetzDiv.style.opacity = '0.3'
@@ -507,16 +507,16 @@ document.addEventListener('click', function(e){
             projectEditDiv.style.opacity = '0.3'
             document.getElementById(`projectDeetz${index}`).disabled = true
             document.getElementById(`projectEdit${index}`).disabled = true
-            if (projectsList.children[1] && projectsList.children[2]){
-                let removeThisChild = projectsList.children[1]
-                let removeThisChildToo = projectsList.children[2]
-                projectsList.removeChild(removeThisChildToo)
-                projectsList.removeChild(removeThisChild)
+            if (projectName.children[1] && projectName.children[2]){
+                let removeThisChild = projectName.children[1]
+                let removeThisChildToo = projectName.children[2]
+                projectName.removeChild(removeThisChildToo)
+                projectName.removeChild(removeThisChild)
                 projectDeetz[index] = 0
                 projectEditz[index] = 0
-            }else if (projectsList.children[1]){
-                let removeThisChild = projectsList.children[1]
-                projectsList.removeChild(removeThisChild)
+            }else if (projectName.children[1]){
+                let removeThisChild = projectName.children[1]
+                projectName.removeChild(removeThisChild)
                 projectDeetz[index] = 0
                 projectEditz[index] = 0
             }
