@@ -65,42 +65,50 @@ document.addEventListener('click', function(e){
         }
     }else if (e.target && e.target.id.startsWith('check')){
         let check = e.target
+        let index = e.target.id.slice(-1)
+        let contentDiv = document.getElementById(`contentDiv${index}`)
         console.log(check)
         if (check.checked){
-        let index = e.target.id.slice(-1)
-        let taskName = document.getElementById(`taskContent${index}`)
-        let taskDetails = document.getElementById(`detailsBtn${index}`)
-        let taskCheck = document.getElementById(`check${index}`)
-        let taskEdit = document.getElementById(`editBtn${index}`)
-        taskName.style.opacity = '0.3'
-        taskDetails.style.opacity = '0.3'
-        taskCheck.style.opacity = '0.3'
-        taskEdit.style.opacity = '0.3'
-        taskDetails.disabled = true
-        taskEdit.disabled = true
+            let index = e.target.id.slice(-1)
+            let taskName = document.getElementById(`taskContent${index}`)
+            let taskDetails = document.getElementById(`detailsBtn${index}`)
+            let taskCheck = document.getElementById(`check${index}`)
+            let taskEdit = document.getElementById(`editBtn${index}`)
+            taskName.style.opacity = '0.3'
+            taskDetails.style.opacity = '0.3'
+            taskCheck.style.opacity = '0.3'
+            taskEdit.style.opacity = '0.3'
+            taskDetails.disabled = true
+            taskEdit.disabled = true
+            if (contentDiv.children[1] && contentDiv.children[2]){
+                let removeThisChild = contentDiv.children[1]
+                let removeThisChildToo = contentDiv.children[2]
+                contentDiv.removeChild(removeThisChildToo)
+                contentDiv.removeChild(removeThisChild)
+                deetz[index] = 0
+                editz[index] = 0
+            }else if (contentDiv.children[1]){
+                let removeThisChild = contentDiv.children[1]
+                contentDiv.removeChild(removeThisChild)
+                deetz[index] = 0
+                editz[index] = 0
+            }
         }else{
             let index = e.target.id.slice(-1)
-            let element = document.getElementById(`contentDiv${index}`)
-            element.style.opacity = '1'
+            let taskName = document.getElementById(`taskContent${index}`)
+            let taskDetails = document.getElementById(`detailsBtn${index}`)
+            let taskCheck = document.getElementById(`check${index}`)
+            let taskEdit = document.getElementById(`editBtn${index}`)
+            taskName.style.opacity = '1'
+            taskDetails.style.opacity = '1'
+            taskCheck.style.opacity = '1'
+            taskEdit.style.opacity = '1'
+            taskDetails.disabled = false
+            taskEdit.disabled = false
         }
 
         /*
-        if (check.checked){
-            document.getElementById(`projectDeetz${index}`).disabled = true
-            document.getElementById(`projectEdit${index}`).disabled = true
-            if (projectName.children[1] && projectName.children[2]){
-                let removeThisChild = projectName.children[1]
-                let removeThisChildToo = projectName.children[2]
-                projectName.removeChild(removeThisChildToo)
-                projectName.removeChild(removeThisChild)
-                projectDeetz[index] = 0
-                projectEditz[index] = 0
-            }else if (projectName.children[1]){
-                let removeThisChild = projectName.children[1]
-                projectName.removeChild(removeThisChild)
-                projectDeetz[index] = 0
-                projectEditz[index] = 0
-            }
+
         }else{
             let index = e.target.id.slice(-1)
             let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
