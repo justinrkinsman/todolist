@@ -44,8 +44,9 @@ document.addEventListener('click', function(e){
             let index = e.target.id.slice(-1)
             let ogDiv = document.getElementById(`contentDiv${index}`)
             let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
-            console.log(projectIndex)
-            console.log(index)
+            //console.log(projectIndex)
+            //console.log(index)
+            console.log(projectList[projectIndex].taskInfo[index].description)
             let currentTask = document.getElementById(`taskContent${index}`)
             let currentDesc = projectList[projectIndex].taskInfo[index].description
             let currentDue = projectList[projectIndex].taskInfo[index].dueDate
