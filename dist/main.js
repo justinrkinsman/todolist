@@ -60,6 +60,9 @@ let projectEditz = []
 document.addEventListener('click', function(e){
     if(e.target && e.target.id.startsWith("detailsBtn")) {
         //console.log(e.target.id)
+        console.log(deetz)
+        console.log(editz)
+        let index = e.target.id.slice(-1)
         if (deetz[index] == 0){
             let detailsDiv = document.createElement('div')
             let index = e.target.id.slice(-1)
@@ -67,6 +70,7 @@ document.addEventListener('click', function(e){
             detailsDiv.setAttribute('id', `detailsText${index}`)
             detailsDiv.textContent = `${(fullList[index].description)} ${(fullList[index].dueDate)} ${(fullList[index].priority)}`
             ogDiv.appendChild(detailsDiv)
+            console.log(deetz)
             deetz[index] = 1
         }else if (deetz[index] == 1){
             let index = e.target.id.slice(-1)
@@ -109,6 +113,7 @@ document.addEventListener('click', function(e){
         //fullList.splice(index, 1)
     }else if (e.target && e.target.id.startsWith('edit')){
         //if (!(newProjectDiv.lastChild == confirmButtonCheck)){
+            let index = e.target.id.slice(-1)
         if (editz[index] == 0){
         let index = e.target.id.slice(-1)
         let addTaskButton = document.querySelector('[id^="addTaskButton"]')
@@ -241,7 +246,6 @@ document.addEventListener('click', function(e){
         projectList.push(addProject)
         projectDeetz.splice(index, 0, 0)
         projectEditz.splice(index, 0, 0)
-        console.log(projectDeetz)
     }else if (e.target && e.target.id.startsWith('projectName')){
         //console.log(projectList)
         let index = e.target.id.slice(-1)
@@ -377,6 +381,10 @@ document.addEventListener('click', function(e){
         myForm.removeChild(priorityForm)
         myForm.removeChild(submitForm)
         console.log(projectList)
+        deetz.splice(index, 0, 0)
+        editz.splice(index, 0, 0)
+        console.log(deetz)
+        console.log(editz)
     }else if (e.target && e.target.id.startsWith('projectDeetz')) {
         let index = e.target.id.slice(-1)
             if (projectDeetz[index] == 0) {
