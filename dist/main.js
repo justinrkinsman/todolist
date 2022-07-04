@@ -4,12 +4,11 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 class Todo {
-    constructor(task, description, dueDate, priority/*, project*/) {
+    constructor(task, description, dueDate, priority) {
         this.task = task;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        //this.project = project;
     }
 }
 
@@ -22,7 +21,6 @@ class Projects {
     }
 }
 
-//projectList[index].taskInfo = []
 function findIndex(object){
     index = object.id.slice(-1)
     return index
@@ -30,29 +28,10 @@ function findIndex(object){
 
 let fullList = [];
 let projectList = [];
-/*let testBtn = document.getElementById('fullList')
-testBtn.addEventListener('click', displayFullList)
-function displayFullList(){
-    console.log(fullList)
-}*/
-
 
 const content = document.getElementById('content')
 const details = document.getElementById('details')
-/*const task = document.getElementById('task')          //
-const desc = document.getElementById('description')   //
-const due = document.getElementById('dueDate')        // gets values from input boxes
-const priority = document.getElementById('priority')*/  //
-//const project = document.getElementById('project')    //
-//const submitBtn = document.getElementById('submit')
 const projectsList = document.getElementById('projectsList')
-//submitBtn.addEventListener('click', submission)
-/*
-for (let i = 0; i < 5; ++i){
-    window[`deetz${i}`] = `deetz${i}`       //////try this again with projectDeetz
-}
-console.log(deetz1)
-*/
 let deetz = []
 let editz = []
 let projectDeetz = []
@@ -84,43 +63,62 @@ document.addEventListener('click', function(e){
             ogDiv.removeChild(detailsDiv)
             deetz[index] = 0
         }
-        /*if (ogDiv.lastChild.id.startsWith('editProjectForm')){
-                    let ogDiv = document.getElementById(`projectName${index}`)
-                    let projectName = document.getElementById(`editProjectForm${index}`)
-                    let projectDetailsDiv = document.createElement('div')
-                    projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
-                    projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
-                    console.log(index)
-                    ogDiv.insertBefore(projectDetailsDiv, projectName)
-                    projectDeetz[index] = 1
-                }else{
-                    let projectDetailsDiv = document.createElement('div')
-                    let ogDiv = document.getElementById(`projectName${index}`)
-                    projectDeetz[index] = 1
-                    projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
-                    projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
-                    ogDiv.appendChild(projectDetailsDiv)
-                    projectDeetz[index] = 1
-                }
-        */
     }else if (e.target && e.target.id.startsWith('check')){
         let check = e.target
         console.log(check)
         if (check.checked){
         let index = e.target.id.slice(-1)
-        let element = document.getElementById(`contentDiv${index}`)
-        /*console.log(element)
-        if (element.checked){
-            console.log('hello')
-        }*/
-        element.style.opacity = '0.3'
-//        e.target.id.startsWith('check').checked = false
+        let taskName = document.getElementById(`taskContent${index}`)
+        let taskDetails = document.getElementById(`detailsBtn${index}`)
+        let taskCheck = document.getElementById(`check${index}`)
+        let taskEdit = document.getElementById(`editBtn${index}`)
+        taskName.style.opacity = '0.3'
+        taskDetails.style.opacity = '0.3'
+        taskCheck.style.opacity = '0.3'
+        taskEdit.style.opacity = '0.3'
         }else{
             let index = e.target.id.slice(-1)
             let element = document.getElementById(`contentDiv${index}`)
             element.style.opacity = '1'
-            //e.target.id.startsWith('check').checked = true
         }
+
+        /*
+        if (check.checked){
+            
+            console.log(projectsList.children)
+            projectNameTitle.style.opacity = '0.3'
+            projectDeetzDiv.style.opacity = '0.3'
+            projectCheck.style.opacity = '0.3'
+            projectEditDiv.style.opacity = '0.3'
+            document.getElementById(`projectDeetz${index}`).disabled = true
+            document.getElementById(`projectEdit${index}`).disabled = true
+            if (projectName.children[1] && projectName.children[2]){
+                let removeThisChild = projectName.children[1]
+                let removeThisChildToo = projectName.children[2]
+                projectName.removeChild(removeThisChildToo)
+                projectName.removeChild(removeThisChild)
+                projectDeetz[index] = 0
+                projectEditz[index] = 0
+            }else if (projectName.children[1]){
+                let removeThisChild = projectName.children[1]
+                projectName.removeChild(removeThisChild)
+                projectDeetz[index] = 0
+                projectEditz[index] = 0
+            }
+        }else{
+            let index = e.target.id.slice(-1)
+            let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
+            let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
+            let projectCheck = document.getElementById(`projectCheck${index}`)
+            let projectEditDiv = document.getElementById(`projectEdit${index}`)
+            projectNameTitle.style.opacity = '1'
+            projectDeetzDiv.style.opacity = '1'
+            projectCheck.style.opacity = '1'
+            projectEditDiv.style.opacity = '1'
+            document.getElementById(`projectDeetz${index}`).disabled = false
+            document.getElementById(`projectEdit${index}`).disabled = false
+        }
+        */
     }else if (e.target && e.target.id.startsWith('delete')){
         let h2 = document.querySelector('[id^="h2"]')
         projectIndex = h2.id.slice(-1)
@@ -130,94 +128,76 @@ document.addEventListener('click', function(e){
         content.removeChild(removeDiv)
         taskInfoIndex.splice(index, 1)
         console.log(index)
-        //console.log(projectList[projectIndex].taskInfo[index]/*.task*/)
         console.log(taskInfoIndex)
-        //fullList.splice(index, 1)
     }else if (e.target && e.target.id.startsWith('edit')){
-        //if (!(newProjectDiv.lastChild == confirmButtonCheck)){
-            let index = e.target.id.slice(-1)
-        if (editz[index] == 0){
         let index = e.target.id.slice(-1)
-        let addTaskButton = document.querySelector('[id^="addTaskButton"]')
-        let currentTask = document.getElementById(`taskContent${index}`)
-        let currentDesc = fullList[index].description
-        let currentDue = fullList[index].dueDate
-        let currentPriority = fullList[index].priority
-        //let currentProject = fullList[index].project
-        //console.log(currentDesc)
-        let newTask = document.createElement('input')
-        newTask.setAttribute('type', 'text')
-        newTask.setAttribute('id', `newTaskInput${index}`)
-        newTask.defaultValue = currentTask.textContent
-        let editForm = document.createElement('div')
-        editForm.setAttribute('id', 'editForm')
-        let editTask = document.createElement('div')
-        let editDesc = document.createElement('div')
-        let editDue = document.createElement('div')
-        let editPriority = document.createElement('div')
-        //let editProject = document.createElement('div')
-        let newTaskLabel = document.createElement('LABEL')
-        let newDescLabel = document.createElement('LABEL')
-        let newDueLabel = document.createElement('LABEL')
-        let newPriorityLabel = document.createElement('LABEL')
-        //let newProjectLabel = document.createElement('LABEL')
-        newTaskLabel.htmlFor = newTask
-        newTaskLabel.textContent = 'Task'
-        editTask.appendChild(newTask)
-        editTask.appendChild(newTaskLabel)
-        let newDesc = document.createElement('input')
-        newDesc.setAttribute('type', 'text')
-        newDesc.setAttribute('id', `newDescInput${index}`)
-        newDesc.defaultValue = currentDesc
-        newDescLabel.htmlFor = newDesc
-        newDescLabel.textContent = 'Description'
-        editDesc.appendChild(newDesc)
-        editDesc.appendChild(newDescLabel)
-        let newDue = document.createElement('input')
-        newDue.setAttribute('type', 'text')
-        newDue.setAttribute('id', `newDueInput${index}`)
-        newDue.defaultValue = currentDue
-        newDueLabel.htmlFor = newDue
-        newDueLabel.textContent = 'Due Date'
-        editDue.appendChild(newDue)
-        editDue.appendChild(newDueLabel)
-        let newPriority = document.createElement('input')
-        newPriority.setAttribute('type', 'input')
-        newPriority.setAttribute('id', `newPriorityInput${index}`)
-        newPriority.defaultValue = currentPriority
-        newPriorityLabel.htmlFor = newPriority
-        newPriorityLabel.textContent = 'Priority'
-        editPriority.appendChild(newPriority)
-        editPriority.appendChild(newPriorityLabel)
-        /*let newProject = document.createElement('input')
-        newProject.setAttribute('type', 'input')
-        newProject.setAttribute('id', `newProjectInput${index}`)
-        newProject.defaultValue = currentProject
-        newProjectLabel.htmlFor = newProject
-        newProjectLabel.textContent = 'Project'
-        editProject.appendChild(newProject)
-        editProject.appendChild(newProjectLabel)*/
-        let newTaskSubmit = document.createElement('button')
-        let content = document.getElementById(`contentDiv${index}`)
-        newTaskSubmit.textContent = 'Accept'
-        editForm.appendChild(editTask)
-        editForm.appendChild(editDesc)
-        editForm.appendChild(editDue)
-        editForm.appendChild(editPriority)
-        //editForm.appendChild(editProject)
-        editForm.appendChild(newTaskSubmit)
-        content.appendChild(editForm)
-        editz[index] = 1
-        //}
-        newTaskSubmit.addEventListener('click', function(e){
+        if (editz[index] == 0){
+            let index = e.target.id.slice(-1)
+            let addTaskButton = document.querySelector('[id^="addTaskButton"]')
+            let currentTask = document.getElementById(`taskContent${index}`)
+            let currentDesc = fullList[index].description
+            let currentDue = fullList[index].dueDate
+            let currentPriority = fullList[index].priority
+            let newTask = document.createElement('input')
+            newTask.setAttribute('type', 'text')
+            newTask.setAttribute('id', `newTaskInput${index}`)
+            newTask.defaultValue = currentTask.textContent
+            let editForm = document.createElement('div')
+            editForm.setAttribute('id', 'editForm')
+            let editTask = document.createElement('div')
+            let editDesc = document.createElement('div')
+            let editDue = document.createElement('div')
+            let editPriority = document.createElement('div')
+            let newTaskLabel = document.createElement('LABEL')
+            let newDescLabel = document.createElement('LABEL')
+            let newDueLabel = document.createElement('LABEL')
+            let newPriorityLabel = document.createElement('LABEL')
+            newTaskLabel.htmlFor = newTask
+            newTaskLabel.textContent = 'Task'
+            editTask.appendChild(newTask)
+            editTask.appendChild(newTaskLabel)
+            let newDesc = document.createElement('input')
+            newDesc.setAttribute('type', 'text')
+            newDesc.setAttribute('id', `newDescInput${index}`)
+            newDesc.defaultValue = currentDesc
+            newDescLabel.htmlFor = newDesc
+            newDescLabel.textContent = 'Description'
+            editDesc.appendChild(newDesc)
+            editDesc.appendChild(newDescLabel)
+            let newDue = document.createElement('input')
+            newDue.setAttribute('type', 'text')
+            newDue.setAttribute('id', `newDueInput${index}`)
+            newDue.defaultValue = currentDue
+            newDueLabel.htmlFor = newDue
+            newDueLabel.textContent = 'Due Date'
+            editDue.appendChild(newDue)
+            editDue.appendChild(newDueLabel)
+            let newPriority = document.createElement('input')
+            newPriority.setAttribute('type', 'input')
+            newPriority.setAttribute('id', `newPriorityInput${index}`)
+            newPriority.defaultValue = currentPriority
+            newPriorityLabel.htmlFor = newPriority
+            newPriorityLabel.textContent = 'Priority'
+            editPriority.appendChild(newPriority)
+            editPriority.appendChild(newPriorityLabel)
+            let newTaskSubmit = document.createElement('button')
+            let content = document.getElementById(`contentDiv${index}`)
+            newTaskSubmit.textContent = 'Accept'
+            editForm.appendChild(editTask)
+            editForm.appendChild(editDesc)
+            editForm.appendChild(editDue)
+            editForm.appendChild(editPriority)
+            editForm.appendChild(newTaskSubmit)
+            content.appendChild(editForm)
+            editz[index] = 1
+            newTaskSubmit.addEventListener('click', function(e){
             if (e.target && e.target.textContent == 'Accept'){
-                //let currentTask = document.getElementById(`taskContent${index}`)
                 currentTask.textContent = newTask.value
                 fullList[index].task = newTask.value
                 fullList[index].description = newDesc.value
                 fullList[index].dueDate = newDue.value
                 fullList[index].priority = newPriority.value
-                //fullList[index].project = newProject.value
+
                 console.log(fullList)
                 content.removeChild(editForm)
             }
@@ -228,8 +208,6 @@ document.addEventListener('click', function(e){
             editz[index] = 0
         }   
     }else if (e.target && e.target.textContent == 'Confirm'){
-        //let newProjectDiv = document.getElementById('newProjectDiv')
-        //let newProjectForm = document.getElementById('newProjectForm')
         let newProjectName = document.getElementById('newProjectNameInput')
         let newProjectDueDate = document.getElementById('newProjectDueDateInput')
         let newProjectPriority = document.getElementById('newProjectPriorityInput')
@@ -254,7 +232,6 @@ document.addEventListener('click', function(e){
         projectDelete.textContent = 'Delete'
         newProjectListItem.setAttribute('id', `projectName${index}`)
         let projectsList = document.getElementById('projectsList')
-        //console.log(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
         newProjectDiv.removeChild(newProjectForm)
         newProjectDiv.removeChild(confirmBtn)
         projectInfo.appendChild(projectName)
@@ -269,9 +246,7 @@ document.addEventListener('click', function(e){
         projectDeetz.splice(index, 0, 0)
         projectEditz.splice(index, 0, 0)
     }else if (e.target && e.target.id.startsWith('projectName')){
-        //console.log(projectList)
         let index = e.target.id.slice(-1)
-        //projectList[index].taskInfo = ['hello world']                  //adds task to projectList
         let content = document.getElementById('content')
         let addTaskButton = document.createElement('button')
         addTaskButton.setAttribute('id', `addTaskButton${index}`)
@@ -282,15 +257,12 @@ document.addEventListener('click', function(e){
         projectHeader.setAttribute('id', `h2${index}`)
         removeAllChildNodes(content)
         let taskIndex = projectList[index].taskInfo.length - 1
-        //let taskIndex = contentNodeList.length - 1
         let taskDivContent = projectList[index].taskInfo
         taskDiv.textContent = taskDivContent
-        //console.log(projectList[index].taskInfo[0])
         content.appendChild(projectHeader)
         for (let i = 0; i <= taskIndex; i++){
             let element = document.createElement('div')
             element.textContent = projectList[index].taskInfo[i].task
-            
             let newDiv = document.createElement('div')
             newDiv.setAttribute('id', `taskContent${i}`)
             newDiv.textContent = (`${element.textContent}`)
@@ -318,24 +290,13 @@ document.addEventListener('click', function(e){
             contentDiv.appendChild(leftSide)
             let addTaskButton = document.querySelector('[id^="addTaskButton"]')
             content.insertBefore(contentDiv, addTaskButton)
-            
-            //addListToPage()
-            //content.appendChild(element)
-            /*console.log(i)
-            let taskDivContent = projectList[index].taskInfo[i].task
-            taskDiv.textContent = taskDivContent
-            console.log(taskDivContent)
-            console.log(i)
-            content.appendChild(taskDiv)*/
         }
-        //content.appendChild(taskDiv)
         content.appendChild(addTaskButton)
         console.log(projectList[index].taskInfo)
     }else if (e.target && e.target.textContent == 'Add Task'){
         let index = e.target.id.slice(-1)
         let myForm = document.getElementById('myForm')
         let taskFormDel = document.getElementById('taskForm')
-        //console.log(myForm.childNodes[1])
         if (!(myForm.childNodes[1] == taskFormDel)){
             let taskForm = document.createElement('div')
             taskForm.setAttribute('id', 'taskForm')
@@ -393,7 +354,7 @@ document.addEventListener('click', function(e){
     }else if (e.target && e.target.textContent == 'Submit'){
         submission()
         let index = document.querySelector('[id^="h2"]').id.slice(-1)
-        let content = document.getElementById('content')//.id.slice(-1)
+        let content = document.getElementById('content')
         let contentNodeList = document.querySelectorAll('[id^="contentDiv"]')
         let taskIndex = contentNodeList.length - 1
         projectList[index].taskInfo[taskIndex] = (fullList[fullList.length-1])        //add tasks to projects
@@ -440,7 +401,6 @@ document.addEventListener('click', function(e){
             }
     }else if (e.target && e.target.id.startsWith('projectDelete')) {
         findIndex(e.target)
-        //console.log(parseInt(index)+4)
         let projectName = document.getElementById(`projectName${index}`)
         let projectsList = document.getElementById('projectsList')
         let content = document.getElementById('content')
@@ -448,10 +408,7 @@ document.addEventListener('click', function(e){
         let taskForm = document.getElementById('taskForm')
         projectsList.removeChild(projectName)
         projectList.splice(index, 1)
-        //let divs = document.querySelectorAll(`[id$="${parseInt(index)}"`)
-        //console.log(divs)
         for (let i = index; i <= projectList.length; i++){
-            //console.log(projectsList.children[i])
             let div = document.getElementById(`projectName${i}`)
             let newProjectInfo = document.getElementById(`projectInfo${i}`)
             let newProjectNameTitle = document.getElementById(`projectNameTitle${i}`)
@@ -477,9 +434,6 @@ document.addEventListener('click', function(e){
                 let newProjectDeleteID = newProjectDelete.id.slice(0, -1) + `${i - 1}`
                 newProjectDelete.id = newProjectDeleteID
             }
-            //div.id += 1
-            //console.log(div)
-            //console.log(i)
         }
         if (myForm.firstElementChild == taskForm){
             for (let j = 0; j < 5; j++){
@@ -494,36 +448,14 @@ document.addEventListener('click', function(e){
             projectEditz.splice(index, 0)
         }
         else if (content.children[0]){
-            //let removeThisChild = content.children[0]
-            //let removeThisChildToo = content.children[1]
             let children = content.children.length
             for (let i = 0; i < children; i++){
                 content.removeChild(content.children[0])
             }
             console.log(content.children)
-            //content.removeChild(removeThisChildToo)
-            //content.removeChild(removeThisChild)
             projectDeetz.splice(index, 0)
             projectEditz.splice(index, 0)
-            /*}else if (projectsList.children[0] && projectsList.children[1]){
-            let removeThisChild = projectsList.children[0]
-            let removeThisChildToo = projectsList.children[1]
-            projectsList.removeChild(removeThisChildToo)
-            //console.log(removeThisChild)
-            projectsList.removeChild(removeThisChild)
-            projectDeetz = 0
-            projectEdit = 0
-            console.log("here's the problem")*/
-        }/*else if (projectsList.children[0]){
-            findIndex(e.target)
-            let removeThisChild = projectsList.children[index]
-            //projectsList.removeChild(removeThisChild)
-            console.log(removeThisChild)
-            console.log(projectsList.children)
-            projectDeetz = 0
-            projectEdit = 0
-            console.log("here's the problem")
-        }*/
+        }
     }else if (e.target && e.target.id.startsWith('projectCheck')) {
         let check = e.target
         if (check.checked){
