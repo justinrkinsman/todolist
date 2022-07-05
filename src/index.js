@@ -469,8 +469,11 @@ document.addEventListener('click', function(e){
             //let newIndex = (oldIndex -1)
             //item.id = item.id.slice(0, -1) + newIndex
             parent.removeChild(item)
-            console.log(parent)
-
+        }
+        for (let k = 0; k < deleteDetailsDiv.length; k++){
+            let item = deleteDetailsDiv[k]
+            let parent = item.parentElement
+            parent.removeChild(item)
         }
 
 /*
