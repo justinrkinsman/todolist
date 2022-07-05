@@ -110,12 +110,23 @@ document.addEventListener('click', function(e){
     }else if (e.target && e.target.id.startsWith('delete')){
         let index = e.target.id.slice(-1)
         let h2 = document.querySelector('[id^="h2"]')
-        //let contentDiv = document.getElementById(`contentDiv${index}`)
         projectIndex = h2.id.slice(-1)
         let removeDiv = document.getElementById(`contentDiv${index}`)
         let taskInfoIndex = projectList[projectIndex].taskInfo
         content.removeChild(removeDiv)
         taskInfoIndex.splice(index, 1)
+        let deleteTaskEditForm = document.querySelectorAll(`[id^="editForm"]`)
+        let deleteTaskDetails = document.querySelectorAll(`[id^="detailsText"]`)
+        for (let j = 0; j < deleteTaskEditForm.length; j++){
+            let item = deleteTaskEditForm[j]
+            let parent = item.parentElement
+            parent.removeChild(item)
+        }
+        for (let k = 0; k < deleteTaskDetails.length; k++){
+            let item = deleteTaskDetails[k]
+            let parent = item.parentElement
+            parent.removeChild(item)
+        }
         for (let i = index; i <= taskInfoIndex.length; i++){
             let contentDiv = document.getElementById(`contentDiv${i}`)
             let newLeftSide = document.getElementById(`leftSide${i}`)
@@ -157,8 +168,8 @@ document.addEventListener('click', function(e){
             let item = deleteDetailsDiv[k]
             let parent = item.parentElement
             parent.removeChild(item)
-        }
-        for (let i = index; i <= projectList.length; i++){
+        }*/
+        /*for (let i = index; i <= projectList.length; i++){
             if (!(div === null)){
             }
         }
