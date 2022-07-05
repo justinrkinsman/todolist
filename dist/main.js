@@ -122,6 +122,8 @@ document.addEventListener('click', function(e){
         taskInfoIndex.splice(index, 1)
         let deleteTaskEditForm = document.querySelectorAll(`[id^="editForm"]`)
         let deleteTaskDetails = document.querySelectorAll(`[id^="detailsText"]`)
+        let myForm = document.getElementById(`myForm`)
+        let taskForm = document.getElementById(`taskForm`)
         for (let j = 0; j < deleteTaskEditForm.length; j++){
             let item = deleteTaskEditForm[j]
             let parent = item.parentElement
@@ -144,6 +146,8 @@ document.addEventListener('click', function(e){
             editz.splice(index, 0)
             deetz[i] = 0
             editz[i] = 0
+            deetz[i - 1] = 0
+            editz[i - 1] = 0
             if (!(contentDiv === null)){    
                 let newID = contentDiv.id.slice(0, -1) + `${i - 1}`
                 contentDiv.id = newID
@@ -160,24 +164,12 @@ document.addEventListener('click', function(e){
                 let newDeleteID = newDelete.id.slice(0, -1) + `${i - 1}`
                 newDelete.id = newDeleteID
             }
-        }
-        /*
-        let deleteEditForm = document.querySelectorAll(`[id^="editProjectForm"]`)
-        let deleteDetailsDiv = document.querySelectorAll(`[id^="projectDetailsText"]`)
-        for (let j = 0; j < deleteEditForm.length; j++){
-            let item = deleteEditForm[j]
-            let parent = item.parentElement
-            parent.removeChild(item)
-        }
-        for (let k = 0; k < deleteDetailsDiv.length; k++){
-            let item = deleteDetailsDiv[k]
-            let parent = item.parentElement
-            parent.removeChild(item)
-        }*/
-        /*for (let i = index; i <= projectList.length; i++){
-            if (!(div === null)){
+        }if (myForm.firstElementChild == taskForm){
+            for (let l = 0; l < 5; l++){
+                myForm.removeChild(myForm.children[0])
             }
         }
+        /*
         if (myForm.firstElementChild == taskForm){
             for (let j = 0; j < 5; j++){
                 myForm.removeChild(myForm.children[0])
@@ -273,6 +265,7 @@ document.addEventListener('click', function(e){
                 fullList[index].priority = newPriority.value
                 console.log(fullList)
                 content.removeChild(editForm)
+                editz[index] = 0
             }
         })} else if (editz[index] == 1){
             let index = e.target.id.slice(-1)
