@@ -44,8 +44,6 @@ document.addEventListener('click', function(e){
             let index = e.target.id.slice(-1)
             let ogDiv = document.getElementById(`contentDiv${index}`)
             let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
-            //console.log(projectIndex)
-            //console.log(index)
             console.log(projectList[projectIndex].taskInfo[index].description)
             let currentTask = document.getElementById(`taskContent${index}`)
             let currentDesc = projectList[projectIndex].taskInfo[index].description
@@ -115,50 +113,58 @@ document.addEventListener('click', function(e){
             taskEdit.disabled = false
         }
     }else if (e.target && e.target.id.startsWith('delete')){
-        let h2 = document.querySelector('[id^="h2"]')
-        projectIndex = h2.id.slice(-1)
         let index = e.target.id.slice(-1)
+        let h2 = document.querySelector('[id^="h2"]')
+        //let contentDiv = document.getElementById(`contentDiv${index}`)
+        projectIndex = h2.id.slice(-1)
         let removeDiv = document.getElementById(`contentDiv${index}`)
         let taskInfoIndex = projectList[projectIndex].taskInfo
         content.removeChild(removeDiv)
         taskInfoIndex.splice(index, 1)
-        console.log(index)
-        console.log(taskInfoIndex)
-
+        for (let i = index; i <= taskInfoIndex.length; i++){
+            let contentDiv = document.getElementById(`contentDiv${i}`)
+            let newLeftSide = document.getElementById(`leftSide${i}`)
+            let newTaskContent = document.getElementById(`taskContent${i}`)
+            let newDetailsBtn = document.getElementById(`detailsBtn${i}`)
+            let newCheck = document.getElementById(`check${i}`)
+            let newEditBtn = document.getElementById(`editBtn${i}`)
+            let newDelete = document.getElementById(`delete${i}`)
+            deetz.splice(index, 0)
+            editz.splice(index, 0)
+            deetz[i] = 0
+            editz[i] = 0
+            if (!(contentDiv === null)){    
+                let newID = contentDiv.id.slice(0, -1) + `${i - 1}`
+                contentDiv.id = newID
+                let newLeftSideID = newLeftSide.id.slice(0, -1) + `${i - 1}`
+                newLeftSide.id = newLeftSideID
+                let newTaskContentID = newTaskContent.id.slice(0, -1) + `${i - 1}`
+                newTaskContent.id = newTaskContentID
+                let newDetailsBtnID = newDetailsBtn.id.slice(0, -1) + `${i - 1}`
+                newDetailsBtn.id = newDetailsBtnID
+                let newCheckID = newCheck.id.slice(0, -1) + `${i - 1}`
+                newCheck.id = newCheckID
+                let newEditBtnID = newEditBtn.id.slice(0, -1) + `${i - 1}`
+                newEditBtn.id = newEditBtnID
+                let newDeleteID = newDelete.id.slice(0, -1) + `${i - 1}`
+                newDelete.id = newDeleteID
+            }
+        }
         /*
-        findIndex(e.target)
-        let projectName = document.getElementById(`projectName${index}`)
-        let projectsList = document.getElementById('projectsList')
-        let content = document.getElementById('content')
-        let myForm = document.getElementById('myForm')
-        let taskForm = document.getElementById('taskForm')
-        projectsList.removeChild(projectName)
-        projectList.splice(index, 1)
+        let deleteEditForm = document.querySelectorAll(`[id^="editProjectForm"]`)
+        let deleteDetailsDiv = document.querySelectorAll(`[id^="projectDetailsText"]`)
+        for (let j = 0; j < deleteEditForm.length; j++){
+            let item = deleteEditForm[j]
+            let parent = item.parentElement
+            parent.removeChild(item)
+        }
+        for (let k = 0; k < deleteDetailsDiv.length; k++){
+            let item = deleteDetailsDiv[k]
+            let parent = item.parentElement
+            parent.removeChild(item)
+        }
         for (let i = index; i <= projectList.length; i++){
-            let div = document.getElementById(`projectName${i}`)
-            let newProjectInfo = document.getElementById(`projectInfo${i}`)
-            let newProjectNameTitle = document.getElementById(`projectNameTitle${i}`)
-            let newProjectDeetz = document.getElementById(`projectDeetz${i}`)
-            let newProjectCheck = document.getElementById(`projectCheck${i}`)
-            let newProjectEdit = document.getElementById(`projectEdit${i}`)
-            let newProjectDelete = document.getElementById(`projectDelete${i}`)
-            projectDeetz.splice(index, 0)
-            projectEditz.splice(index, 0)
             if (!(div === null)){
-                let newID = div.id.slice(0, -1) + `${i - 1}`
-                div.id = newID
-                let newProjectInfoID = newProjectInfo.id.slice(0, -1) + `${i - 1}`
-                newProjectInfo.id = newProjectInfoID
-                let newProjectNameTitleID = newProjectNameTitle.id.slice(0, -1) + `${i - 1}`
-                newProjectNameTitle.id = newProjectNameTitleID
-                let newProjectDeetzID = newProjectDeetz.id.slice(0, -1) + `${i - 1}`
-                newProjectDeetz.id = newProjectDeetzID
-                let newProjectCheckID = newProjectCheck.id.slice(0, -1) + `${i - 1}`
-                newProjectCheck.id = newProjectCheckID
-                let newProjectEditID = newProjectEdit.id.slice(0, -1) + `${i - 1}`
-                newProjectEdit.id = newProjectEditID
-                let newProjectDeleteID = newProjectDelete.id.slice(0, -1) + `${i - 1}`
-                newProjectDelete.id = newProjectDeleteID
             }
         }
         if (myForm.firstElementChild == taskForm){
@@ -182,7 +188,9 @@ document.addEventListener('click', function(e){
             projectDeetz.splice(index, 0)
             projectEditz.splice(index, 0)
         }
-        */
+*/
+
+
     }else if (e.target && e.target.id.startsWith('edit')){
         let index = e.target.id.slice(-1)
         if (editz[index] == 0){
@@ -409,10 +417,8 @@ document.addEventListener('click', function(e){
         submission()
         let index = document.querySelector('[id^="h2"]').id.slice(-1)
         let content = document.getElementById('content')
-        //let contentNodeList = document.querySelectorAll('[id^="contentDiv"]')
         console.log(projectList[index].taskInfo.length)
         let taskIndex = projectList[index].taskInfo.length
-        //let taskIndex = contentNodeList.length - 1
         projectList[index].taskInfo[taskIndex] = (fullList[fullList.length-1])        //add tasks to projects
         myForm.removeChild(taskForm)
         myForm.removeChild(descForm)
@@ -470,9 +476,6 @@ document.addEventListener('click', function(e){
         for (let j = 0; j < deleteEditForm.length; j++){
             let item = deleteEditForm[j]
             let parent = item.parentElement
-            //let oldIndex = item.id.slice(-1)
-            //let newIndex = (oldIndex -1)
-            //item.id = item.id.slice(0, -1) + newIndex
             parent.removeChild(item)
         }
         for (let k = 0; k < deleteDetailsDiv.length; k++){
@@ -480,25 +483,6 @@ document.addEventListener('click', function(e){
             let parent = item.parentElement
             parent.removeChild(item)
         }
-
-/*
- if (!(div === null)){
-                let newID = div.id.slice(0, -1) + `${i - 1}`
-                div.id = newID
-                let newProjectInfoID = newProjectInfo.id.slice(0, -1) + `${i - 1}`
-                newProjectInfo.id = newProjectInfoID
-                let newProjectNameTitleID = newProjectNameTitle.id.slice(0, -1) + `${i - 1}`
-                newProjectNameTitle.id = newProjectNameTitleID
-                let newProjectDeetzID = newProjectDeetz.id.slice(0, -1) + `${i - 1}`
-                newProjectDeetz.id = newProjectDeetzID
-                let newProjectCheckID = newProjectCheck.id.slice(0, -1) + `${i - 1}`
-                newProjectCheck.id = newProjectCheckID
-                let newProjectEditID = newProjectEdit.id.slice(0, -1) + `${i - 1}`
-                newProjectEdit.id = newProjectEditID
-                let newProjectDeleteID = newProjectDelete.id.slice(0, -1) + `${i - 1}`
-                newProjectDelete.id = newProjectDeleteID
-            }
-*/
         projectsList.removeChild(projectName)
         projectList.splice(index, 1)
         for (let i = index; i <= projectList.length; i++){
@@ -528,7 +512,6 @@ document.addEventListener('click', function(e){
                 newProjectEdit.id = newProjectEditID
                 let newProjectDeleteID = newProjectDelete.id.slice(0, -1) + `${i - 1}`
                 newProjectDelete.id = newProjectDeleteID
-                //console.log(deleteEditForm)
             }
         }
         if (myForm.firstElementChild == taskForm){
