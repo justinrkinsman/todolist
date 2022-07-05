@@ -164,31 +164,6 @@ document.addEventListener('click', function(e){
                 myForm.removeChild(myForm.children[0])
             }
         }
-        /*
-        if (myForm.firstElementChild == taskForm){
-            for (let j = 0; j < 5; j++){
-                myForm.removeChild(myForm.children[0])
-            }
-            let children = content.children.length
-            for (let i = 0; i < children; i++){
-                content.removeChild(content.children[0])
-            }
-            console.log(content.children)
-            projectDeetz.splice(index, 0)
-            projectEditz.splice(index, 0)
-        }
-        else if (content.children[0]){
-            let children = content.children.length
-            for (let i = 0; i < children; i++){
-                content.removeChild(content.children[0])
-            }
-            console.log(content.children)
-            projectDeetz.splice(index, 0)
-            projectEditz.splice(index, 0)
-        }
-*/
-
-
     }else if (e.target && e.target.id.startsWith('edit')){
         let index = e.target.id.slice(-1)
         if (editz[index] == 0){
