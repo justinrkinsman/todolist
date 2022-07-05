@@ -258,9 +258,12 @@ document.addEventListener('click', function(e){
                 fullList[index].description = newDesc.value
                 fullList[index].dueDate = newDue.value
                 fullList[index].priority = newPriority.value
+                let detailsText = document.getElementById(`detailsText${index}`)
                 console.log(fullList)
                 content.removeChild(editForm)
+                content.removeChild(detailsText)
                 editz[index] = 0
+                deetz[index] = 0
             }
         })} else if (editz[index] == 1){
             let index = e.target.id.slice(-1)
