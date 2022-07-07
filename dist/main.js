@@ -328,9 +328,9 @@ let confirmButton = (function(){
 })
 })()
 
-let projectNameButton = (function(){
+let projectNameEvent = (function(){
     document.addEventListener('click', function(e){
-    if (e.target && e.target.id.startsWith('projectName')){    //Split here
+    if (e.target && e.target.id.startsWith('projectName')){
         findIndex(e.target)
         let addTaskButton = document.createElement('button')
         addTaskButton.setAttribute('id', `addTaskButton${index}`)
@@ -377,7 +377,13 @@ let projectNameButton = (function(){
         }
         getInfo.content.appendChild(addTaskButton)
         console.log(getInfo.projectList[index].taskInfo)
-    }else if (e.target && e.target.textContent == 'Add Task'){    //Split here
+    }
+})
+})()
+
+let addTaskButton = (function(){
+    document.addEventListener('click', function(e){
+    if (e.target && e.target.textContent == 'Add Task'){
         //findIndex(e.target)
         let myForm = document.getElementById('myForm')
         let taskFormDel = document.getElementById('taskForm')
