@@ -464,7 +464,7 @@ let submitButton = (function(){
 
 let projectDetailsButton = (function(){
     document.addEventListener('click', function(e){
-    if (e.target && e.target.id.startsWith('projectDeetz')) {    //Split here
+    if (e.target && e.target.id.startsWith('projectDeetz')) {
         findIndex(e.target)
             if (getInfo.projectDeetz[index] == 0) {
                 //findIndex(e.target)
@@ -495,8 +495,13 @@ let projectDetailsButton = (function(){
                 ogDiv.removeChild(projectDetailsDiv)
                 getInfo.projectDeetz[index] = 0
             }
-            
-    }else if (e.target && e.target.id.startsWith('projectDelete')) {   //Split here
+        }
+    })
+})()
+    
+let projectDeleteButton = (function(){
+    document.addEventListener('click', function(e){
+    if (e.target && e.target.id.startsWith('projectDelete')) {   //Split here
         findIndex(e.target)
         let projectName = document.getElementById(`projectName${index}`)
         let myForm = document.getElementById('myForm')
@@ -568,6 +573,7 @@ let projectDetailsButton = (function(){
             getInfo.projectDeetz.splice(index, 0)
             getInfo.projectEditz.splice(index, 0)
         }
+        
     }else if (e.target && e.target.id.startsWith('projectCheck')) {   //Split here
         let check = e.target
         if (check.checked){
