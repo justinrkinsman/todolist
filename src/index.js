@@ -442,12 +442,12 @@ let addTaskButton = (function(){
 
 let submitButton = (function(){
     document.addEventListener('click', function(e){
-    if (e.target && e.target.textContent == 'Submit'){    //Split here
+    if (e.target && e.target.textContent == 'Submit'){
         submission()
         findIndex(document.querySelector('[id^="h2"]'))
         console.log(getInfo.projectList[index].taskInfo.length)
         let taskIndex = getInfo.projectList[index].taskInfo.length
-        getInfo.projectList[index].taskInfo[taskIndex] = (getInfo.fullList[getInfo.fullList.length-1])        //add tasks to projects
+        getInfo.projectList[index].taskInfo[taskIndex] = (getInfo.fullList[getInfo.fullList.length-1])//adds tasks to projects
         myForm.removeChild(taskForm)
         myForm.removeChild(descForm)
         myForm.removeChild(dueForm)
@@ -458,9 +458,13 @@ let submitButton = (function(){
         getInfo.editz.splice(index, 0, 0)
         console.log(getInfo.deetz)
         console.log(getInfo.editz)
-   
+    }
+})
+})()
 
-    }else if (e.target && e.target.id.startsWith('projectDeetz')) {    //Split here
+let projectDetailsButton = (function(){
+    document.addEventListener('click', function(e){
+    if (e.target && e.target.id.startsWith('projectDeetz')) {    //Split here
         findIndex(e.target)
             if (getInfo.projectDeetz[index] == 0) {
                 //findIndex(e.target)
@@ -491,6 +495,7 @@ let submitButton = (function(){
                 ogDiv.removeChild(projectDetailsDiv)
                 getInfo.projectDeetz[index] = 0
             }
+            
     }else if (e.target && e.target.id.startsWith('projectDelete')) {   //Split here
         findIndex(e.target)
         let projectName = document.getElementById(`projectName${index}`)
