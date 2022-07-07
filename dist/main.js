@@ -441,7 +441,13 @@ let addTaskButton = (function(){
             submitForm.appendChild(submit)
             myForm.insertBefore(submitForm, newProjectDiv)
         }
-    }else if (e.target && e.target.textContent == 'Submit'){    //Split here
+    }
+})
+})()
+
+let submitButton = (function(){
+    document.addEventListener('click', function(e){
+    if (e.target && e.target.textContent == 'Submit'){    //Split here
         submission()
         findIndex(document.querySelector('[id^="h2"]'))
         console.log(getInfo.projectList[index].taskInfo.length)
@@ -457,6 +463,8 @@ let addTaskButton = (function(){
         getInfo.editz.splice(index, 0, 0)
         console.log(getInfo.deetz)
         console.log(getInfo.editz)
+   
+
     }else if (e.target && e.target.id.startsWith('projectDeetz')) {    //Split here
         findIndex(e.target)
             if (getInfo.projectDeetz[index] == 0) {
