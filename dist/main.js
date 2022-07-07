@@ -626,8 +626,13 @@ let projectCheckbox = (function(){
             document.getElementById(`projectDeetz${index}`).disabled = false
             document.getElementById(`projectEdit${index}`).disabled = false
         }
+    }
+})
+})()
 
-    }else if (e.target && e.target.id.startsWith('projectEdit')){   //Split here
+let projectEditButton = (function(){
+    document.addEventListener('click', function(e){
+    if (e.target && e.target.id.startsWith('projectEdit')){
         findIndex(e.target)
         console.log(getInfo.projectEditz)
         if (getInfo.projectEditz[index] == 0){
