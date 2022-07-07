@@ -573,8 +573,13 @@ let projectDeleteButton = (function(){
             getInfo.projectDeetz.splice(index, 0)
             getInfo.projectEditz.splice(index, 0)
         }
-        
-    }else if (e.target && e.target.id.startsWith('projectCheck')) {   //Split here
+    }
+})
+})()
+
+let projectCheckbox = (function(){
+    document.addEventListener('click', function(e){
+    if (e.target && e.target.id.startsWith('projectCheck')) {
         let check = e.target
         if (check.checked){
             //findIndex(e.target)
@@ -616,6 +621,7 @@ let projectDeleteButton = (function(){
             document.getElementById(`projectDeetz${index}`).disabled = false
             document.getElementById(`projectEdit${index}`).disabled = false
         }
+
     }else if (e.target && e.target.id.startsWith('projectEdit')){   //Split here
         findIndex(e.target)
         console.log(getInfo.projectEditz)
