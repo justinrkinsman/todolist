@@ -196,7 +196,7 @@ let taskEditButton = (function(){
     if (e.target && e.target.id.startsWith('edit')){
         findIndex(e.target)
         if (getInfo.editz[index] == 0){
-            //findIndex(e.target)
+            findIndex(e.target)
             let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
             let addTaskButton = document.querySelector('[id^="addTaskButton"]')
             let currentTask = document.getElementById(`taskContent${index}`)
@@ -272,6 +272,7 @@ let taskEditButton = (function(){
         })} else if (getInfo.editz[index] == 1){
             //findIndex(e.target)
             let content = document.getElementById(`contentDiv${index}`)
+            let editForm = document.getElementById(`editForm`)
             content.removeChild(editForm)
             getInfo.editz[index] = 0
         }
