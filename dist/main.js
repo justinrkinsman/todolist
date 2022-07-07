@@ -131,7 +131,7 @@ let taskCheckButton = (function(){
 let taskDeleteButton = (function(){
     document.addEventListener('click', function(e){
         if (e.target && e.target.id.startsWith('delete')){
-        //findIndex(e.target)
+        findIndex(e.target)
             let h2 = document.querySelector('[id^="h2"]')
             projectIndex = h2.id.slice(-1)
             let removeDiv = document.getElementById(`contentDiv${index}`)
@@ -193,7 +193,7 @@ let taskDeleteButton = (function(){
 
 let taskEditButton = (function(){
     document.addEventListener('click', function(e){
-    if (e.target && e.target.id.startsWith('edit')){   //Split here
+    if (e.target && e.target.id.startsWith('edit')){
         findIndex(e.target)
         if (getInfo.editz[index] == 0){
             //findIndex(e.target)
@@ -274,8 +274,14 @@ let taskEditButton = (function(){
             let content = document.getElementById(`contentDiv${index}`)
             content.removeChild(editForm)
             getInfo.editz[index] = 0
-        }   
-    }else if (e.target && e.target.textContent == 'Confirm'){   //Split here
+        }
+    }
+})
+})()
+
+let confirmButton = (function(){
+    document.addEventListener('click', function(e){
+    if (e.target && e.target.textContent == 'Confirm'){   //Split here
         let newProjectName = document.getElementById('newProjectNameInput')
         let newProjectDueDate = document.getElementById('newProjectDueDateInput')
         let newProjectPriority = document.getElementById('newProjectPriorityInput')
