@@ -13,7 +13,7 @@ class Todo {
 }
 
 class Projects {
-    constructor(name, dueDate, priority, taskInfo){
+    constructor(name, dueDate, priority){
         this.name = name;
         this.dueDate = dueDate;
         this.priority = priority;
@@ -36,9 +36,11 @@ let deetz = []
 let editz = []
 let projectDeetz = []
 let projectEditz = []
-document.addEventListener('click', function(e){
-    if(e.target && e.target.id.startsWith("detailsBtn")) {
-        let index = e.target.id.slice(-1)
+
+let projectDetailsButton = (function(){
+    document.addEventListener('click', function(e){
+        if(e.target && e.target.id == 'newProjectBtn'){
+            let index = e.target.id.slice(-1)
         if (deetz[index] == 0){
             let detailsDiv = document.createElement('div')
             let index = e.target.id.slice(-1)
@@ -69,7 +71,13 @@ document.addEventListener('click', function(e){
             ogDiv.removeChild(detailsDiv)
             deetz[index] = 0
         }
-    }else if (e.target && e.target.id.startsWith('check')){
+        }
+    })
+})()
+
+let buttonClick = (function(){
+    document.addEventListener('click', function(e){
+        if (e.target && e.target.id.startsWith('check')){
         let check = e.target
         let index = e.target.id.slice(-1)
         let contentDiv = document.getElementById(`contentDiv${index}`)
@@ -610,13 +618,9 @@ document.addEventListener('click', function(e){
             projectEditz[index] = 1
             newProjectSubmit.addEventListener('click', function(e){
                 if (e.target && e.target.textContent == 'Accept'){
-                    //let currentProject = document.getElementById(`projectNameTitle${index}`)
-                    //console.log(content[0])
                     let divContent = document.getElementById('content')
                     console.log(divContent)
                     if (!(divContent.children[0])){
-                        //let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
-                        //currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
                         currentProject.textContent = newProject.value
                         projectList[index].name = newProject.value
                         projectList[index].dueDate = newProjectDue.value
@@ -624,13 +628,9 @@ document.addEventListener('click', function(e){
                         console.log(projectList)
                         content.removeChild(editProjectForm)
                         projectEditz[index] = 0
-                        
-                       // console.log(projectEdit)
                     }else{
                         let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
-                        //console.log(currentProjectDetailsText.textContent)
                         let content = document.getElementById(`h2${index}`)
-                        //console.log(content)
                         content.textContent = newProject.value
                         currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
                         currentProject.textContent = newProject.value
@@ -649,8 +649,12 @@ document.addEventListener('click', function(e){
                 content.removeChild(editProjectForm)
                 projectEditz[index] = 0
             }
+            
     }
+    let batch = console.log('Hello')
+    return {batch}
 })
+})()
 
 function removeAllChildNodes(parent){
     while (parent.firstChild){
