@@ -26,31 +26,34 @@ function findIndex(object){
     return index
 }
 
-let fullList = [];
-let projectList = [];
-
-const content = document.getElementById('content')
-const details = document.getElementById('details')
-const projectsList = document.getElementById('projectsList')
-let deetz = []
-let editz = []
-let projectDeetz = []
-let projectEditz = []
+let getInfo = (function(){
+    return{
+        fullList: [],
+        projectList: [],
+        content: document.getElementById('content'),
+        //details: document.getElementById('details'),
+        projectsList: document.getElementById('projectsList'),
+        deetz: [],
+        editz: [],
+        projectDeetz: [],
+        projectEditz: []//
+    }
+})()
 
 let projectDetailsButton = (function(){
     document.addEventListener('click', function(e){
         if(e.target && e.target.id == 'newProjectBtn'){
             let index = e.target.id.slice(-1)
-        if (deetz[index] == 0){
+        if (getInfo.deetz[index] == 0){
             let detailsDiv = document.createElement('div')
             let index = e.target.id.slice(-1)
             let ogDiv = document.getElementById(`contentDiv${index}`)
             let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
-            console.log(projectList[projectIndex].taskInfo[index].description)
+            console.log(getInfo.projectList[projectIndex].taskInfo[index].description)
             let currentTask = document.getElementById(`taskContent${index}`)
-            let currentDesc = projectList[projectIndex].taskInfo[index].description
-            let currentDue = projectList[projectIndex].taskInfo[index].dueDate
-            let currentPriority = projectList[projectIndex].taskInfo[index].priority
+            let currentDesc = getInfo.projectList[projectIndex].taskInfo[index].description
+            let currentDue = getInfo.projectList[projectIndex].taskInfo[index].dueDate
+            let currentPriority = getInfo.projectList[projectIndex].taskInfo[index].priority
             if (ogDiv.lastChild.id.startsWith('editForm')){
                 let index = e.target.id.slice(-1)
                 let ogDiv = document.getElementById(`contentDiv${index}`)
@@ -58,18 +61,18 @@ let projectDetailsButton = (function(){
                 detailsDiv.setAttribute('id', `detailsText${index}`)
                 detailsDiv.textContent = `${currentDesc} ${(currentDue)} ${(currentPriority)}`
                 ogDiv.insertBefore(detailsDiv, editForm)
-                deetz[index] = 1
+                getInfo.deetz[index] = 1
             }else{
                 detailsDiv.setAttribute('id', `detailsText${index}`)
                 detailsDiv.textContent = `${currentDesc} ${currentDue} ${currentPriority}`
                 ogDiv.appendChild(detailsDiv)
-                deetz[index] = 1}
-        }else if (deetz[index] == 1){
+                getInfo.deetz[index] = 1}
+        }else if (getInfo.deetz[index] == 1){
             let index = e.target.id.slice(-1)
             let ogDiv = document.getElementById(`contentDiv${index}`)
             let detailsDiv = document.getElementById(`detailsText${index}`)
             ogDiv.removeChild(detailsDiv)
-            deetz[index] = 0
+            getInfo.deetz[index] = 0
         }
         }
     })
@@ -99,13 +102,13 @@ let buttonClick = (function(){
                 let removeThisChildToo = contentDiv.children[2]
                 contentDiv.removeChild(removeThisChildToo)
                 contentDiv.removeChild(removeThisChild)
-                deetz[index] = 0
-                editz[index] = 0
+                getInfo.deetz[index] = 0
+                getInfo.editz[index] = 0
             }else if (contentDiv.children[1]){
                 let removeThisChild = contentDiv.children[1]
                 contentDiv.removeChild(removeThisChild)
-                deetz[index] = 0
-                editz[index] = 0
+                getInfo.deetz[index] = 0
+                getInfo.editz[index] = 0
             }
         }else{
             let index = e.target.id.slice(-1)
@@ -125,8 +128,8 @@ let buttonClick = (function(){
         let h2 = document.querySelector('[id^="h2"]')
         projectIndex = h2.id.slice(-1)
         let removeDiv = document.getElementById(`contentDiv${index}`)
-        let taskInfoIndex = projectList[projectIndex].taskInfo
-        content.removeChild(removeDiv)
+        let taskInfoIndex = getInfo.projectList[projectIndex].taskInfo
+        getInfo.content.removeChild(removeDiv)
         taskInfoIndex.splice(index, 1)
         let deleteTaskEditForm = document.querySelectorAll(`[id^="editForm"]`)
         let deleteTaskDetails = document.querySelectorAll(`[id^="detailsText"]`)
@@ -150,12 +153,12 @@ let buttonClick = (function(){
             let newCheck = document.getElementById(`check${i}`)
             let newEditBtn = document.getElementById(`editBtn${i}`)
             let newDelete = document.getElementById(`delete${i}`)
-            deetz.splice(index, 0)
-            editz.splice(index, 0)
-            deetz[i] = 0
-            editz[i] = 0
-            deetz[i - 1] = 0
-            editz[i - 1] = 0
+            getInfo.deetz.splice(index, 0)
+            getInfo.editz.splice(index, 0)
+            getInfo.deetz[i] = 0
+            getInfo.editz[i] = 0
+            getInfo.deetz[i - 1] = 0
+            getInfo.editz[i - 1] = 0
             if (!(contentDiv === null)){    
                 let newID = contentDiv.id.slice(0, -1) + `${i - 1}`
                 contentDiv.id = newID
@@ -179,14 +182,14 @@ let buttonClick = (function(){
         }
     }else if (e.target && e.target.id.startsWith('edit')){
         let index = e.target.id.slice(-1)
-        if (editz[index] == 0){
+        if (getInfo.editz[index] == 0){
             let index = e.target.id.slice(-1)
             let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
             let addTaskButton = document.querySelector('[id^="addTaskButton"]')
             let currentTask = document.getElementById(`taskContent${index}`)
-            let currentDesc = projectList[projectIndex].taskInfo[index].description
-            let currentDue = projectList[projectIndex].taskInfo[index].dueDate
-            let currentPriority = projectList[projectIndex].taskInfo[index].priority
+            let currentDesc = getInfo.projectList[projectIndex].taskInfo[index].description
+            let currentDue = getInfo.projectList[projectIndex].taskInfo[index].dueDate
+            let currentPriority = getInfo.projectList[projectIndex].taskInfo[index].priority
             let newTask = document.createElement('input')
             newTask.setAttribute('type', 'text')
             newTask.setAttribute('id', `newTaskInput${index}`)
@@ -238,26 +241,26 @@ let buttonClick = (function(){
             editForm.appendChild(editPriority)
             editForm.appendChild(newTaskSubmit)
             content.appendChild(editForm)
-            editz[index] = 1
+            getInfo.editz[index] = 1
             newTaskSubmit.addEventListener('click', function(e){
             if (e.target && e.target.textContent == 'Accept'){
                 currentTask.textContent = newTask.value
-                fullList[index].task = newTask.value
-                fullList[index].description = newDesc.value
-                fullList[index].dueDate = newDue.value
-                fullList[index].priority = newPriority.value
+                getInfo.fullList[index].task = newTask.value
+                getInfo.fullList[index].description = newDesc.value
+                getInfo.fullList[index].dueDate = newDue.value
+                getInfo.fullList[index].priority = newPriority.value
                 let detailsText = document.getElementById(`detailsText${index}`)
-                console.log(fullList)
+                console.log(getInfo.fullList)
                 content.removeChild(editForm)
                 content.removeChild(detailsText)
-                editz[index] = 0
-                deetz[index] = 0
+                getInfo.editz[index] = 0
+                getInfo.deetz[index] = 0
             }
-        })} else if (editz[index] == 1){
+        })} else if (getInfo.editz[index] == 1){
             let index = e.target.id.slice(-1)
             let content = document.getElementById(`contentDiv${index}`)
             content.removeChild(editForm)
-            editz[index] = 0
+            getInfo.editz[index] = 0
         }   
     }else if (e.target && e.target.textContent == 'Confirm'){
         let newProjectName = document.getElementById('newProjectNameInput')
@@ -267,7 +270,7 @@ let buttonClick = (function(){
         let projectDetails = document.createElement('button')
         let projectName = document.createElement('div')
         let projectInfo = document.createElement('div')
-        let index = projectList.length
+        let index = getInfo.projectList.length
         projectInfo.setAttribute('id', `projectInfo${index}`)
         projectName.textContent = newProjectName.value
         projectName.setAttribute('id', `projectNameTitle${index}`)
@@ -283,7 +286,6 @@ let buttonClick = (function(){
         projectDelete.setAttribute('id', `projectDelete${index}`)
         projectDelete.textContent = 'Delete'
         newProjectListItem.setAttribute('id', `projectName${index}`)
-        let projectsList = document.getElementById('projectsList')
         newProjectDiv.removeChild(newProjectForm)
         newProjectDiv.removeChild(confirmBtn)
         projectInfo.appendChild(projectName)
@@ -292,29 +294,28 @@ let buttonClick = (function(){
         projectInfo.appendChild(projectEdit)
         projectInfo.appendChild(projectDelete)
         newProjectListItem.appendChild(projectInfo)
-        projectsList.appendChild(newProjectListItem)
+        getInfo.projectsList.appendChild(newProjectListItem)
         let addProject = new Projects(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
-        projectList.push(addProject)
-        projectDeetz.splice(index, 0, 0)
-        projectEditz.splice(index, 0, 0)
+        getInfo.projectList.push(addProject)
+        getInfo.projectDeetz.splice(index, 0, 0)
+        getInfo.projectEditz.splice(index, 0, 0)
     }else if (e.target && e.target.id.startsWith('projectName')){
         let index = e.target.id.slice(-1)
-        let content = document.getElementById('content')
         let addTaskButton = document.createElement('button')
         addTaskButton.setAttribute('id', `addTaskButton${index}`)
         addTaskButton.textContent = 'Add Task'
         let projectHeader = document.createElement('h2')
         let taskDiv = document.createElement('div')
-        projectHeader.textContent = projectList[index].name
+        projectHeader.textContent = getInfo.projectList[index].name
         projectHeader.setAttribute('id', `h2${index}`)
-        removeAllChildNodes(content)
-        let taskIndex = projectList[index].taskInfo.length - 1
-        let taskDivContent = projectList[index].taskInfo
+        removeAllChildNodes(getInfo.content)
+        let taskIndex = getInfo.projectList[index].taskInfo.length - 1
+        let taskDivContent = getInfo.projectList[index].taskInfo
         taskDiv.textContent = taskDivContent
-        content.appendChild(projectHeader)
+        getInfo.content.appendChild(projectHeader)
         for (let i = 0; i <= taskIndex; i++){
             let element = document.createElement('div')
-            element.textContent = projectList[index].taskInfo[i].task
+            element.textContent = getInfo.projectList[index].taskInfo[i].task
             let newDiv = document.createElement('div')
             newDiv.setAttribute('id', `taskContent${i}`)
             newDiv.textContent = (`${element.textContent}`)
@@ -341,10 +342,10 @@ let buttonClick = (function(){
             leftSide.appendChild(delBtn)
             contentDiv.appendChild(leftSide)
             let addTaskButton = document.querySelector('[id^="addTaskButton"]')
-            content.insertBefore(contentDiv, addTaskButton)
+            getInfo.content.insertBefore(contentDiv, addTaskButton)
         }
-        content.appendChild(addTaskButton)
-        console.log(projectList[index].taskInfo)
+        getInfo.content.appendChild(addTaskButton)
+        console.log(getInfo.projectList[index].taskInfo)
     }else if (e.target && e.target.textContent == 'Add Task'){
         let index = e.target.id.slice(-1)
         let myForm = document.getElementById('myForm')
@@ -406,23 +407,22 @@ let buttonClick = (function(){
     }else if (e.target && e.target.textContent == 'Submit'){
         submission()
         let index = document.querySelector('[id^="h2"]').id.slice(-1)
-        let content = document.getElementById('content')
-        console.log(projectList[index].taskInfo.length)
-        let taskIndex = projectList[index].taskInfo.length
-        projectList[index].taskInfo[taskIndex] = (fullList[fullList.length-1])        //add tasks to projects
+        console.log(getInfo.projectList[index].taskInfo.length)
+        let taskIndex = getInfo.projectList[index].taskInfo.length
+        getInfo.projectList[index].taskInfo[taskIndex] = (getInfo.fullList[getInfo.fullList.length-1])        //add tasks to projects
         myForm.removeChild(taskForm)
         myForm.removeChild(descForm)
         myForm.removeChild(dueForm)
         myForm.removeChild(priorityForm)
         myForm.removeChild(submitForm)
-        console.log(projectList)
-        deetz.splice(index, 0, 0)
-        editz.splice(index, 0, 0)
-        console.log(deetz)
-        console.log(editz)
+        console.log(getInfo.projectList)
+        getInfo.deetz.splice(index, 0, 0)
+        getInfo.editz.splice(index, 0, 0)
+        console.log(getInfo.deetz)
+        console.log(getInfo.editz)
     }else if (e.target && e.target.id.startsWith('projectDeetz')) {
         let index = e.target.id.slice(-1)
-            if (projectDeetz[index] == 0) {
+            if (getInfo.projectDeetz[index] == 0) {
                 let index = e.target.id.slice(-1)
                 let ogDiv = document.getElementById(`projectName${index}`)
                 if (ogDiv.lastChild.id.startsWith('editProjectForm')){
@@ -431,36 +431,34 @@ let buttonClick = (function(){
                     let projectName = document.getElementById(`editProjectForm${index}`)
                     let projectDetailsDiv = document.createElement('div')
                     projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
-                    projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
+                    projectDetailsDiv.textContent = `${getInfo.projectList[index].dueDate} ${getInfo.projectList[index].priority}`
                     console.log(index)
                     ogDiv.insertBefore(projectDetailsDiv, projectName)
-                    projectDeetz[index] = 1
+                    getInfo.projectDeetz[index] = 1
                 }else{
                     let projectDetailsDiv = document.createElement('div')
                     let ogDiv = document.getElementById(`projectName${index}`)
-                    projectDeetz[index] = 1
+                    getInfo.projectDeetz[index] = 1
                     projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
-                    projectDetailsDiv.textContent = `${projectList[index].dueDate} ${projectList[index].priority}`
+                    projectDetailsDiv.textContent = `${getInfo.projectList[index].dueDate} ${getInfo.projectList[index].priority}`
                     ogDiv.appendChild(projectDetailsDiv)
-                    projectDeetz[index] = 1
+                    getInfo.projectDeetz[index] = 1
                 }
-            }else if (projectDeetz[index] == 1){
+            }else if (getInfo.projectDeetz[index] == 1){
                 findIndex(e.target)
                 let ogDiv = document.getElementById(`projectName${index}`)
                 let projectDetailsDiv = document.getElementById(`projectDetailsText${index}`)
                 ogDiv.removeChild(projectDetailsDiv)
-                projectDeetz[index] = 0
+                getInfo.projectDeetz[index] = 0
             }
     }else if (e.target && e.target.id.startsWith('projectDelete')) {
         findIndex(e.target)
         let projectName = document.getElementById(`projectName${index}`)
-        let projectsList = document.getElementById('projectsList')
-        let content = document.getElementById('content')
         let myForm = document.getElementById('myForm')
         let taskForm = document.getElementById('taskForm')
         let deleteEditForm = document.querySelectorAll(`[id^="editProjectForm"]`)
         let deleteDetailsDiv = document.querySelectorAll(`[id^="projectDetailsText"]`)
-        console.log(projectList.length)
+        console.log(getInfo.projectList.length)
         console.log(deleteEditForm)
         console.log(deleteDetailsDiv)
         for (let j = 0; j < deleteEditForm.length; j++){
@@ -473,9 +471,9 @@ let buttonClick = (function(){
             let parent = item.parentElement
             parent.removeChild(item)
         }
-        projectsList.removeChild(projectName)
-        projectList.splice(index, 1)
-        for (let i = index; i <= projectList.length; i++){
+        getInfo.projectsList.removeChild(projectName)
+        getInfo.projectList.splice(index, 1)
+        for (let i = index; i <= getInfo.projectList.length; i++){
             let div = document.getElementById(`projectName${i}`)
             let newProjectInfo = document.getElementById(`projectInfo${i}`)
             let newProjectNameTitle = document.getElementById(`projectNameTitle${i}`)
@@ -483,10 +481,10 @@ let buttonClick = (function(){
             let newProjectCheck = document.getElementById(`projectCheck${i}`)
             let newProjectEdit = document.getElementById(`projectEdit${i}`)
             let newProjectDelete = document.getElementById(`projectDelete${i}`)
-            projectDeetz.splice(index, 0)
-            projectEditz.splice(index, 0)
-            projectDeetz[i] = 0
-            projectEditz[i] = 0
+            getInfo.projectDeetz.splice(index, 0)
+            getInfo.projectEditz.splice(index, 0)
+            getInfo.projectDeetz[i] = 0
+            getInfo.projectEditz[i] = 0
             if (!(div === null)){
                 let newID = div.id.slice(0, -1) + `${i - 1}`
                 div.id = newID
@@ -508,22 +506,22 @@ let buttonClick = (function(){
             for (let j = 0; j < 5; j++){
                 myForm.removeChild(myForm.children[0])
             }
-            let children = content.children.length
+            let children = getInfo.content.children.length
             for (let i = 0; i < children; i++){
-                content.removeChild(content.children[0])
+                getInfo.content.removeChild(getInfo.content.children[0])
             }
-            console.log(content.children)
-            projectDeetz.splice(index, 0)
-            projectEditz.splice(index, 0)
+            console.log(getInfo.content.children)
+            getInfo.projectDeetz.splice(index, 0)
+            getInfo.projectEditz.splice(index, 0)
         }
-        else if (content.children[0]){
-            let children = content.children.length
+        else if (getInfo.content.children[0]){
+            let children = getInfo.content.children.length
             for (let i = 0; i < children; i++){
-                content.removeChild(content.children[0])
+                getInfo.content.removeChild(getInfo.content.children[0])
             }
-            console.log(content.children)
-            projectDeetz.splice(index, 0)
-            projectEditz.splice(index, 0)
+            console.log(getInfo.content.children)
+            getInfo.projectDeetz.splice(index, 0)
+            getInfo.projectEditz.splice(index, 0)
         }
     }else if (e.target && e.target.id.startsWith('projectCheck')) {
         let check = e.target
@@ -534,7 +532,7 @@ let buttonClick = (function(){
             let projectCheck = document.getElementById(`projectCheck${index}`)
             let projectEditDiv = document.getElementById(`projectEdit${index}`)
             let projectName = document.getElementById(`projectName${index}`)
-            console.log(projectsList.children)
+            console.log(getInfo.projectsList.children)
             projectNameTitle.style.opacity = '0.3'
             projectDeetzDiv.style.opacity = '0.3'
             projectCheck.style.opacity = '0.3'
@@ -546,13 +544,13 @@ let buttonClick = (function(){
                 let removeThisChildToo = projectName.children[2]
                 projectName.removeChild(removeThisChildToo)
                 projectName.removeChild(removeThisChild)
-                projectDeetz[index] = 0
-                projectEditz[index] = 0
+                getInfo.projectDeetz[index] = 0
+                getInfo.projectEditz[index] = 0
             }else if (projectName.children[1]){
                 let removeThisChild = projectName.children[1]
                 projectName.removeChild(removeThisChild)
-                projectDeetz[index] = 0
-                projectEditz[index] = 0
+                getInfo.projectDeetz[index] = 0
+                getInfo.projectEditz[index] = 0
             }
         }else{
             let index = e.target.id.slice(-1)
@@ -569,12 +567,12 @@ let buttonClick = (function(){
         }
     }else if (e.target && e.target.id.startsWith('projectEdit')){
         let index = e.target.id.slice(-1)
-        console.log(projectEditz)
-        if (projectEditz[index] == 0){
+        console.log(getInfo.projectEditz)
+        if (getInfo.projectEditz[index] == 0){
             let index = e.target.id.slice(-1)
             let currentProject = document.getElementById(`projectNameTitle${index}`)
-            let currentDue = projectList[index].dueDate
-            let currentPriority = projectList[index].priority
+            let currentDue = getInfo.projectList[index].dueDate
+            let currentPriority = getInfo.projectList[index].priority
             let newProject = document.createElement('input')
             newProject.setAttribute('type', 'text')
             newProject.setAttribute('id', `newTaskInput${index}`)
@@ -615,39 +613,39 @@ let buttonClick = (function(){
             editProjectForm.appendChild(editProjectPriority)
             editProjectForm.appendChild(newProjectSubmit)
             content.appendChild(editProjectForm)
-            projectEditz[index] = 1
+            getInfo.projectEditz[index] = 1
             newProjectSubmit.addEventListener('click', function(e){
                 if (e.target && e.target.textContent == 'Accept'){
                     let divContent = document.getElementById('content')
                     console.log(divContent)
                     if (!(divContent.children[0])){
                         currentProject.textContent = newProject.value
-                        projectList[index].name = newProject.value
-                        projectList[index].dueDate = newProjectDue.value
-                        projectList[index].priority = newProjectPriority.value
-                        console.log(projectList)
+                        getInfo.projectList[index].name = newProject.value
+                        getInfo.projectList[index].dueDate = newProjectDue.value
+                        getInfo.projectList[index].priority = newProjectPriority.value
+                        console.log(getInfo.projectList)
                         content.removeChild(editProjectForm)
-                        projectEditz[index] = 0
+                        getInfo.projectEditz[index] = 0
                     }else{
                         let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
                         let content = document.getElementById(`h2${index}`)
                         content.textContent = newProject.value
                         currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
                         currentProject.textContent = newProject.value
-                        projectList[index].name = newProject.value
-                        projectList[index].dueDate = newProjectDue.value
-                        projectList[index].priority = newProjectPriority.value
-                        console.log(projectList)
+                        getInfo.projectList[index].name = newProject.value
+                        getInfo.projectList[index].dueDate = newProjectDue.value
+                        getInfo.projectList[index].priority = newProjectPriority.value
+                        console.log(getInfo.projectList)
                         content.removeChild(editProjectForm)
-                        projectEditz[index] = 0
+                        getInfo.projectEditz[index] = 0
                     }
                 }
-            })} else if (projectEditz[index] == 1){
+            })} else if (getInfo.projectEditz[index] == 1){
                 let index = e.target.id.slice(-1)
                 let content = document.getElementById(`projectName${index}`)
                 let editProjectForm = document.getElementById(`editProjectForm${index}`)
                 content.removeChild(editProjectForm)
-                projectEditz[index] = 0
+                getInfo.projectEditz[index] = 0
             }
             
     }
@@ -725,9 +723,8 @@ function addListToPage() {
     let list = new Todo(task.value, desc.value, due.value, priority.value)
     let newDiv = document.createElement('div')
     let index = document.querySelector('[id^="h2"]').id.slice(-1)
-    let content = document.getElementById('content')
-    console.log(projectList[index].taskInfo.length)
-    let taskIndex = projectList[index].taskInfo.length
+    console.log(getInfo.projectList[index].taskInfo.length)
+    let taskIndex = getInfo.projectList[index].taskInfo.length
     newDiv.setAttribute('id', `taskContent${taskIndex}`)
     newDiv.textContent = (`${list.task}`)
     let detailsBtn = document.createElement('button')
@@ -753,8 +750,8 @@ function addListToPage() {
     leftSide.appendChild(delBtn)
     contentDiv.appendChild(leftSide)
     let addTaskButton = document.querySelector('[id^="addTaskButton"]')
-    content.insertBefore(contentDiv, addTaskButton)
-    fullList.push(list)
+    getInfo.content.insertBefore(contentDiv, addTaskButton)
+    getInfo.fullList.push(list)
 }
 
 let form = document.getElementById('myForm');
