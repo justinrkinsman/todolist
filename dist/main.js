@@ -124,64 +124,76 @@ let taskCheckButton = (function(){
             taskDetails.disabled = false
             taskEdit.disabled = false
         }
-    }else if (e.target && e.target.id.startsWith('delete')){   //Split here
+    }
+})
+})()
+
+let taskDeleteButton = (function(){
+    document.addEventListener('click', function(e){
+        if (e.target && e.target.id.startsWith('delete')){
         //findIndex(e.target)
-        let h2 = document.querySelector('[id^="h2"]')
-        projectIndex = h2.id.slice(-1)
-        let removeDiv = document.getElementById(`contentDiv${index}`)
-        let taskInfoIndex = getInfo.projectList[projectIndex].taskInfo
-        getInfo.content.removeChild(removeDiv)
-        taskInfoIndex.splice(index, 1)
-        let deleteTaskEditForm = document.querySelectorAll(`[id^="editForm"]`)
-        let deleteTaskDetails = document.querySelectorAll(`[id^="detailsText"]`)
-        let myForm = document.getElementById(`myForm`)
-        let taskForm = document.getElementById(`taskForm`)
-        for (let j = 0; j < deleteTaskEditForm.length; j++){
-            let item = deleteTaskEditForm[j]
-            let parent = item.parentElement
-            parent.removeChild(item)
-        }
-        for (let k = 0; k < deleteTaskDetails.length; k++){
-            let item = deleteTaskDetails[k]
-            let parent = item.parentElement
-            parent.removeChild(item)
-        }
-        for (let i = index; i <= taskInfoIndex.length; i++){
-            let contentDiv = document.getElementById(`contentDiv${i}`)
-            let newLeftSide = document.getElementById(`leftSide${i}`)
-            let newTaskContent = document.getElementById(`taskContent${i}`)
-            let newDetailsBtn = document.getElementById(`detailsBtn${i}`)
-            let newCheck = document.getElementById(`check${i}`)
-            let newEditBtn = document.getElementById(`editBtn${i}`)
-            let newDelete = document.getElementById(`delete${i}`)
-            getInfo.deetz.splice(index, 0)
-            getInfo.editz.splice(index, 0)
-            getInfo.deetz[i] = 0
-            getInfo.editz[i] = 0
-            getInfo.deetz[i - 1] = 0
-            getInfo.editz[i - 1] = 0
-            if (!(contentDiv === null)){    
-                let newID = contentDiv.id.slice(0, -1) + `${i - 1}`
-                contentDiv.id = newID
-                let newLeftSideID = newLeftSide.id.slice(0, -1) + `${i - 1}`
-                newLeftSide.id = newLeftSideID
-                let newTaskContentID = newTaskContent.id.slice(0, -1) + `${i - 1}`
-                newTaskContent.id = newTaskContentID
-                let newDetailsBtnID = newDetailsBtn.id.slice(0, -1) + `${i - 1}`
-                newDetailsBtn.id = newDetailsBtnID
-                let newCheckID = newCheck.id.slice(0, -1) + `${i - 1}`
-                newCheck.id = newCheckID
-                let newEditBtnID = newEditBtn.id.slice(0, -1) + `${i - 1}`
-                newEditBtn.id = newEditBtnID
-                let newDeleteID = newDelete.id.slice(0, -1) + `${i - 1}`
-                newDelete.id = newDeleteID
+            let h2 = document.querySelector('[id^="h2"]')
+            projectIndex = h2.id.slice(-1)
+            let removeDiv = document.getElementById(`contentDiv${index}`)
+            let taskInfoIndex = getInfo.projectList[projectIndex].taskInfo
+            getInfo.content.removeChild(removeDiv)
+            taskInfoIndex.splice(index, 1)
+            let deleteTaskEditForm = document.querySelectorAll(`[id^="editForm"]`)
+            let deleteTaskDetails = document.querySelectorAll(`[id^="detailsText"]`)
+            let myForm = document.getElementById(`myForm`)
+            let taskForm = document.getElementById(`taskForm`)
+            for (let j = 0; j < deleteTaskEditForm.length; j++){
+                let item = deleteTaskEditForm[j]
+                let parent = item.parentElement
+                parent.removeChild(item)
             }
-        }if (myForm.firstElementChild == taskForm){
-            for (let l = 0; l < 5; l++){
-                myForm.removeChild(myForm.children[0])
+            for (let k = 0; k < deleteTaskDetails.length; k++){
+                let item = deleteTaskDetails[k]
+                let parent = item.parentElement
+                parent.removeChild(item)
+            }
+            for (let i = index; i <= taskInfoIndex.length; i++){
+                let contentDiv = document.getElementById(`contentDiv${i}`)
+                let newLeftSide = document.getElementById(`leftSide${i}`)
+                let newTaskContent = document.getElementById(`taskContent${i}`)
+                let newDetailsBtn = document.getElementById(`detailsBtn${i}`)
+                let newCheck = document.getElementById(`check${i}`)
+                let newEditBtn = document.getElementById(`editBtn${i}`)
+                let newDelete = document.getElementById(`delete${i}`)
+                getInfo.deetz.splice(index, 0)
+                getInfo.editz.splice(index, 0)
+                getInfo.deetz[i] = 0
+                getInfo.editz[i] = 0
+                getInfo.deetz[i - 1] = 0
+                getInfo.editz[i - 1] = 0
+                if (!(contentDiv === null)){    
+                    let newID = contentDiv.id.slice(0, -1) + `${i - 1}`
+                    contentDiv.id = newID
+                    let newLeftSideID = newLeftSide.id.slice(0, -1) + `${i - 1}`
+                    newLeftSide.id = newLeftSideID
+                    let newTaskContentID = newTaskContent.id.slice(0, -1) + `${i - 1}`
+                    newTaskContent.id = newTaskContentID
+                    let newDetailsBtnID = newDetailsBtn.id.slice(0, -1) + `${i - 1}`
+                    newDetailsBtn.id = newDetailsBtnID
+                    let newCheckID = newCheck.id.slice(0, -1) + `${i - 1}`
+                    newCheck.id = newCheckID
+                    let newEditBtnID = newEditBtn.id.slice(0, -1) + `${i - 1}`
+                    newEditBtn.id = newEditBtnID
+                    let newDeleteID = newDelete.id.slice(0, -1) + `${i - 1}`
+                    newDelete.id = newDeleteID
+                }
+            }if (myForm.firstElementChild == taskForm){
+                for (let l = 0; l < 5; l++){
+                    myForm.removeChild(myForm.children[0])
+                }
             }
         }
-    }else if (e.target && e.target.id.startsWith('edit')){   //Split here
+    })
+})()
+
+let taskEditButton = (function(){
+    document.addEventListener('click', function(e){
+    if (e.target && e.target.id.startsWith('edit')){   //Split here
         findIndex(e.target)
         if (getInfo.editz[index] == 0){
             //findIndex(e.target)
@@ -629,8 +641,8 @@ let taskCheckButton = (function(){
                         getInfo.projectEditz[index] = 0
                     }else{
                         let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
-                        let content = document.getElementById(`h2${index}`)
-                        content.textContent = newProject.value
+                        let contentH2 = document.getElementById(`h2${index}`)
+                        contentH2.textContent = newProject.value
                         currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
                         currentProject.textContent = newProject.value
                         getInfo.projectList[index].name = newProject.value
