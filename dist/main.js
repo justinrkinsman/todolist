@@ -39,6 +39,8 @@ let getInfo = (function(){
     }
 })()
 
+console.log('hello')
+
 let taskDetailsButton = (function(){
     document.addEventListener('click', function(e){
         findIndex(e.target)
