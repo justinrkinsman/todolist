@@ -1,3 +1,7 @@
+import {test} from './addDOMElement.js'
+
+test()
+
 class Todo {
     constructor(task, description, dueDate, priority) {
         this.task = task;
@@ -33,8 +37,6 @@ let getInfo = (function(){
         projectEditz: []
     }
 })()
-
-console.log('hello')
 
 let taskDetailsButton = (function(){
     document.addEventListener('click', function(e){
