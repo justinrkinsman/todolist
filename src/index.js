@@ -363,54 +363,58 @@ let projectNameEvent = (function(){
     document.addEventListener('click', function(e){
     if (e.target && e.target.id.startsWith('projectName')){
         let index = e.target.id.slice(-1)
-        let addTaskButton = document.createElement('button')
-        addTaskButton.setAttribute('id', `addTaskButton${index}`)
-        addTaskButton.textContent = 'Add Task'
-        let projectHeader = document.createElement('h2')
-        let taskDiv = document.createElement('div')
-        projectHeader.textContent = getInfo.projectList[index].name
-        projectHeader.setAttribute('id', `h2${index}`)
-        removeAllChildNodes(getInfo.content)
-        let taskIndex = getInfo.projectList[index].taskInfo.length - 1
-        let taskDivContent = getInfo.projectList[index].taskInfo
-        taskDiv.textContent = taskDivContent
-        getInfo.content.appendChild(projectHeader)
-        for (let i = 0; i <= taskIndex; i++){
-            let element = document.createElement('div')
-            element.textContent = getInfo.projectList[index].taskInfo[i].task
-            let newDiv = document.createElement('div')
-            newDiv.setAttribute('id', `taskContent${i}`)
-            newDiv.textContent = (`${element.textContent}`)
-            let detailsBtn = document.createElement('button')
-            detailsBtn.setAttribute('id', `detailsBtn${i}`)
-            detailsBtn.textContent = "Details"
-            let check = document.createElement('input')
-            check.setAttribute('type', 'checkbox')
-            check.setAttribute('id', `check${i}`)
-            let editBtn = document.createElement('button')
-            editBtn.setAttribute('id', `editBtn${i}`)
-            editBtn.textContent = 'Edit'
-            let delBtn = document.createElement('button')
-            delBtn.setAttribute('id', `delete${i}`)
-            delBtn.textContent = 'Delete'
-            let contentDiv = document.createElement('div')
-            contentDiv.setAttribute('id', `contentDiv${i}`)
-            let leftSide = document.createElement('div')
-            leftSide.setAttribute('id', `leftSide${i}`)
-            leftSide.appendChild(newDiv)
-            leftSide.appendChild(detailsBtn)
-            leftSide.appendChild(check)
-            leftSide.appendChild(editBtn)
-            leftSide.appendChild(delBtn)
-            contentDiv.appendChild(leftSide)
-            let addTaskButton = document.querySelector('[id^="addTaskButton"]')
-            getInfo.content.insertBefore(contentDiv, addTaskButton)
-        }
-        getInfo.content.appendChild(addTaskButton)
-        console.log(getInfo.projectList[index].taskInfo)
+        projectNameEventFunction(index)
     }
 })
 })()
+
+function projectNameEventFunction(index){
+    let addTaskButton = document.createElement('button')
+    addTaskButton.setAttribute('id', `addTaskButton${index}`)
+    addTaskButton.textContent = 'Add Task'
+    let projectHeader = document.createElement('h2')
+    let taskDiv = document.createElement('div')
+    projectHeader.textContent = getInfo.projectList[index].name
+    projectHeader.setAttribute('id', `h2${index}`)
+    removeAllChildNodes(getInfo.content)
+    let taskIndex = getInfo.projectList[index].taskInfo.length - 1
+    let taskDivContent = getInfo.projectList[index].taskInfo
+    taskDiv.textContent = taskDivContent
+    getInfo.content.appendChild(projectHeader)
+    for (let i = 0; i <= taskIndex; i++){
+        let element = document.createElement('div')
+        element.textContent = getInfo.projectList[index].taskInfo[i].task
+        let newDiv = document.createElement('div')
+        newDiv.setAttribute('id', `taskContent${i}`)
+        newDiv.textContent = (`${element.textContent}`)
+        let detailsBtn = document.createElement('button')
+        detailsBtn.setAttribute('id', `detailsBtn${i}`)
+        detailsBtn.textContent = "Details"
+        let check = document.createElement('input')
+        check.setAttribute('type', 'checkbox')
+        check.setAttribute('id', `check${i}`)
+        let editBtn = document.createElement('button')
+        editBtn.setAttribute('id', `editBtn${i}`)
+        editBtn.textContent = 'Edit'
+        let delBtn = document.createElement('button')
+        delBtn.setAttribute('id', `delete${i}`)
+        delBtn.textContent = 'Delete'
+        let contentDiv = document.createElement('div')
+        contentDiv.setAttribute('id', `contentDiv${i}`)
+        let leftSide = document.createElement('div')
+        leftSide.setAttribute('id', `leftSide${i}`)
+        leftSide.appendChild(newDiv)
+        leftSide.appendChild(detailsBtn)
+        leftSide.appendChild(check)
+        leftSide.appendChild(editBtn)
+        leftSide.appendChild(delBtn)
+        contentDiv.appendChild(leftSide)
+        let addTaskButton = document.querySelector('[id^="addTaskButton"]')
+        getInfo.content.insertBefore(contentDiv, addTaskButton)
+    }
+    getInfo.content.appendChild(addTaskButton)
+    console.log(getInfo.projectList[index].taskInfo)
+}
 
 let addTaskButton = (function(){
     document.addEventListener('click', function(e){
