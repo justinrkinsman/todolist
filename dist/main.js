@@ -218,87 +218,104 @@ let taskEditButton = (function(){
     if (e.target && e.target.id.startsWith('edit')){
         let index = e.target.id.slice(-1)
         if (getInfo.editz[index] == 0){
-            let index = e.target.id.slice(-1)
-            let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
-            let currentTask = document.getElementById(`taskContent${index}`)
-            let currentDesc = getInfo.projectList[projectIndex].taskInfo[index].description
-            let currentDue = getInfo.projectList[projectIndex].taskInfo[index].dueDate
-            let currentPriority = getInfo.projectList[projectIndex].taskInfo[index].priority
-            let newTask = document.createElement('input')
-            newTask.setAttribute('type', 'text')
-            newTask.setAttribute('id', `newTaskInput${index}`)
-            newTask.defaultValue = currentTask.textContent
-            let editForm = document.createElement('div')
-            editForm.setAttribute('id', 'editForm')
-            let editTask = document.createElement('div')
-            let editDesc = document.createElement('div')
-            let editDue = document.createElement('div')
-            let editPriority = document.createElement('div')
-            let newTaskLabel = document.createElement('LABEL')
-            let newDescLabel = document.createElement('LABEL')
-            let newDueLabel = document.createElement('LABEL')
-            let newPriorityLabel = document.createElement('LABEL')
-            newTaskLabel.htmlFor = newTask
-            newTaskLabel.textContent = 'Task'
-            editTask.appendChild(newTask)
-            editTask.appendChild(newTaskLabel)
-            let newDesc = document.createElement('input')
-            newDesc.setAttribute('type', 'text')
-            newDesc.setAttribute('id', `newDescInput${index}`)
-            newDesc.defaultValue = currentDesc
-            newDescLabel.htmlFor = newDesc
-            newDescLabel.textContent = 'Description'
-            editDesc.appendChild(newDesc)
-            editDesc.appendChild(newDescLabel)
-            let newDue = document.createElement('input')
-            newDue.setAttribute('type', 'text')
-            newDue.setAttribute('id', `newDueInput${index}`)
-            newDue.defaultValue = currentDue
-            newDueLabel.htmlFor = newDue
-            newDueLabel.textContent = 'Due Date'
-            editDue.appendChild(newDue)
-            editDue.appendChild(newDueLabel)
-            let newPriority = document.createElement('input')
-            newPriority.setAttribute('type', 'input')
-            newPriority.setAttribute('id', `newPriorityInput${index}`)
-            newPriority.defaultValue = currentPriority
-            newPriorityLabel.htmlFor = newPriority
-            newPriorityLabel.textContent = 'Priority'
-            editPriority.appendChild(newPriority)
-            editPriority.appendChild(newPriorityLabel)
-            let newTaskSubmit = document.createElement('button')
-            let content = document.getElementById(`contentDiv${index}`)
-            newTaskSubmit.textContent = 'Accept'
-            editForm.appendChild(editTask)
-            editForm.appendChild(editDesc)
-            editForm.appendChild(editDue)
-            editForm.appendChild(editPriority)
-            editForm.appendChild(newTaskSubmit)
-            content.appendChild(editForm)
-            getInfo.editz[index] = 1
-            newTaskSubmit.addEventListener('click', function(e){
-            if (e.target && e.target.textContent == 'Accept'){   //add module pattern to this buttton
-                currentTask.textContent = newTask.value       //variables will need to be re-declared
-                getInfo.fullList[index].task = newTask.value
-                getInfo.fullList[index].description = newDesc.value      
-                getInfo.fullList[index].dueDate = newDue.value      
-                getInfo.fullList[index].priority = newPriority.value
-                let detailsText = document.getElementById(`detailsText${index}`)
-                console.log(getInfo.fullList)
-                content.removeChild(editForm)
-                content.removeChild(detailsText)
-                getInfo.editz[index] = 0
-                getInfo.deetz[index] = 0
+            taskEditFunctionEditz0(index)
+            document.addEventListener('click', function(e){
+            if (e.target && e.target.id == 'newTaskSubmit'){
+                newTaskSubmit(index)
             }
         })} else if (getInfo.editz[index] == 1){
-            let content = document.getElementById(`contentDiv${index}`)
-            let editForm = document.getElementById(`editForm`)
-            content.removeChild(editForm)
-            getInfo.editz[index] = 0
+            taskEditFunctionEditz1(index)
         }
     }
 })
 })()
+
+function taskEditFunctionEditz0(index){
+    let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
+    let currentTask = document.getElementById(`taskContent${index}`)
+    let currentDesc = getInfo.projectList[projectIndex].taskInfo[index].description
+    let currentDue = getInfo.projectList[projectIndex].taskInfo[index].dueDate
+    let currentPriority = getInfo.projectList[projectIndex].taskInfo[index].priority
+    let newTask = document.createElement('input')
+    newTask.setAttribute('type', 'text')
+    newTask.setAttribute('id', `newTaskInput${index}`)
+    newTask.defaultValue = currentTask.textContent
+    let editForm = document.createElement('div')
+    editForm.setAttribute('id', 'editForm')
+    let editTask = document.createElement('div')
+    let editDesc = document.createElement('div')
+    let editDue = document.createElement('div')
+    let editPriority = document.createElement('div')
+    let newTaskLabel = document.createElement('LABEL')
+    let newDescLabel = document.createElement('LABEL')
+    let newDueLabel = document.createElement('LABEL')
+    let newPriorityLabel = document.createElement('LABEL')
+    newTaskLabel.htmlFor = newTask
+    newTaskLabel.textContent = 'Task'
+    editTask.appendChild(newTask)
+    editTask.appendChild(newTaskLabel)
+    let newDesc = document.createElement('input')
+    newDesc.setAttribute('type', 'text')
+    newDesc.setAttribute('id', `newDescInput${index}`)
+    newDesc.defaultValue = currentDesc
+    newDescLabel.htmlFor = newDesc
+    newDescLabel.textContent = 'Description'
+    editDesc.appendChild(newDesc)
+    editDesc.appendChild(newDescLabel)
+    let newDue = document.createElement('input')
+    newDue.setAttribute('type', 'text')
+    newDue.setAttribute('id', `newDueInput${index}`)
+    newDue.defaultValue = currentDue
+    newDueLabel.htmlFor = newDue
+    newDueLabel.textContent = 'Due Date'
+    editDue.appendChild(newDue)
+    editDue.appendChild(newDueLabel)
+    let newPriority = document.createElement('input')
+    newPriority.setAttribute('type', 'input')
+    newPriority.setAttribute('id', `newPriorityInput${index}`)
+    newPriority.defaultValue = currentPriority
+    newPriorityLabel.htmlFor = newPriority
+    newPriorityLabel.textContent = 'Priority'
+    editPriority.appendChild(newPriority)
+    editPriority.appendChild(newPriorityLabel)
+    let newTaskSubmit = document.createElement('button')
+    let content = document.getElementById(`contentDiv${index}`)
+    newTaskSubmit.textContent = 'Accept'
+    newTaskSubmit.setAttribute('id', 'newTaskSubmit')
+    editForm.appendChild(editTask)
+    editForm.appendChild(editDesc)
+    editForm.appendChild(editDue)
+    editForm.appendChild(editPriority)
+    editForm.appendChild(newTaskSubmit)
+    content.appendChild(editForm)
+    getInfo.editz[index] = 1
+}
+
+function newTaskSubmit(index){
+    let currentTask = document.getElementById(`taskContent${index}`)
+    let newTask = document.getElementById(`newTaskInput${index}`)
+    let newDesc = document.getElementById(`newDescInput${index}`)
+    let newDue = document.getElementById(`newDueInput${index}`)
+    let newPriority = document.getElementById(`newPriorityInput${index}`)
+    currentTask.textContent = newTask.value
+    getInfo.fullList[index].task = newTask.value
+    getInfo.fullList[index].description = newDesc.value      
+    getInfo.fullList[index].dueDate = newDue.value      
+    getInfo.fullList[index].priority = newPriority.value
+    let detailsText = document.getElementById(`detailsText${index}`)
+    let content = document.getElementById(`contentDiv${index}`)
+    content.removeChild(editForm)
+    getInfo.editz[index] = 0
+    getInfo.deetz[index] = 0
+    content.removeChild(detailsText)
+}
+
+function taskEditFunctionEditz1(index){
+    let content = document.getElementById(`contentDiv${index}`)
+    let editForm = document.getElementById(`editForm`)
+    content.removeChild(editForm)
+    getInfo.editz[index] = 0
+}
 
 let confirmButton = (function(){
     document.addEventListener('click', function(e){
