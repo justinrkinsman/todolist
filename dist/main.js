@@ -516,35 +516,42 @@ let projectDetailsButton = (function(){
     if (e.target && e.target.id.startsWith('projectDeetz')) {
         let index = e.target.id.slice(-1)
             if (getInfo.projectDeetz[index] == 0) {
-                let ogDiv = document.getElementById(`projectName${index}`)
-                if (ogDiv.lastChild.id.startsWith('editProjectForm')){
-                    let ogDiv = document.getElementById(`projectName${index}`)
-                    let projectName = document.getElementById(`editProjectForm${index}`)
-                    let projectDetailsDiv = document.createElement('div')
-                    projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
-                    projectDetailsDiv.textContent = `${getInfo.projectList[index].dueDate} ${getInfo.projectList[index].priority}`
-                    console.log(index)
-                    ogDiv.insertBefore(projectDetailsDiv, projectName)
-                    getInfo.projectDeetz[index] = 1
-                }else{
-                    let projectDetailsDiv = document.createElement('div')
-                    let ogDiv = document.getElementById(`projectName${index}`)
-                    getInfo.projectDeetz[index] = 1
-                    projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
-                    projectDetailsDiv.textContent = `${getInfo.projectList[index].dueDate} ${getInfo.projectList[index].priority}`
-                    ogDiv.appendChild(projectDetailsDiv)
-                    getInfo.projectDeetz[index] = 1
-                }
+                projectDetailsFunctionDeetz0(index)
             }else if (getInfo.projectDeetz[index] == 1){
-                let index = e.target.id.slice(-1)
-                let ogDiv = document.getElementById(`projectName${index}`)
-                let projectDetailsDiv = document.getElementById(`projectDetailsText${index}`)
-                ogDiv.removeChild(projectDetailsDiv)
-                getInfo.projectDeetz[index] = 0
+                projectDetailsFunctionDeetz1(index)
             }
         }
     })
 })()
+
+function projectDetailsFunctionDeetz0(index){
+    let ogDiv = document.getElementById(`projectName${index}`)
+    if (ogDiv.lastChild.id.startsWith('editProjectForm')){
+        let ogDiv = document.getElementById(`projectName${index}`)
+        let projectName = document.getElementById(`editProjectForm${index}`)
+        let projectDetailsDiv = document.createElement('div')
+        projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
+        projectDetailsDiv.textContent = `${getInfo.projectList[index].dueDate} ${getInfo.projectList[index].priority}`
+        console.log(index)
+        ogDiv.insertBefore(projectDetailsDiv, projectName)
+        getInfo.projectDeetz[index] = 1
+    }else{
+        let projectDetailsDiv = document.createElement('div')
+        let ogDiv = document.getElementById(`projectName${index}`)
+        getInfo.projectDeetz[index] = 1
+        projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
+        projectDetailsDiv.textContent = `${getInfo.projectList[index].dueDate} ${getInfo.projectList[index].priority}`
+        ogDiv.appendChild(projectDetailsDiv)
+        getInfo.projectDeetz[index] = 1
+    }
+}
+
+function projectDetailsFunctionDeetz1(index){
+    let ogDiv = document.getElementById(`projectName${index}`)
+    let projectDetailsDiv = document.getElementById(`projectDetailsText${index}`)
+    ogDiv.removeChild(projectDetailsDiv)
+    getInfo.projectDeetz[index] = 0
+}
     
 let projectDeleteButton = (function(){
     document.addEventListener('click', function(e){
