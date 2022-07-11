@@ -1,25 +1,48 @@
-/*function taskDetailsFunctionDeetz0(index){
-        console.log(index)
-        let detailsDiv = document.createElement('div')
-        let ogDiv = document.getElementById(`contentDiv${index}`)
-        let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
-        let currentDesc = getInfo.projectList[projectIndex].taskInfo[index].description
-        let currentDue = getInfo.projectList[projectIndex].taskInfo[index].dueDate
-        let currentPriority = getInfo.projectList[projectIndex].taskInfo[index].priority
-        if (ogDiv.lastChild.id.startsWith('editForm')){
-            let ogDiv = document.getElementById(`contentDiv${index}`)
-            let editForm = document.getElementById('editForm')
-            detailsDiv.setAttribute('id', `detailsText${index}`)
-            detailsDiv.textContent = `${currentDesc} ${(currentDue)} ${(currentPriority)}`
-            ogDiv.insertBefore(detailsDiv, editForm)
-            getInfo.deetz[index] = 1
-        }else{
-            detailsDiv.setAttribute('id', `detailsText${index}`)
-            detailsDiv.textContent = `${currentDesc} ${currentDue} ${currentPriority}`
-            ogDiv.appendChild(detailsDiv)
-            getInfo.deetz[index] = 1}
-            console.log('it works')
-    return{}
+import * as buttonFunctions from './buttonFunctions.js'
+
+class Todo {
+    constructor(task, description, dueDate, priority) {
+        this.task = task;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+    }
 }
 
-export {taskDetailsFunctionDeetz0}*/
+export function addListToPage() {
+    const task = document.getElementById('task')          //
+    const desc = document.getElementById('description')   //
+    const due = document.getElementById('dueDate')        // gets values from input boxes
+    const priority = document.getElementById('priority')  //
+    let list = new Todo(task.value, desc.value, due.value, priority.value)
+    let newDiv = document.createElement('div')
+    let index = (document.querySelector('[id^="h2"]').id.slice(-1))
+    let taskIndex = buttonFunctions.getInfo.projectList[index].taskInfo.length
+    newDiv.setAttribute('id', `taskContent${taskIndex}`)
+    newDiv.textContent = (`${list.task}`)
+    let detailsBtn = document.createElement('button')
+    detailsBtn.setAttribute('id', `detailsBtn${taskIndex}`)
+    detailsBtn.textContent = "Details"
+    let check = document.createElement('input')
+    check.setAttribute('type', 'checkbox')
+    check.setAttribute('id', `check${taskIndex}`)
+    let editBtn = document.createElement('button')
+    editBtn.setAttribute('id', `editBtn${taskIndex}`)
+    editBtn.textContent = 'Edit'
+    let delBtn = document.createElement('button')
+    delBtn.setAttribute('id', `delete${taskIndex}`)
+    delBtn.textContent = 'Delete'
+    let contentDiv = document.createElement('div')
+    contentDiv.setAttribute('id', `contentDiv${taskIndex}`)
+    let leftSide = document.createElement('div')
+    leftSide.setAttribute('id', `leftSide${taskIndex}`)
+    leftSide.appendChild(newDiv)
+    leftSide.appendChild(detailsBtn)
+    leftSide.appendChild(check)
+    leftSide.appendChild(editBtn)
+    leftSide.appendChild(delBtn)
+    contentDiv.appendChild(leftSide)
+    let addTaskButton = document.querySelector('[id^="addTaskButton"]')
+    buttonFunctions.getInfo.content.insertBefore(contentDiv, addTaskButton)
+    buttonFunctions.getInfo.fullList.push(list)
+}
