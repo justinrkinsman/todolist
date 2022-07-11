@@ -494,22 +494,22 @@ let submitButton = (function(){
     if (e.target && e.target.textContent == 'Submit'){
         submission()
         let index = document.querySelector('[id^="h2"]').id.slice(-1)
-        console.log(getInfo.projectList[index].taskInfo.length)
-        let taskIndex = getInfo.projectList[index].taskInfo.length
-        getInfo.projectList[index].taskInfo[taskIndex] = (getInfo.fullList[getInfo.fullList.length-1])//adds tasks to projects
-        myForm.removeChild(taskForm)
-        myForm.removeChild(descForm)
-        myForm.removeChild(dueForm)
-        myForm.removeChild(priorityForm)
-        myForm.removeChild(submitForm)
-        console.log(getInfo.projectList)
-        getInfo.deetz.splice(index, 0, 0)
-        getInfo.editz.splice(index, 0, 0)
-        console.log(getInfo.deetz)
-        console.log(getInfo.editz)
+        submitButtonFunction(index)
     }
 })
 })()
+
+function submitButtonFunction(index){
+    let taskIndex = getInfo.projectList[index].taskInfo.length
+    getInfo.projectList[index].taskInfo[taskIndex] = (getInfo.fullList[getInfo.fullList.length-1])//adds tasks to projects
+    myForm.removeChild(taskForm)
+    myForm.removeChild(descForm)
+    myForm.removeChild(dueForm)
+    myForm.removeChild(priorityForm)
+    myForm.removeChild(submitForm)
+    getInfo.deetz.splice(index, 0, 0)
+    getInfo.editz.splice(index, 0, 0)
+}
 
 let projectDetailsButton = (function(){
     document.addEventListener('click', function(e){
