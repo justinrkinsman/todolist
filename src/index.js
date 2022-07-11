@@ -550,81 +550,85 @@ function projectDetailsFunctionDeetz1(index){
     
 let projectDeleteButton = (function(){
     document.addEventListener('click', function(e){
-    if (e.target && e.target.id.startsWith('projectDelete')) {   //Split here
+    if (e.target && e.target.id.startsWith('projectDelete')) {
         let index = e.target.id.slice(-1)
-        let projectName = document.getElementById(`projectName${index}`)
-        let myForm = document.getElementById('myForm')
-        let taskForm = document.getElementById('taskForm')
-        let deleteEditForm = document.querySelectorAll(`[id^="editProjectForm"]`)
-        let deleteDetailsDiv = document.querySelectorAll(`[id^="projectDetailsText"]`)
-        console.log(getInfo.projectList.length)
-        console.log(deleteEditForm)
-        console.log(deleteDetailsDiv)
-        for (let j = 0; j < deleteEditForm.length; j++){
-            let item = deleteEditForm[j]
-            let parent = item.parentElement
-            parent.removeChild(item)
-        }
-        for (let k = 0; k < deleteDetailsDiv.length; k++){
-            let item = deleteDetailsDiv[k]
-            let parent = item.parentElement
-            parent.removeChild(item)
-        }
-        getInfo.projectsList.removeChild(projectName)
-        getInfo.projectList.splice(index, 1)
-        for (let i = index; i <= getInfo.projectList.length; i++){
-            let div = document.getElementById(`projectName${i}`)
-            let newProjectInfo = document.getElementById(`projectInfo${i}`)
-            let newProjectNameTitle = document.getElementById(`projectNameTitle${i}`)
-            let newProjectDeetz = document.getElementById(`projectDeetz${i}`)
-            let newProjectCheck = document.getElementById(`projectCheck${i}`)
-            let newProjectEdit = document.getElementById(`projectEdit${i}`)
-            let newProjectDelete = document.getElementById(`projectDelete${i}`)
-            getInfo.projectDeetz.splice(index, 0)
-            getInfo.projectEditz.splice(index, 0)
-            getInfo.projectDeetz[i] = 0
-            getInfo.projectEditz[i] = 0
-            if (!(div === null)){
-                let newID = div.id.slice(0, -1) + `${i - 1}`
-                div.id = newID
-                let newProjectInfoID = newProjectInfo.id.slice(0, -1) + `${i - 1}`
-                newProjectInfo.id = newProjectInfoID
-                let newProjectNameTitleID = newProjectNameTitle.id.slice(0, -1) + `${i - 1}`
-                newProjectNameTitle.id = newProjectNameTitleID
-                let newProjectDeetzID = newProjectDeetz.id.slice(0, -1) + `${i - 1}`
-                newProjectDeetz.id = newProjectDeetzID
-                let newProjectCheckID = newProjectCheck.id.slice(0, -1) + `${i - 1}`
-                newProjectCheck.id = newProjectCheckID
-                let newProjectEditID = newProjectEdit.id.slice(0, -1) + `${i - 1}`
-                newProjectEdit.id = newProjectEditID
-                let newProjectDeleteID = newProjectDelete.id.slice(0, -1) + `${i - 1}`
-                newProjectDelete.id = newProjectDeleteID
-            }
-        }
-        if (myForm.firstElementChild == taskForm){
-            for (let j = 0; j < 5; j++){
-                myForm.removeChild(myForm.children[0])
-            }
-            let children = getInfo.content.children.length
-            for (let i = 0; i < children; i++){
-                getInfo.content.removeChild(getInfo.content.children[0])
-            }
-            console.log(getInfo.content.children)
-            getInfo.projectDeetz.splice(index, 0)
-            getInfo.projectEditz.splice(index, 0)
-        }
-        else if (getInfo.content.children[0]){
-            let children = getInfo.content.children.length
-            for (let i = 0; i < children; i++){
-                getInfo.content.removeChild(getInfo.content.children[0])
-            }
-            console.log(getInfo.content.children)
-            getInfo.projectDeetz.splice(index, 0)
-            getInfo.projectEditz.splice(index, 0)
-        }
+        projectDeleteFunction(index)
     }
 })
 })()
+
+function projectDeleteFunction(index){
+    let projectName = document.getElementById(`projectName${index}`)
+    let myForm = document.getElementById('myForm')
+    let taskForm = document.getElementById('taskForm')
+    let deleteEditForm = document.querySelectorAll(`[id^="editProjectForm"]`)
+    let deleteDetailsDiv = document.querySelectorAll(`[id^="projectDetailsText"]`)
+    console.log(getInfo.projectList.length)
+    console.log(deleteEditForm)
+    console.log(deleteDetailsDiv)
+    for (let j = 0; j < deleteEditForm.length; j++){
+        let item = deleteEditForm[j]
+        let parent = item.parentElement
+        parent.removeChild(item)
+    }
+    for (let k = 0; k < deleteDetailsDiv.length; k++){
+        let item = deleteDetailsDiv[k]
+        let parent = item.parentElement
+        parent.removeChild(item)
+    }
+    getInfo.projectsList.removeChild(projectName)
+    getInfo.projectList.splice(index, 1)
+    for (let i = index; i <= getInfo.projectList.length; i++){
+        let div = document.getElementById(`projectName${i}`)
+        let newProjectInfo = document.getElementById(`projectInfo${i}`)
+        let newProjectNameTitle = document.getElementById(`projectNameTitle${i}`)
+        let newProjectDeetz = document.getElementById(`projectDeetz${i}`)
+        let newProjectCheck = document.getElementById(`projectCheck${i}`)
+        let newProjectEdit = document.getElementById(`projectEdit${i}`)
+        let newProjectDelete = document.getElementById(`projectDelete${i}`)
+        getInfo.projectDeetz.splice(index, 0)
+        getInfo.projectEditz.splice(index, 0)
+        getInfo.projectDeetz[i] = 0
+        getInfo.projectEditz[i] = 0
+        if (!(div === null)){
+            let newID = div.id.slice(0, -1) + `${i - 1}`
+            div.id = newID
+            let newProjectInfoID = newProjectInfo.id.slice(0, -1) + `${i - 1}`
+            newProjectInfo.id = newProjectInfoID
+            let newProjectNameTitleID = newProjectNameTitle.id.slice(0, -1) + `${i - 1}`
+            newProjectNameTitle.id = newProjectNameTitleID
+            let newProjectDeetzID = newProjectDeetz.id.slice(0, -1) + `${i - 1}`
+            newProjectDeetz.id = newProjectDeetzID
+            let newProjectCheckID = newProjectCheck.id.slice(0, -1) + `${i - 1}`
+            newProjectCheck.id = newProjectCheckID
+            let newProjectEditID = newProjectEdit.id.slice(0, -1) + `${i - 1}`
+            newProjectEdit.id = newProjectEditID
+            let newProjectDeleteID = newProjectDelete.id.slice(0, -1) + `${i - 1}`
+            newProjectDelete.id = newProjectDeleteID
+        }
+    }
+    if (myForm.firstElementChild == taskForm){
+        for (let j = 0; j < 5; j++){
+            myForm.removeChild(myForm.children[0])
+        }
+        let children = getInfo.content.children.length
+        for (let i = 0; i < children; i++){
+            getInfo.content.removeChild(getInfo.content.children[0])
+        }
+        console.log(getInfo.content.children)
+        getInfo.projectDeetz.splice(index, 0)
+        getInfo.projectEditz.splice(index, 0)
+    }
+    else if (getInfo.content.children[0]){
+        let children = getInfo.content.children.length
+        for (let i = 0; i < children; i++){
+            getInfo.content.removeChild(getInfo.content.children[0])
+        }
+        console.log(getInfo.content.children)
+        getInfo.projectDeetz.splice(index, 0)
+        getInfo.projectEditz.splice(index, 0)
+    }
+}
 
 let projectCheckbox = (function(){
     document.addEventListener('click', function(e){
