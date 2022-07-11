@@ -320,45 +320,49 @@ function taskEditFunctionEditz1(index){
 let confirmButton = (function(){
     document.addEventListener('click', function(e){
     if (e.target && e.target.textContent == 'Confirm'){
-        let newProjectName = document.getElementById('newProjectNameInput')
-        let newProjectDueDate = document.getElementById('newProjectDueDateInput')
-        let newProjectPriority = document.getElementById('newProjectPriorityInput')
-        let newProjectListItem = document.createElement('div')
-        let projectDetails = document.createElement('button')
-        let projectName = document.createElement('div')
-        let projectInfo = document.createElement('div')
-        let index = getInfo.projectList.length
-        projectInfo.setAttribute('id', `projectInfo${index}`)
-        projectName.textContent = newProjectName.value
-        projectName.setAttribute('id', `projectNameTitle${index}`)
-        projectDetails.setAttribute('id', `projectDeetz${index}`)
-        projectDetails.textContent = 'Details'
-        let projectCheck = document.createElement('input')
-        projectCheck.setAttribute('type', 'checkbox')
-        projectCheck.setAttribute('id', `projectCheck${index}`)
-        let projectEdit = document.createElement('button')
-        projectEdit.setAttribute('id', `projectEdit${index}`)
-        projectEdit.textContent = 'Edit'
-        let projectDelete = document.createElement('button')
-        projectDelete.setAttribute('id', `projectDelete${index}`)
-        projectDelete.textContent = 'Delete'
-        newProjectListItem.setAttribute('id', `projectName${index}`)
-        newProjectDiv.removeChild(newProjectForm)
-        newProjectDiv.removeChild(confirmBtn)
-        projectInfo.appendChild(projectName)
-        projectInfo.appendChild(projectDetails)
-        projectInfo.appendChild(projectCheck)
-        projectInfo.appendChild(projectEdit)
-        projectInfo.appendChild(projectDelete)
-        newProjectListItem.appendChild(projectInfo)
-        getInfo.projectsList.appendChild(newProjectListItem)
-        let addProject = new Projects(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
-        getInfo.projectList.push(addProject)
-        getInfo.projectDeetz.splice(index, 0, 0)
-        getInfo.projectEditz.splice(index, 0, 0)
+        confirmButtonFunction()
     }
 })
 })()
+
+function confirmButtonFunction(){
+    let newProjectName = document.getElementById('newProjectNameInput')
+    let newProjectDueDate = document.getElementById('newProjectDueDateInput')
+    let newProjectPriority = document.getElementById('newProjectPriorityInput')
+    let newProjectListItem = document.createElement('div')
+    let projectDetails = document.createElement('button')
+    let projectName = document.createElement('div')
+    let projectInfo = document.createElement('div')
+    let index = getInfo.projectList.length
+    projectInfo.setAttribute('id', `projectInfo${index}`)
+    projectName.textContent = newProjectName.value
+    projectName.setAttribute('id', `projectNameTitle${index}`)
+    projectDetails.setAttribute('id', `projectDeetz${index}`)
+    projectDetails.textContent = 'Details'
+    let projectCheck = document.createElement('input')
+    projectCheck.setAttribute('type', 'checkbox')
+    projectCheck.setAttribute('id', `projectCheck${index}`)
+    let projectEdit = document.createElement('button')
+    projectEdit.setAttribute('id', `projectEdit${index}`)
+    projectEdit.textContent = 'Edit'
+    let projectDelete = document.createElement('button')
+    projectDelete.setAttribute('id', `projectDelete${index}`)
+    projectDelete.textContent = 'Delete'
+    newProjectListItem.setAttribute('id', `projectName${index}`)
+    newProjectDiv.removeChild(newProjectForm)
+    newProjectDiv.removeChild(confirmBtn)
+    projectInfo.appendChild(projectName)
+    projectInfo.appendChild(projectDetails)
+    projectInfo.appendChild(projectCheck)
+    projectInfo.appendChild(projectEdit)
+    projectInfo.appendChild(projectDelete)
+    newProjectListItem.appendChild(projectInfo)
+    getInfo.projectsList.appendChild(newProjectListItem)
+    let addProject = new Projects(newProjectName.value, newProjectDueDate.value, newProjectPriority.value)
+    getInfo.projectList.push(addProject)
+    getInfo.projectDeetz.splice(index, 0, 0)
+    getInfo.projectEditz.splice(index, 0, 0)
+}
 
 let projectNameEvent = (function(){
     document.addEventListener('click', function(e){
