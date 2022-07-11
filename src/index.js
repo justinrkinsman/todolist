@@ -91,47 +91,55 @@ let taskCheckButton = (function(){
         if (e.target && e.target.id.startsWith('check')){
         let check = e.target
         let index = e.target.id.slice(-1)
-        let contentDiv = document.getElementById(`contentDiv${index}`)
         console.log(check)
         if (check.checked){
-            let taskName = document.getElementById(`taskContent${index}`)
-            let taskDetails = document.getElementById(`detailsBtn${index}`)
-            let taskCheck = document.getElementById(`check${index}`)
-            let taskEdit = document.getElementById(`editBtn${index}`)
-            taskName.style.opacity = '0.3'
-            taskDetails.style.opacity = '0.3'
-            taskCheck.style.opacity = '0.3'
-            taskEdit.style.opacity = '0.3'
-            taskDetails.disabled = true
-            taskEdit.disabled = true
-            if (contentDiv.children[1] && contentDiv.children[2]){
-                let removeThisChild = contentDiv.children[1]
-                let removeThisChildToo = contentDiv.children[2]
-                contentDiv.removeChild(removeThisChildToo)
-                contentDiv.removeChild(removeThisChild)
-                getInfo.deetz[index] = 0
-                getInfo.editz[index] = 0
-            }else if (contentDiv.children[1]){
-                let removeThisChild = contentDiv.children[1]
-                contentDiv.removeChild(removeThisChild)
-                getInfo.deetz[index] = 0
-                getInfo.editz[index] = 0
-            }
+            taskChecked(index)
         }else{
-            let taskName = document.getElementById(`taskContent${index}`)
-            let taskDetails = document.getElementById(`detailsBtn${index}`)
-            let taskCheck = document.getElementById(`check${index}`)
-            let taskEdit = document.getElementById(`editBtn${index}`)
-            taskName.style.opacity = '1'
-            taskDetails.style.opacity = '1'
-            taskCheck.style.opacity = '1'
-            taskEdit.style.opacity = '1'
-            taskDetails.disabled = false
-            taskEdit.disabled = false
+            taskUnchecked(index)
         }
     }
 })
 })()
+
+function taskChecked(index){
+    let contentDiv = document.getElementById(`contentDiv${index}`)
+    let taskName = document.getElementById(`taskContent${index}`)
+    let taskDetails = document.getElementById(`detailsBtn${index}`)
+    let taskCheck = document.getElementById(`check${index}`)
+    let taskEdit = document.getElementById(`editBtn${index}`)
+    taskName.style.opacity = '0.3'
+    taskDetails.style.opacity = '0.3'
+    taskCheck.style.opacity = '0.3'
+    taskEdit.style.opacity = '0.3'
+    taskDetails.disabled = true
+    taskEdit.disabled = true
+    if (contentDiv.children[1] && contentDiv.children[2]){
+        let removeThisChild = contentDiv.children[1]
+        let removeThisChildToo = contentDiv.children[2]
+        contentDiv.removeChild(removeThisChildToo)
+        contentDiv.removeChild(removeThisChild)
+        getInfo.deetz[index] = 0
+        getInfo.editz[index] = 0
+    }else if (contentDiv.children[1]){
+        let removeThisChild = contentDiv.children[1]
+        contentDiv.removeChild(removeThisChild)
+        getInfo.deetz[index] = 0
+        getInfo.editz[index] = 0
+    }
+}
+
+function taskUnchecked(index){
+    let taskName = document.getElementById(`taskContent${index}`)
+    let taskDetails = document.getElementById(`detailsBtn${index}`)
+    let taskCheck = document.getElementById(`check${index}`)
+    let taskEdit = document.getElementById(`editBtn${index}`)
+    taskName.style.opacity = '1'
+    taskDetails.style.opacity = '1'
+    taskCheck.style.opacity = '1'
+    taskEdit.style.opacity = '1'
+    taskDetails.disabled = false
+    taskEdit.disabled = false
+}
 
 let taskDeleteButton = (function(){
     document.addEventListener('click', function(e){
