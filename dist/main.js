@@ -1,115 +1,9 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./src/addDomElement.js":
-/*!******************************!*\
-  !*** ./src/addDomElement.js ***!
-  \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "taskDetailsFunction": () => (/* binding */ taskDetailsFunction)
-/* harmony export */ });
-function taskDetailsFunction(){
-        console.log('it works')
-    /*if (getInfo.deetz[index] == 0){
-            let detailsDiv = document.createElement('div')
-            let ogDiv = document.getElementById(`contentDiv${index}`)
-            let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
-            let currentDesc = getInfo.projectList[projectIndex].taskInfo[index].description
-            let currentDue = getInfo.projectList[projectIndex].taskInfo[index].dueDate
-            let currentPriority = getInfo.projectList[projectIndex].taskInfo[index].priority
-            if (ogDiv.lastChild.id.startsWith('editForm')){
-                let ogDiv = document.getElementById(`contentDiv${index}`)
-                let editForm = document.getElementById('editForm')
-                detailsDiv.setAttribute('id', `detailsText${index}`)
-                detailsDiv.textContent = `${currentDesc} ${(currentDue)} ${(currentPriority)}`
-                ogDiv.insertBefore(detailsDiv, editForm)
-                getInfo.deetz[index] = 1
-            }else{
-                detailsDiv.setAttribute('id', `detailsText${index}`)
-                detailsDiv.textContent = `${currentDesc} ${currentDue} ${currentPriority}`
-                ogDiv.appendChild(detailsDiv)
-                getInfo.deetz[index] = 1}
-        }else if (getInfo.deetz[index] == 1){
-            let ogDiv = document.getElementById(`contentDiv${index}`)
-            let detailsDiv = document.getElementById(`detailsText${index}`)
-            ogDiv.removeChild(detailsDiv)
-            getInfo.deetz[index] = 0
-        }*/
-        }
-
-
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _addDomElement_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addDomElement.js */ "./src/addDomElement.js");
-
+//import { taskDetailsFunctionDeetz0 } from "./addDomElement.js";
 
 class Todo {
     constructor(task, description, dueDate, priority) {
@@ -151,35 +45,42 @@ let taskDetailsButton = (function(){
     document.addEventListener('click', function(e){
     let index = e.target.id.slice(-1)
         if(e.target && e.target.id.startsWith('detailsBtn')){
-            (0,_addDomElement_js__WEBPACK_IMPORTED_MODULE_0__.taskDetailsFunction)()
         if (getInfo.deetz[index] == 0){
-            let detailsDiv = document.createElement('div')
-            let ogDiv = document.getElementById(`contentDiv${index}`)
-            let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
-            let currentDesc = getInfo.projectList[projectIndex].taskInfo[index].description
-            let currentDue = getInfo.projectList[projectIndex].taskInfo[index].dueDate
-            let currentPriority = getInfo.projectList[projectIndex].taskInfo[index].priority
-            if (ogDiv.lastChild.id.startsWith('editForm')){
-                let ogDiv = document.getElementById(`contentDiv${index}`)
-                let editForm = document.getElementById('editForm')
-                detailsDiv.setAttribute('id', `detailsText${index}`)
-                detailsDiv.textContent = `${currentDesc} ${(currentDue)} ${(currentPriority)}`
-                ogDiv.insertBefore(detailsDiv, editForm)
-                getInfo.deetz[index] = 1
-            }else{
-                detailsDiv.setAttribute('id', `detailsText${index}`)
-                detailsDiv.textContent = `${currentDesc} ${currentDue} ${currentPriority}`
-                ogDiv.appendChild(detailsDiv)
-                getInfo.deetz[index] = 1}
+            taskDetailsFunctionDeetz0(index)
         }else if (getInfo.deetz[index] == 1){
-            let ogDiv = document.getElementById(`contentDiv${index}`)
-            let detailsDiv = document.getElementById(`detailsText${index}`)
-            ogDiv.removeChild(detailsDiv)
-            getInfo.deetz[index] = 0
+            taskDetailsFunctionDeetz1(index)
         }
         }
     })
 })()
+
+function taskDetailsFunctionDeetz0(index){
+    let detailsDiv = document.createElement('div')
+    let ogDiv = document.getElementById(`contentDiv${index}`)
+    let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
+    let currentDesc = getInfo.projectList[projectIndex].taskInfo[index].description
+    let currentDue = getInfo.projectList[projectIndex].taskInfo[index].dueDate
+    let currentPriority = getInfo.projectList[projectIndex].taskInfo[index].priority
+    if (ogDiv.lastChild.id.startsWith('editForm')){
+        let ogDiv = document.getElementById(`contentDiv${index}`)
+        let editForm = document.getElementById('editForm')
+        detailsDiv.setAttribute('id', `detailsText${index}`)
+        detailsDiv.textContent = `${currentDesc} ${(currentDue)} ${(currentPriority)}`
+        ogDiv.insertBefore(detailsDiv, editForm)
+        getInfo.deetz[index] = 1
+    }else{
+        detailsDiv.setAttribute('id', `detailsText${index}`)
+        detailsDiv.textContent = `${currentDesc} ${currentDue} ${currentPriority}`
+        ogDiv.appendChild(detailsDiv)
+        getInfo.deetz[index] = 1}
+}
+
+function taskDetailsFunctionDeetz1(index){
+    let ogDiv = document.getElementById(`contentDiv${index}`)
+    let detailsDiv = document.getElementById(`detailsText${index}`)
+    ogDiv.removeChild(detailsDiv)
+    getInfo.deetz[index] = 0
+}
 
 let taskCheckButton = (function(){
     document.addEventListener('click', function(e){
@@ -910,8 +811,6 @@ function addListToPage() {
 let form = document.getElementById('myForm');
 function handleForm(event) { event.preventDefault(); }
 form.addEventListener('submit', handleForm)
-})();
-
 /******/ })()
 ;
 //# sourceMappingURL=main.js.map
