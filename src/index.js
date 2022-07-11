@@ -634,135 +634,157 @@ let projectCheckbox = (function(){
     document.addEventListener('click', function(e){
     if (e.target && e.target.id.startsWith('projectCheck')) {
         let check = e.target
+        let index = e.target.id.slice(-1)
         if (check.checked){
-            let index = e.target.id.slice(-1)
-            let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
-            let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
-            let projectCheck = document.getElementById(`projectCheck${index}`)
-            let projectEditDiv = document.getElementById(`projectEdit${index}`)
-            let projectName = document.getElementById(`projectName${index}`)
-            console.log(getInfo.projectsList.children)
-            projectNameTitle.style.opacity = '0.3'
-            projectDeetzDiv.style.opacity = '0.3'
-            projectCheck.style.opacity = '0.3'
-            projectEditDiv.style.opacity = '0.3'
-            document.getElementById(`projectDeetz${index}`).disabled = true
-            document.getElementById(`projectEdit${index}`).disabled = true
-            if (projectName.children[1] && projectName.children[2]){
-                let removeThisChild = projectName.children[1]
-                let removeThisChildToo = projectName.children[2]
-                projectName.removeChild(removeThisChildToo)
-                projectName.removeChild(removeThisChild)
-                getInfo.projectDeetz[index] = 0
-                getInfo.projectEditz[index] = 0
-            }else if (projectName.children[1]){
-                let removeThisChild = projectName.children[1]
-                projectName.removeChild(removeThisChild)
-                getInfo.projectDeetz[index] = 0
-                getInfo.projectEditz[index] = 0
-            }
+            projectChecked(index)
         }else{
-            let index = e.target.id.slice(-1)
-            let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
-            let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
-            let projectCheck = document.getElementById(`projectCheck${index}`)
-            let projectEditDiv = document.getElementById(`projectEdit${index}`)
-            projectNameTitle.style.opacity = '1'
-            projectDeetzDiv.style.opacity = '1'
-            projectCheck.style.opacity = '1'
-            projectEditDiv.style.opacity = '1'
-            document.getElementById(`projectDeetz${index}`).disabled = false
-            document.getElementById(`projectEdit${index}`).disabled = false
+            projectUnchecked(index)
         }
     }
 })
 })()
 
+function projectChecked(index){
+    let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
+    let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
+    let projectCheck = document.getElementById(`projectCheck${index}`)
+    let projectEditDiv = document.getElementById(`projectEdit${index}`)
+    let projectName = document.getElementById(`projectName${index}`)
+    console.log(getInfo.projectsList.children)
+    projectNameTitle.style.opacity = '0.3'
+    projectDeetzDiv.style.opacity = '0.3'
+    projectCheck.style.opacity = '0.3'
+    projectEditDiv.style.opacity = '0.3'
+    document.getElementById(`projectDeetz${index}`).disabled = true
+    document.getElementById(`projectEdit${index}`).disabled = true
+    if (projectName.children[1] && projectName.children[2]){
+        let removeThisChild = projectName.children[1]
+        let removeThisChildToo = projectName.children[2]
+        projectName.removeChild(removeThisChildToo)
+        projectName.removeChild(removeThisChild)
+        getInfo.projectDeetz[index] = 0
+        getInfo.projectEditz[index] = 0
+    }else if (projectName.children[1]){
+        let removeThisChild = projectName.children[1]
+        projectName.removeChild(removeThisChild)
+        getInfo.projectDeetz[index] = 0
+        getInfo.projectEditz[index] = 0
+    }
+}
+
+function projectUnchecked(index){
+    let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
+    let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
+    let projectCheck = document.getElementById(`projectCheck${index}`)
+    let projectEditDiv = document.getElementById(`projectEdit${index}`)
+    projectNameTitle.style.opacity = '1'
+    projectDeetzDiv.style.opacity = '1'
+    projectCheck.style.opacity = '1'
+    projectEditDiv.style.opacity = '1'
+    document.getElementById(`projectDeetz${index}`).disabled = false
+    document.getElementById(`projectEdit${index}`).disabled = false
+}
+
 let projectEditButton = (function(){
     document.addEventListener('click', function(e){
     if (e.target && e.target.id.startsWith('projectEdit')){
         let index = e.target.id.slice(-1)
-        console.log(getInfo.projectEditz)
         if (getInfo.projectEditz[index] == 0){
-            let currentProject = document.getElementById(`projectNameTitle${index}`)
-            let currentDue = getInfo.projectList[index].dueDate
-            let currentPriority = getInfo.projectList[index].priority
-            let newProject = document.createElement('input')
-            newProject.setAttribute('type', 'text')
-            newProject.setAttribute('id', `newTaskInput${index}`)
-            newProject.defaultValue = currentProject.textContent
-            let editProjectForm = document.createElement('div')
-            editProjectForm.setAttribute('id', `editProjectForm${index}`)
-            let editProjectName = document.createElement('div')
-            let editProjectDue = document.createElement('div')
-            let editProjectPriority = document.createElement('div')
-            let newProjectNameLabel = document.createElement('LABEL')
-            let newProjectDueLabel = document.createElement('label')
-            let newProjectPriorityLabel = document.createElement('label')
-            newProjectNameLabel.htmlFor = newProject
-            newProjectNameLabel.textContent = 'Project'
-            editProjectName.appendChild(newProject)
-            editProjectName.appendChild(newProjectNameLabel)
-            let newProjectDue = document.createElement('input')
-            newProjectDue.setAttribute('type', 'text')
-            newProjectDue.setAttribute('id', `newProjectDueInput${index}`)
-            newProjectDue.defaultValue = currentDue
-            newProjectDueLabel.htmlFor = newProjectDue
-            newProjectDueLabel.textContent = 'Due Date'
-            editProjectDue.appendChild(newProjectDue)
-            editProjectDue.appendChild(newProjectDueLabel)
-            let newProjectPriority = document.createElement('input')
-            newProjectPriority.setAttribute('type', 'input')
-            newProjectPriority.setAttribute('id', `newPriorityInput${index}`)
-            newProjectPriority.defaultValue = currentPriority
-            newProjectPriorityLabel.htmlFor = newProjectPriority
-            newProjectPriorityLabel.textContent = 'Priority'
-            editProjectPriority.appendChild(newProjectPriority)
-            editProjectPriority.appendChild(newProjectPriorityLabel)
-            let newProjectSubmit = document.createElement('button')
-            let content = document.getElementById(`projectName${index}`)
-            newProjectSubmit.textContent = 'Accept'
-            editProjectForm.appendChild(editProjectName)
-            editProjectForm.appendChild(editProjectDue)
-            editProjectForm.appendChild(editProjectPriority)
-            editProjectForm.appendChild(newProjectSubmit)
-            content.appendChild(editProjectForm)
-            getInfo.projectEditz[index] = 1
-            newProjectSubmit.addEventListener('click', function(e){
-                if (e.target && e.target.textContent == 'Accept'){    //Split here
-                    let divContent = document.getElementById('content')
-                    console.log(divContent)
-                    if (!(divContent.children[0])){
-                        currentProject.textContent = newProject.value
-                        getInfo.projectList[index].name = newProject.value
-                        getInfo.projectList[index].dueDate = newProjectDue.value
-                        getInfo.projectList[index].priority = newProjectPriority.value
-                        console.log(getInfo.projectList)
-                        content.removeChild(editProjectForm)
-                        getInfo.projectEditz[index] = 0
-                    }else{
-                        let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
-                        let contentH2 = document.getElementById(`h2${index}`)
-                        contentH2.textContent = newProject.value
-                        currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
-                        currentProject.textContent = newProject.value
-                        getInfo.projectList[index].name = newProject.value
-                        getInfo.projectList[index].dueDate = newProjectDue.value
-                        getInfo.projectList[index].priority = newProjectPriority.value
-                        console.log(getInfo.projectList)
-                        content.removeChild(editProjectForm)
-                        getInfo.projectEditz[index] = 0
-                    }
+            projectEditEditz0(index)
+            document.addEventListener('click', function(e){
+                if (e.target && e.target.textContent == 'Accept'){
+                    projectEditAccept(index)
                 }
             })} else if (getInfo.projectEditz[index] == 1){
-                let content = document.getElementById(`projectName${index}`)
-                let editProjectForm = document.getElementById(`editProjectForm${index}`)
-                content.removeChild(editProjectForm)
-                getInfo.projectEditz[index] = 0
+                    projectEditEditz1(index)
             }        
     }
 })
 })()
+
+function projectEditEditz0(index){
+    let currentProject = document.getElementById(`projectNameTitle${index}`)
+    let currentDue = getInfo.projectList[index].dueDate
+    let currentPriority = getInfo.projectList[index].priority
+    let newProject = document.createElement('input')
+    newProject.setAttribute('type', 'text')
+    newProject.setAttribute('id', `newTaskInput${index}`)
+    newProject.defaultValue = currentProject.textContent
+    let editProjectForm = document.createElement('div')
+    editProjectForm.setAttribute('id', `editProjectForm${index}`)
+    let editProjectName = document.createElement('div')
+    let editProjectDue = document.createElement('div')
+    let editProjectPriority = document.createElement('div')
+    let newProjectNameLabel = document.createElement('LABEL')
+    let newProjectDueLabel = document.createElement('label')
+    let newProjectPriorityLabel = document.createElement('label')
+    newProjectNameLabel.htmlFor = newProject
+    newProjectNameLabel.textContent = 'Project'
+    editProjectName.appendChild(newProject)
+    editProjectName.appendChild(newProjectNameLabel)
+    let newProjectDue = document.createElement('input')
+    newProjectDue.setAttribute('type', 'text')
+    newProjectDue.setAttribute('id', `newProjectDueInput${index}`)
+    newProjectDue.defaultValue = currentDue
+    newProjectDueLabel.htmlFor = newProjectDue
+    newProjectDueLabel.textContent = 'Due Date'
+    editProjectDue.appendChild(newProjectDue)
+    editProjectDue.appendChild(newProjectDueLabel)
+    let newProjectPriority = document.createElement('input')
+    newProjectPriority.setAttribute('type', 'input')
+    newProjectPriority.setAttribute('id', `newPriorityInput${index}`)
+    newProjectPriority.defaultValue = currentPriority
+    newProjectPriorityLabel.htmlFor = newProjectPriority
+    newProjectPriorityLabel.textContent = 'Priority'
+    editProjectPriority.appendChild(newProjectPriority)
+    editProjectPriority.appendChild(newProjectPriorityLabel)
+    let newProjectSubmit = document.createElement('button')
+    let content = document.getElementById(`projectName${index}`)
+    newProjectSubmit.textContent = 'Accept'
+    editProjectForm.appendChild(editProjectName)
+    editProjectForm.appendChild(editProjectDue)
+    editProjectForm.appendChild(editProjectPriority)
+    editProjectForm.appendChild(newProjectSubmit)
+    content.appendChild(editProjectForm)
+    getInfo.projectEditz[index] = 1
+}
+
+function projectEditAccept(index){
+    let divContent = document.getElementById('content')
+    if (!(divContent.children[0])){
+        let currentProject = document.getElementById(`projectNameTitle${index}`)
+        let newProject = document.getElementById(`newTaskInput${index}`)
+        let newProjectDue = document.getElementById(`newProjectDueInput${index}`)
+        let newProjectPriority = document.getElementById(`newPriorityInput${index}`)
+        currentProject.textContent = newProject.value
+        getInfo.projectList[index].name = newProject.value
+        getInfo.projectList[index].dueDate = newProjectDue.value
+        getInfo.projectList[index].priority = newProjectPriority.value
+        let editProjectForm = document.getElementById(`editProjectForm${index}`)
+        let content = document.getElementById(`projectName${index}`)
+        content.removeChild(editProjectForm)
+        getInfo.projectEditz[index] = 0
+    }else{
+        let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
+        let contentH2 = document.getElementById(`h2${index}`)
+        contentH2.textContent = newProject.value
+        currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
+        currentProject.textContent = newProject.value
+        getInfo.projectList[index].name = newProject.value
+        getInfo.projectList[index].dueDate = newProjectDue.value
+        getInfo.projectList[index].priority = newProjectPriority.value
+        console.log(getInfo.projectList)
+        content.removeChild(editProjectForm)
+        getInfo.projectEditz[index] = 0
+    }
+}
+
+function projectEditEditz1(index){
+    let content = document.getElementById(`projectName${index}`)
+    let editProjectForm = document.getElementById(`editProjectForm${index}`)
+    content.removeChild(editProjectForm)
+    getInfo.projectEditz[index] = 0
+}
 
 function removeAllChildNodes(parent){
     while (parent.firstChild){
