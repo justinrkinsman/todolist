@@ -1,4 +1,4 @@
-function taskDetailsFunctionDeetz0(index){
+/*function taskDetailsFunctionDeetz0(index){
         console.log(index)
         let detailsDiv = document.createElement('div')
         let ogDiv = document.getElementById(`contentDiv${index}`)
@@ -12,13 +12,14 @@ function taskDetailsFunctionDeetz0(index){
             detailsDiv.setAttribute('id', `detailsText${index}`)
             detailsDiv.textContent = `${currentDesc} ${(currentDue)} ${(currentPriority)}`
             ogDiv.insertBefore(detailsDiv, editForm)
+            getInfo.deetz[index] = 1
         }else{
             detailsDiv.setAttribute('id', `detailsText${index}`)
             detailsDiv.textContent = `${currentDesc} ${currentDue} ${currentPriority}`
             ogDiv.appendChild(detailsDiv)
+            getInfo.deetz[index] = 1}
             console.log('it works')
-        }
     return{}
 }
 
-export {taskDetailsFunctionDeetz0}
+export {taskDetailsFunctionDeetz0}*/
