@@ -2,19 +2,44 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/addDOMElement.js":
+/***/ "./src/addDomElement.js":
 /*!******************************!*\
-  !*** ./src/addDOMElement.js ***!
+  !*** ./src/addDomElement.js ***!
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "test": () => (/* binding */ test)
+/* harmony export */   "taskDetailsFunction": () => (/* binding */ taskDetailsFunction)
 /* harmony export */ });
-function test(){
-    console.log('export test')
-}
+function taskDetailsFunction(){
+        console.log('it works')
+    /*if (getInfo.deetz[index] == 0){
+            let detailsDiv = document.createElement('div')
+            let ogDiv = document.getElementById(`contentDiv${index}`)
+            let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
+            let currentDesc = getInfo.projectList[projectIndex].taskInfo[index].description
+            let currentDue = getInfo.projectList[projectIndex].taskInfo[index].dueDate
+            let currentPriority = getInfo.projectList[projectIndex].taskInfo[index].priority
+            if (ogDiv.lastChild.id.startsWith('editForm')){
+                let ogDiv = document.getElementById(`contentDiv${index}`)
+                let editForm = document.getElementById('editForm')
+                detailsDiv.setAttribute('id', `detailsText${index}`)
+                detailsDiv.textContent = `${currentDesc} ${(currentDue)} ${(currentPriority)}`
+                ogDiv.insertBefore(detailsDiv, editForm)
+                getInfo.deetz[index] = 1
+            }else{
+                detailsDiv.setAttribute('id', `detailsText${index}`)
+                detailsDiv.textContent = `${currentDesc} ${currentDue} ${currentPriority}`
+                ogDiv.appendChild(detailsDiv)
+                getInfo.deetz[index] = 1}
+        }else if (getInfo.deetz[index] == 1){
+            let ogDiv = document.getElementById(`contentDiv${index}`)
+            let detailsDiv = document.getElementById(`detailsText${index}`)
+            ogDiv.removeChild(detailsDiv)
+            getInfo.deetz[index] = 0
+        }*/
+        }
 
 
 
@@ -83,10 +108,8 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _addDOMElement_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addDOMElement.js */ "./src/addDOMElement.js");
+/* harmony import */ var _addDomElement_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addDomElement.js */ "./src/addDomElement.js");
 
-
-(0,_addDOMElement_js__WEBPACK_IMPORTED_MODULE_0__.test)()
 
 class Todo {
     constructor(task, description, dueDate, priority) {
@@ -106,10 +129,10 @@ class Projects {
     }
 }
 
-function findIndex(object){
-    index = object.id.slice(-1)
+/*function Index(object){
+    let index = object.id.slice(-1)
     return index
-}
+}*/
 
 let getInfo = (function(){
     return{
@@ -126,22 +149,17 @@ let getInfo = (function(){
 
 let taskDetailsButton = (function(){
     document.addEventListener('click', function(e){
-        findIndex(e.target)
-        //console.log(index)
+    let index = e.target.id.slice(-1)
         if(e.target && e.target.id.startsWith('detailsBtn')){
-            //findIndex(e.target)
+            (0,_addDomElement_js__WEBPACK_IMPORTED_MODULE_0__.taskDetailsFunction)()
         if (getInfo.deetz[index] == 0){
             let detailsDiv = document.createElement('div')
-            //findIndex(e.target)
             let ogDiv = document.getElementById(`contentDiv${index}`)
             let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
-            //console.log(getInfo.projectList[projectIndex].taskInfo[index].description)
-            //let currentTask = document.getElementById(`taskContent${index}`)
             let currentDesc = getInfo.projectList[projectIndex].taskInfo[index].description
             let currentDue = getInfo.projectList[projectIndex].taskInfo[index].dueDate
             let currentPriority = getInfo.projectList[projectIndex].taskInfo[index].priority
             if (ogDiv.lastChild.id.startsWith('editForm')){
-                //findIndex(e.target)
                 let ogDiv = document.getElementById(`contentDiv${index}`)
                 let editForm = document.getElementById('editForm')
                 detailsDiv.setAttribute('id', `detailsText${index}`)
@@ -154,7 +172,6 @@ let taskDetailsButton = (function(){
                 ogDiv.appendChild(detailsDiv)
                 getInfo.deetz[index] = 1}
         }else if (getInfo.deetz[index] == 1){
-            //findIndex(e.target)
             let ogDiv = document.getElementById(`contentDiv${index}`)
             let detailsDiv = document.getElementById(`detailsText${index}`)
             ogDiv.removeChild(detailsDiv)
@@ -168,11 +185,10 @@ let taskCheckButton = (function(){
     document.addEventListener('click', function(e){
         if (e.target && e.target.id.startsWith('check')){
         let check = e.target
-        findIndex(e.target)
+        let index = e.target.id.slice(-1)
         let contentDiv = document.getElementById(`contentDiv${index}`)
         console.log(check)
         if (check.checked){
-            //findIndex(e.target)
             let taskName = document.getElementById(`taskContent${index}`)
             let taskDetails = document.getElementById(`detailsBtn${index}`)
             let taskCheck = document.getElementById(`check${index}`)
@@ -197,7 +213,6 @@ let taskCheckButton = (function(){
                 getInfo.editz[index] = 0
             }
         }else{
-            //findIndex(e.target)
             let taskName = document.getElementById(`taskContent${index}`)
             let taskDetails = document.getElementById(`detailsBtn${index}`)
             let taskCheck = document.getElementById(`check${index}`)
@@ -216,7 +231,7 @@ let taskCheckButton = (function(){
 let taskDeleteButton = (function(){
     document.addEventListener('click', function(e){
         if (e.target && e.target.id.startsWith('delete')){
-        findIndex(e.target)
+        let index = e.target.id.slice(-1)
             let h2 = document.querySelector('[id^="h2"]')
             projectIndex = h2.id.slice(-1)
             let removeDiv = document.getElementById(`contentDiv${index}`)
@@ -279,11 +294,10 @@ let taskDeleteButton = (function(){
 let taskEditButton = (function(){
     document.addEventListener('click', function(e){
     if (e.target && e.target.id.startsWith('edit')){
-        findIndex(e.target)
+        let index = e.target.id.slice(-1)
         if (getInfo.editz[index] == 0){
-            findIndex(e.target)
+            let index = e.target.id.slice(-1)
             let projectIndex = document.querySelector('[id^="h2"]').id.slice(-1)
-            //let addTaskButton = document.querySelector('[id^="addTaskButton"]')
             let currentTask = document.getElementById(`taskContent${index}`)
             let currentDesc = getInfo.projectList[projectIndex].taskInfo[index].description
             let currentDue = getInfo.projectList[projectIndex].taskInfo[index].dueDate
@@ -353,14 +367,8 @@ let taskEditButton = (function(){
                 content.removeChild(detailsText)
                 getInfo.editz[index] = 0
                 getInfo.deetz[index] = 0
-                /*
-                if child[1] = detailsText{
-                    remove detailstext
-                }
-                */
             }
         })} else if (getInfo.editz[index] == 1){
-            //findIndex(e.target)
             let content = document.getElementById(`contentDiv${index}`)
             let editForm = document.getElementById(`editForm`)
             content.removeChild(editForm)
@@ -416,7 +424,7 @@ let confirmButton = (function(){
 let projectNameEvent = (function(){
     document.addEventListener('click', function(e){
     if (e.target && e.target.id.startsWith('projectName')){
-        findIndex(e.target)
+        let index = e.target.id.slice(-1)
         let addTaskButton = document.createElement('button')
         addTaskButton.setAttribute('id', `addTaskButton${index}`)
         addTaskButton.textContent = 'Add Task'
@@ -469,7 +477,7 @@ let projectNameEvent = (function(){
 let addTaskButton = (function(){
     document.addEventListener('click', function(e){
     if (e.target && e.target.textContent == 'Add Task'){
-        //findIndex(e.target)
+        let index = e.target.id.slice(-1)
         let myForm = document.getElementById('myForm')
         let taskFormDel = document.getElementById('taskForm')
         if (!(myForm.childNodes[1] == taskFormDel)){
@@ -534,7 +542,7 @@ let submitButton = (function(){
     document.addEventListener('click', function(e){
     if (e.target && e.target.textContent == 'Submit'){
         submission()
-        findIndex(document.querySelector('[id^="h2"]'))
+        let index = document.querySelector('[id^="h2"]').id.slice(-1)
         console.log(getInfo.projectList[index].taskInfo.length)
         let taskIndex = getInfo.projectList[index].taskInfo.length
         getInfo.projectList[index].taskInfo[taskIndex] = (getInfo.fullList[getInfo.fullList.length-1])//adds tasks to projects
@@ -555,12 +563,10 @@ let submitButton = (function(){
 let projectDetailsButton = (function(){
     document.addEventListener('click', function(e){
     if (e.target && e.target.id.startsWith('projectDeetz')) {
-        findIndex(e.target)
+        let index = e.target.id.slice(-1)
             if (getInfo.projectDeetz[index] == 0) {
-                //findIndex(e.target)
                 let ogDiv = document.getElementById(`projectName${index}`)
                 if (ogDiv.lastChild.id.startsWith('editProjectForm')){
-                    //findIndex(e.target)
                     let ogDiv = document.getElementById(`projectName${index}`)
                     let projectName = document.getElementById(`editProjectForm${index}`)
                     let projectDetailsDiv = document.createElement('div')
@@ -579,7 +585,7 @@ let projectDetailsButton = (function(){
                     getInfo.projectDeetz[index] = 1
                 }
             }else if (getInfo.projectDeetz[index] == 1){
-                findIndex(e.target)
+                let index = e.target.id.slice(-1)
                 let ogDiv = document.getElementById(`projectName${index}`)
                 let projectDetailsDiv = document.getElementById(`projectDetailsText${index}`)
                 ogDiv.removeChild(projectDetailsDiv)
@@ -592,7 +598,7 @@ let projectDetailsButton = (function(){
 let projectDeleteButton = (function(){
     document.addEventListener('click', function(e){
     if (e.target && e.target.id.startsWith('projectDelete')) {   //Split here
-        findIndex(e.target)
+        let index = e.target.id.slice(-1)
         let projectName = document.getElementById(`projectName${index}`)
         let myForm = document.getElementById('myForm')
         let taskForm = document.getElementById('taskForm')
@@ -672,7 +678,7 @@ let projectCheckbox = (function(){
     if (e.target && e.target.id.startsWith('projectCheck')) {
         let check = e.target
         if (check.checked){
-            //findIndex(e.target)
+            let index = e.target.id.slice(-1)
             let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
             let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
             let projectCheck = document.getElementById(`projectCheck${index}`)
@@ -699,7 +705,7 @@ let projectCheckbox = (function(){
                 getInfo.projectEditz[index] = 0
             }
         }else{
-            //findIndex(e.target)
+            let index = e.target.id.slice(-1)
             let projectNameTitle = document.getElementById(`projectNameTitle${index}`)
             let projectDeetzDiv = document.getElementById(`projectDeetz${index}`)
             let projectCheck = document.getElementById(`projectCheck${index}`)
@@ -718,10 +724,9 @@ let projectCheckbox = (function(){
 let projectEditButton = (function(){
     document.addEventListener('click', function(e){
     if (e.target && e.target.id.startsWith('projectEdit')){
-        findIndex(e.target)
+        let index = e.target.id.slice(-1)
         console.log(getInfo.projectEditz)
         if (getInfo.projectEditz[index] == 0){
-            //findIndex(e.target)
             let currentProject = document.getElementById(`projectNameTitle${index}`)
             let currentDue = getInfo.projectList[index].dueDate
             let currentPriority = getInfo.projectList[index].priority
@@ -793,7 +798,6 @@ let projectEditButton = (function(){
                     }
                 }
             })} else if (getInfo.projectEditz[index] == 1){
-                //findIndex(e.target)
                 let content = document.getElementById(`projectName${index}`)
                 let editProjectForm = document.getElementById(`editProjectForm${index}`)
                 content.removeChild(editProjectForm)
@@ -871,7 +875,7 @@ function addListToPage() {
     const priority = document.getElementById('priority')  //
     let list = new Todo(task.value, desc.value, due.value, priority.value)
     let newDiv = document.createElement('div')
-    findIndex(document.querySelector('[id^="h2"]'))
+    let index = (document.querySelector('[id^="h2"]').id.slice(-1))
     console.log(getInfo.projectList[index].taskInfo.length)
     let taskIndex = getInfo.projectList[index].taskInfo.length
     newDiv.setAttribute('id', `taskContent${taskIndex}`)
