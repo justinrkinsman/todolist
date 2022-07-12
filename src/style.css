@@ -42,11 +42,6 @@ html, body{
     margin-left: 10px;
 }
 
-[id^=contentDiv] {
-    display: flex;
-    flex-direction: column
-}
-
 [id^=leftSide] {
     display: flex;
     flex-direction: row;
@@ -70,10 +65,18 @@ html, body{
 
 [id^=projectInfo]{
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 
 [id^=projectInfo] > button{
+    width: 54px;
+    max-height: 19px;
+    justify-self: center;
+    align-self: center;
+}
+
+[id^=leftSide] > button{
     width: 54px;
     max-height: 19px;
     justify-self: center;
@@ -90,11 +93,6 @@ html, body{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-}
-
-[id^=projectInfo] {
-    display: flex;
-    flex-direction: row;
 }
 
 body {
@@ -119,4 +117,28 @@ button {
 [id^=projectNameTitle]{
     width: 75px;
     overflow-wrap: break-word;
+}
+
+[id^=addTaskButton]{
+    width: 67px
+}
+
+[id^=taskContent]{
+    width: 100px;
+    overflow-wrap: break-word;
+}
+
+[id^=leftSide]{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
+
+[id^=contentDiv] {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    justify-content: space-between;
+    align-content: space-between;
 }
