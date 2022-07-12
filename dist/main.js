@@ -86,6 +86,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "projectNameEventFunction": () => (/* binding */ projectNameEventFunction),
 /* harmony export */   "projectUnchecked": () => (/* binding */ projectUnchecked),
 /* harmony export */   "removeAllChildNodes": () => (/* binding */ removeAllChildNodes),
+/* harmony export */   "showAllTasksFunction": () => (/* binding */ showAllTasksFunction),
 /* harmony export */   "submitButtonFunction": () => (/* binding */ submitButtonFunction),
 /* harmony export */   "taskChecked": () => (/* binding */ taskChecked),
 /* harmony export */   "taskDeleteFunction": () => (/* binding */ taskDeleteFunction),
@@ -791,6 +792,10 @@ function removeAllChildNodes(parent){
     }
 }
 
+function showAllTasksFunction(){
+    console.log('hello')
+}
+
 /***/ })
 
 /******/ 	});
@@ -1002,6 +1007,14 @@ let projectEditButton = (function(){
             }        
     }
 })
+})()
+
+let showAllTasksButton = (function(){
+    document.addEventListener('click', function(e){
+        if (e.target && e.target.id === 'showAll'){
+            _buttonFunctions_js__WEBPACK_IMPORTED_MODULE_0__.showAllTasksFunction()
+        }
+    })
 })()
 
 function submission() {

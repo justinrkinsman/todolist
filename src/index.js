@@ -144,6 +144,14 @@ let projectEditButton = (function(){
 })
 })()
 
+let showAllTasksButton = (function(){
+    document.addEventListener('click', function(e){
+        if (e.target && e.target.id === 'showAll'){
+            buttonFunctions.showAllTasksFunction()
+        }
+    })
+})()
+
 function submission() {
     addDomElements.addListToPage()
     clearForm()

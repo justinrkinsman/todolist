@@ -692,3 +692,7 @@ export function removeAllChildNodes(parent){
         parent.removeChild(parent.firstChild)
     }
 }
+
+export function showAllTasksFunction(){
+    console.log('hello')
+}
