@@ -176,10 +176,13 @@ function newProject(){
         let newProjectPriority = document.createElement('select')
         let optionLow = document.createElement('option')
         optionLow.textContent = 'Low'
+        optionLow.style.backgroundColor = 'green'
         let optionMed = document.createElement('option')
         optionMed.textContent = 'Medium'
+        optionMed.style.backgroundColor = 'yellow'
         let optionHigh = document.createElement('option')
         optionHigh.textContent = 'High'
+        optionHigh.style.backgroundColor = 'red'
         newProjectPriority.appendChild(optionLow)
         newProjectPriority.appendChild(optionMed)
         newProjectPriority.appendChild(optionHigh)

@@ -296,10 +296,13 @@ function taskEditFunctionEditz0(index){
     let newPriority = document.createElement('select')
     let optionLow = document.createElement('option')
     optionLow.textContent = 'Low'
+    optionLow.style.backgroundColor = 'green'
     let optionMed = document.createElement('option')
     optionMed.textContent = 'Medium'
+    optionMed.style.backgroundColor = 'yellow'
     let optionHigh = document.createElement('option')
     optionHigh.textContent = 'High'
+    optionHigh.style.backgroundColor = 'red'
     newPriority.appendChild(optionLow)
     newPriority.appendChild(optionMed)
     newPriority.appendChild(optionHigh)
@@ -479,10 +482,13 @@ function addTaskFunction(index){
         let priority = document.createElement('select')
         let optionLow = document.createElement('option')
         optionLow.textContent = 'Low'
+        optionLow.style.backgroundColor = 'green'
         let optionMed = document.createElement('option')
         optionMed.textContent = 'Medium'
+        optionMed.style.backgroundColor = 'yellow'
         let optionHigh = document.createElement('option')
         optionHigh.textContent = 'High'
+        optionHigh.style.backgroundColor = 'red'
         priority.appendChild(optionLow)
         priority.appendChild(optionMed)
         priority.appendChild(optionHigh)
@@ -690,10 +696,13 @@ function projectEditEditz0(index){
     let newProjectPriority = document.createElement('select')
     let optionLow = document.createElement('option')
     optionLow.textContent = 'Low'
+    optionLow.style.backgroundColor = 'green'
     let optionMed = document.createElement('option')
     optionMed.textContent = 'Medium'
+    optionMed.style.backgroundColor = 'yellow'
     let optionHigh = document.createElement('option')
     optionHigh.textContent = 'High'
+    optionHigh.style.backgroundColor = 'red'
     newProjectPriority.appendChild(optionLow)
     newProjectPriority.appendChild(optionMed)
     newProjectPriority.appendChild(optionHigh)
@@ -1006,10 +1015,13 @@ function newProject(){
         let newProjectPriority = document.createElement('select')
         let optionLow = document.createElement('option')
         optionLow.textContent = 'Low'
+        optionLow.style.backgroundColor = 'green'
         let optionMed = document.createElement('option')
         optionMed.textContent = 'Medium'
+        optionMed.style.backgroundColor = 'yellow'
         let optionHigh = document.createElement('option')
         optionHigh.textContent = 'High'
+        optionHigh.style.backgroundColor = 'red'
         newProjectPriority.appendChild(optionLow)
         newProjectPriority.appendChild(optionMed)
         newProjectPriority.appendChild(optionHigh)
