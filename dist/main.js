@@ -129,7 +129,14 @@ function taskDetailsFunctionDeetz0(index){
         taskEditForm(index)
     }else{
         detailsDiv.setAttribute('id', `detailsText${index}`)
-        detailsDiv.textContent = `${currentDesc} ${currentDue} ${currentPriority}`
+        detailsDiv.textContent = `${currentDesc} -  ${currentDue} -  ${currentPriority}`
+        if (currentPriority.slice(-1) === 'w'){
+            detailsDiv.style.backgroundColor = 'green'
+        }else if (currentPriority.slice(-1) === 'm'){
+            detailsDiv.style.backgroundColor = 'yellow'
+        }else if (currentPriority.slice(-1) === 'h'){
+            detailsDiv.style.backgroundColor = 'red'
+        }
         ogDiv.appendChild(detailsDiv)
         getInfo.deetz[index] = 1}
 }
@@ -150,7 +157,7 @@ function taskEditForm(index){
     let currentDue = getInfo.projectList[projectIndex].taskInfo[index].dueDate
     let currentPriority = getInfo.projectList[projectIndex].taskInfo[index].priority
     detailsDiv.setAttribute('id', `detailsText${index}`)
-    detailsDiv.textContent = `${currentDesc} ${(currentDue)} ${(currentPriority)}`
+    detailsDiv.textContent = `${currentDesc} -  ${(currentDue)} -  ${(currentPriority)}`
     ogDiv.insertBefore(detailsDiv, editForm)
     getInfo.deetz[index] = 1
 }
@@ -529,8 +536,14 @@ function projectDetailsFunctionDeetz0(index){
         let projectName = document.getElementById(`editProjectForm${index}`)
         let projectDetailsDiv = document.createElement('div')
         projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
-        projectDetailsDiv.textContent = `${getInfo.projectList[index].dueDate} ${getInfo.projectList[index].priority}`
-        console.log(index)
+        projectDetailsDiv.textContent = `${getInfo.projectList[index].dueDate} -  ${getInfo.projectList[index].priority}`
+        if (projectDetailsDiv.textContent.slice(-1) === 'w'){
+            projectDetailsDiv.style.backgroundColor = 'green'
+        }else if (projectDetailsDiv.textContent.slice(-1) === 'm'){
+            projectDetailsDiv.style.backgroundColor = 'yellow'
+        }else if (projectDetailsDiv.textContent.slice(-1) === 'h'){
+            projectDetailsDiv.style.backgroundColor = 'red'
+        }
         ogDiv.insertBefore(projectDetailsDiv, projectName)
         getInfo.projectDeetz[index] = 1
     }else{
@@ -538,7 +551,14 @@ function projectDetailsFunctionDeetz0(index){
         let ogDiv = document.getElementById(`projectName${index}`)
         getInfo.projectDeetz[index] = 1
         projectDetailsDiv.setAttribute('id', `projectDetailsText${index}`)
-        projectDetailsDiv.textContent = `${getInfo.projectList[index].dueDate} ${getInfo.projectList[index].priority}`
+        projectDetailsDiv.textContent = `${getInfo.projectList[index].dueDate} -  ${getInfo.projectList[index].priority}`
+        if (projectDetailsDiv.textContent.slice(-1) === 'w'){
+            projectDetailsDiv.style.backgroundColor = 'green'
+        }else if (projectDetailsDiv.textContent.slice(-1) === 'm'){
+            projectDetailsDiv.style.backgroundColor = 'yellow'
+        }else if (projectDetailsDiv.textContent.slice(-1) === 'h'){
+            projectDetailsDiv.style.backgroundColor = 'red'
+        }
         ogDiv.appendChild(projectDetailsDiv)
         getInfo.projectDeetz[index] = 1
     }
@@ -741,12 +761,13 @@ function projectEditAccept(index){
         getInfo.projectEditz[index] = 0
     }else{
         let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
+        let currentProject = document.getElementById(`projectNameTitle${index}`)
         let contentH2 = document.getElementById(`h2${index}`)
         let newProject = document.getElementById(`newTaskInput${index}`)
         let newProjectDue = document.getElementById(`newProjectDueInput${index}`)
         let newProjectPriority = document.getElementById(`newPriorityInput${index}`)
         contentH2.textContent = newProject.value
-        currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
+        currentProjectDetailsText.textContent = newProjectDue.value + ' -  ' + newProjectPriority.value
         currentProject.textContent = newProject.value
         getInfo.projectList[index].name = newProject.value
         getInfo.projectList[index].dueDate = newProjectDue.value
