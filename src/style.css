@@ -68,7 +68,7 @@ html, body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-top: 1px rgb(59, 59, 59) solid;
+    border-bottom: 1px rgb(59, 59, 59) solid;
 }
 
 [id^=projectInfo] > button{
@@ -143,4 +143,5 @@ button {
     width: 300px;
     justify-content: space-between;
     align-content: space-between;
+    border-bottom: 1px rgb(59, 59, 59) solid;
 }
