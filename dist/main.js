@@ -294,6 +294,15 @@ function taskEditFunctionEditz0(index){
     editDue.appendChild(newDue)
     editDue.appendChild(newDueLabel)
     let newPriority = document.createElement('select')
+    let optionLow = document.createElement('option')
+    optionLow.textContent = 'Low'
+    let optionMed = document.createElement('option')
+    optionMed.textContent = 'Medium'
+    let optionHigh = document.createElement('option')
+    optionHigh.textContent = 'High'
+    newPriority.appendChild(optionLow)
+    newPriority.appendChild(optionMed)
+    newPriority.appendChild(optionHigh)
     newPriority.setAttribute('type', 'input')
     newPriority.setAttribute('id', `newPriorityInput${index}`)
     newPriority.defaultValue = currentPriority
@@ -468,6 +477,15 @@ function addTaskFunction(index){
         let priorityForm = document.createElement('div')
         priorityForm.setAttribute('id', 'priorityForm')
         let priority = document.createElement('select')
+        let optionLow = document.createElement('option')
+        optionLow.textContent = 'Low'
+        let optionMed = document.createElement('option')
+        optionMed.textContent = 'Medium'
+        let optionHigh = document.createElement('option')
+        optionHigh.textContent = 'High'
+        priority.appendChild(optionLow)
+        priority.appendChild(optionMed)
+        priority.appendChild(optionHigh)
         priority.setAttribute('id', 'priority')
         priority.setAttribute('type', 'text')
         let priorityLabel = document.createElement('LABEL')
@@ -670,6 +688,15 @@ function projectEditEditz0(index){
     editProjectDue.appendChild(newProjectDue)
     editProjectDue.appendChild(newProjectDueLabel)
     let newProjectPriority = document.createElement('select')
+    let optionLow = document.createElement('option')
+    optionLow.textContent = 'Low'
+    let optionMed = document.createElement('option')
+    optionMed.textContent = 'Medium'
+    let optionHigh = document.createElement('option')
+    optionHigh.textContent = 'High'
+    newProjectPriority.appendChild(optionLow)
+    newProjectPriority.appendChild(optionMed)
+    newProjectPriority.appendChild(optionHigh)
     newProjectPriority.setAttribute('type', 'input')
     newProjectPriority.setAttribute('id', `newPriorityInput${index}`)
     newProjectPriority.defaultValue = currentPriority
@@ -977,6 +1004,15 @@ function newProject(){
         newProjectForm.appendChild(newProjectDueDate)
         newProjectDiv.appendChild(newProjectForm)
         let newProjectPriority = document.createElement('select')
+        let optionLow = document.createElement('option')
+        optionLow.textContent = 'Low'
+        let optionMed = document.createElement('option')
+        optionMed.textContent = 'Medium'
+        let optionHigh = document.createElement('option')
+        optionHigh.textContent = 'High'
+        newProjectPriority.appendChild(optionLow)
+        newProjectPriority.appendChild(optionMed)
+        newProjectPriority.appendChild(optionHigh)
         newProjectPriority.setAttribute('id', 'newProjectPriorityInput')
         let newProjectPriorityLabel = document.createElement('LABEL')
         newProjectPriorityLabel.htmlFor = newProjectPriority
