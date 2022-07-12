@@ -61,12 +61,14 @@ html, body{
 [id^=projectName]{
     display: flex;
     flex-direction: column;
+   
 }
 
 [id^=projectInfo]{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border-top: 1px rgb(59, 59, 59) solid;
 }
 
 [id^=projectInfo] > button{
