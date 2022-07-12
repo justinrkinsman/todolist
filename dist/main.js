@@ -293,7 +293,7 @@ function taskEditFunctionEditz0(index){
     newDueLabel.textContent = 'Due Date'
     editDue.appendChild(newDue)
     editDue.appendChild(newDueLabel)
-    let newPriority = document.createElement('input')
+    let newPriority = document.createElement('select')
     newPriority.setAttribute('type', 'input')
     newPriority.setAttribute('id', `newPriorityInput${index}`)
     newPriority.defaultValue = currentPriority
@@ -467,7 +467,7 @@ function addTaskFunction(index){
         myForm.insertBefore(dueForm, newProjectDiv)
         let priorityForm = document.createElement('div')
         priorityForm.setAttribute('id', 'priorityForm')
-        let priority = document.createElement('input')
+        let priority = document.createElement('select')
         priority.setAttribute('id', 'priority')
         priority.setAttribute('type', 'text')
         let priorityLabel = document.createElement('LABEL')
@@ -669,7 +669,7 @@ function projectEditEditz0(index){
     newProjectDueLabel.textContent = 'Due Date'
     editProjectDue.appendChild(newProjectDue)
     editProjectDue.appendChild(newProjectDueLabel)
-    let newProjectPriority = document.createElement('input')
+    let newProjectPriority = document.createElement('select')
     newProjectPriority.setAttribute('type', 'input')
     newProjectPriority.setAttribute('id', `newPriorityInput${index}`)
     newProjectPriority.defaultValue = currentPriority
@@ -705,11 +705,11 @@ function projectEditAccept(index){
         getInfo.projectEditz[index] = 0
     }else{
         let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
+        let contentH2 = document.getElementById(`h2${index}`)
         let newProject = document.getElementById(`newTaskInput${index}`)
         let newProjectDue = document.getElementById(`newProjectDueInput${index}`)
-        let contentH2 = document.getElementById(`h2${index}`)
-        contentH2.textContent = newProject.value
         let newProjectPriority = document.getElementById(`newPriorityInput${index}`)
+        contentH2.textContent = newProject.value
         currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
         currentProject.textContent = newProject.value
         getInfo.projectList[index].name = newProject.value
@@ -976,7 +976,7 @@ function newProject(){
         newProjectForm.appendChild(newProjectDueDateLabel)
         newProjectForm.appendChild(newProjectDueDate)
         newProjectDiv.appendChild(newProjectForm)
-        let newProjectPriority = document.createElement('input')
+        let newProjectPriority = document.createElement('select')
         newProjectPriority.setAttribute('id', 'newProjectPriorityInput')
         let newProjectPriorityLabel = document.createElement('LABEL')
         newProjectPriorityLabel.htmlFor = newProjectPriority

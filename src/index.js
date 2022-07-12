@@ -173,7 +173,7 @@ function newProject(){
         newProjectForm.appendChild(newProjectDueDateLabel)
         newProjectForm.appendChild(newProjectDueDate)
         newProjectDiv.appendChild(newProjectForm)
-        let newProjectPriority = document.createElement('input')
+        let newProjectPriority = document.createElement('select')
         newProjectPriority.setAttribute('id', 'newProjectPriorityInput')
         let newProjectPriorityLabel = document.createElement('LABEL')
         newProjectPriorityLabel.htmlFor = newProjectPriority
