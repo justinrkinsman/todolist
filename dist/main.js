@@ -705,8 +705,11 @@ function projectEditAccept(index){
         getInfo.projectEditz[index] = 0
     }else{
         let currentProjectDetailsText = document.getElementById(`projectDetailsText${index}`)
+        let newProject = document.getElementById(`newTaskInput${index}`)
+        let newProjectDue = document.getElementById(`newProjectDueInput${index}`)
         let contentH2 = document.getElementById(`h2${index}`)
         contentH2.textContent = newProject.value
+        let newProjectPriority = document.getElementById(`newPriorityInput${index}`)
         currentProjectDetailsText.textContent = newProjectDue.value + ' ' + newProjectPriority.value
         currentProject.textContent = newProject.value
         getInfo.projectList[index].name = newProject.value

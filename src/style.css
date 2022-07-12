@@ -1,6 +1,13 @@
+html, body{
+    height: 100%
+}
+
 #myForm {
     display: inline-block;
     text-align: right;
+    background-color: #7395AE;
+    width: 277.5px;
+    height: 100%
 }
 
 #submitForm {
@@ -22,6 +29,7 @@
 #wholeShebang {
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 
 #taskContent {
@@ -30,7 +38,8 @@
 
 #content {
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    margin-left: 10px;
 }
 
 [id^=contentDiv] {
@@ -59,9 +68,22 @@
     flex-direction: column;
 }
 
+[id^=projectInfo]{
+    display: flex;
+    justify-content: space-between;
+}
+
+[id^=projectInfo] > button{
+    width: 54px;
+    max-height: 19px;
+    justify-self: center;
+    align-self: center;
+}
+
 #projectsList{
     display: flex;
     flex-direction: column;
+    width: 277.5px;
 }
 
 [id^=editProjectForm] {
@@ -73,4 +95,28 @@
 [id^=projectInfo] {
     display: flex;
     flex-direction: row;
+}
+
+body {
+    background-color: skyblue;
+    margin: 0px
+}
+
+button {
+    background-color: rgb(71, 71, 255);
+    border: 0;
+    border-radius: 5px;
+}
+
+#newProjectBtn{
+    width: 92.5px;
+}
+
+#confirmBtn{
+    width: 92.5px
+}
+
+[id^=projectNameTitle]{
+    width: 75px;
+    overflow-wrap: break-word;
 }
