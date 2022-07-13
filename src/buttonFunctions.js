@@ -693,6 +693,27 @@ export function removeAllChildNodes(parent){
     }
 }
 
-export function showAllTasksFunction(){
-    console.log('hello')
-}
+/*export function showAllTasksFunction(){
+    let todoList = getInfo.fullList
+    let h2 = document.querySelector('[id^="h2"]')
+    let addTaskButton = document.querySelector('[id^="addTaskButton"]')
+    let content = document.getElementById('content')
+    for (let i = 0; i < todoList.length; i++){
+        let newDiv = document.createElement('div')
+        newDiv.setAttribute('id', `allTasks${i}`)
+        console.log(todoList[i].task)
+        /*let task = todoList[i].task
+        let desc = todoList[i].description
+        let due = todoList[i].dueDate
+        let priority = todoList[i].priority
+    }
+    let fillThisDiv = document.querySelectorAll('[id^="allTasks"]')
+    console.log(fillThisDiv)
+        for (let j = 0; j <= fillThisDiv.length; j++){
+            console.log(fillThisDiv[j])
+            //fillThisDiv[i].textContent = `hello${i}`
+        }
+        //fillThisDiv.textContent = `${task} -  ${desc} -  ${due} -  ${priority}`
+        content.insertBefore(newDiv, addTaskButton)
+    h2.textContent = 'All Tasks'
+}*/
